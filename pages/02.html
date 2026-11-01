@@ -1,0 +1,2187 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ملخص كتاب إكسير الطمأنينة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf7; --ink:#2c2523; --dark:#241a10; --brown:#3d2e1e;
+  --yellow:#ebd800; --gold:#c29b38; --green:#2d6a4f; --red:#a83232; --border:#e2d9c8;
+  --muted:#7a6e62;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Cairo",Tahoma,sans-serif;font-size:17px;line-height:1.7;background-color:#fdfbf7}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+
+/* ---------- cover ---------- */
+.cover{background:linear-gradient(160deg,#241a10 0%,#3d2e1e 60%,#2c2014 100%);color:#fff;margin:16px auto 0;max-width:900px;border-radius:22px;padding:56px 24px 48px;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;inset:12px;border:1px solid var(--gold);border-radius:14px;pointer-events:none}
+.cover .badge{display:inline-block;background:var(--yellow);color:var(--dark);font-weight:800;font-size:14px;padding:4px 16px;border-radius:999px;margin-bottom:18px}
+.cover h1{font-family:"Scheherazade New",serif;font-size:76px;line-height:1.3;color:var(--yellow);margin:0 0 6px;font-weight:700}
+.cover .sub{font-family:"Amiri",serif;font-size:24px;color:#f5ecd7;margin:0 0 26px}
+.cover .authors{font-size:17px;color:#f5ecd7}
+.cover .authors b{color:var(--yellow)}
+.cover .en{font-size:14px;color:#cdbf9f;margin-top:4px;direction:ltr}
+.cover .status{margin:26px auto 0;max-width:620px;font-size:14px;color:#e9dcc0;background:rgba(255,255,255,.06);border:1px solid rgba(194,155,56,.5);border-radius:12px;padding:10px 14px}
+
+/* ---------- sticky tabs & progress ---------- */
+.progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--gold),var(--yellow));z-index:60}
+.tabs{position:sticky;top:0;z-index:50;background:rgba(253,251,247,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);margin-top:20px}
+.tabs-inner{max-width:900px;margin:0 auto;padding:10px 16px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;font-family:"Cairo",sans-serif;font-weight:700;font-size:15px;color:var(--brown);background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 14px;cursor:pointer;white-space:nowrap}
+.tab.active{background:linear-gradient(135deg,#241a10,#3d2e1e);color:#fff;border:1.5px solid var(--yellow)}
+
+/* ---------- chapters ---------- */
+main{max-width:900px;margin:0 auto;padding:0 16px 40px}
+.chapter{padding-top:34px;scroll-margin-top:70px}
+.ch-head{text-align:center;padding:18px 12px 22px;border-bottom:2px solid var(--gold);margin-bottom:22px}
+.ch-icon{font-size:54px;line-height:1.2}
+.ch-no{display:inline-block;color:var(--gold);font-weight:800;font-size:14px;letter-spacing:.5px;margin-bottom:4px}
+.ch-head h2{font-family:"Scheherazade New",serif;font-size:50px;line-height:1.3;color:var(--dark);margin:4px 0}
+.ch-desc{color:var(--muted);font-size:16px;margin:0}
+h3{font-family:"Cairo",sans-serif;font-size:21px;color:var(--brown);margin:30px 0 10px;padding-right:12px;border-right:4px solid var(--gold)}
+p{font-family:"Amiri",serif;font-size:21px;line-height:2;margin:10px 0}
+.tag{display:inline-block;font-family:"Cairo",sans-serif;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;margin-left:6px;vertical-align:middle}
+.t-a{background:#efe3c4;color:#5a4220}
+.t-i{background:#e4ece6;color:#2d6a4f}
+.qv{font-family:"Amiri",serif;font-size:22px;line-height:2.1;color:var(--dark);background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px 18px;margin:16px 0;text-align:center}
+.ref{font-family:"Cairo",sans-serif;font-size:13px;color:var(--muted);margin-top:4px}
+.warn{font-size:14px;color:var(--red);background:#fbeeee;border-radius:10px;padding:8px 12px;margin:12px 0}
+
+/* ---------- boxes ---------- */
+.box{border-radius:14px;padding:16px 20px;margin:20px 0;font-family:"Cairo",sans-serif;font-size:16px;line-height:1.9;break-inside:avoid}
+.box h4{margin:0 0 6px;font-size:17px;font-weight:800}
+.box p{font-size:17px;line-height:1.9;margin:6px 0;font-family:"Cairo",sans-serif}
+.box-key{background:#fff8c7;border-right:5px solid var(--gold)}
+.box-sum{background:#e8f4ec;border-right:5px solid var(--green)}
+.box-lesson{background:#fbf6e9;border:1px solid var(--border)}
+.box-term{background:#fbe9ee;border-right:5px solid #c0708a}
+.box ul{margin:6px 0;padding-right:20px}
+
+.quote{background:linear-gradient(135deg,#241a10,#3d2e1e);color:#fff;border-radius:16px;padding:22px 26px;margin:24px 0;text-align:center;break-inside:avoid}
+.quote blockquote{margin:0;font-family:"Amiri",serif;font-style:italic;font-size:22px;line-height:2}
+.quote cite{display:block;margin-top:8px;font-style:normal;color:var(--yellow);font-family:"Cairo",sans-serif;font-size:14px;font-weight:700}
+
+/* stories */
+.story{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(135deg,#fdf6e3,#f6efe0);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin:18px 0;break-inside:avoid}
+.story-ico{flex:0 0 52px;height:52px;border-radius:50%;background:var(--brown);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px}
+.story h4{margin:0 0 6px;font-family:"Cairo",sans-serif;font-size:18px;color:var(--dark)}
+.story p{font-size:19px;margin:6px 0}
+.moral{border-top:1px dashed var(--gold);margin-top:10px;padding-top:8px;font-family:"Cairo",sans-serif;font-size:15px;color:#5a4220}
+
+/* wisdom */
+.wis-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.wis{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;break-inside:avoid}
+.wis-num{color:var(--gold);font-weight:800;font-family:"Cairo",sans-serif;font-size:15px}
+.wis-txt{font-family:"Amiri",serif;font-size:20px;line-height:2;margin:6px 0;color:var(--dark)}
+.wis-src{color:var(--green);font-family:"Cairo",sans-serif;font-size:13px;font-weight:700}
+
+/* keys list */
+.keys{display:grid;gap:14px;margin:18px 0}
+.key{background:#fff;border:1px solid var(--border);border-right:5px solid var(--gold);border-radius:14px;padding:16px 20px;break-inside:avoid}
+.key h4{margin:0 0 4px;font-family:"Cairo",sans-serif;font-size:18px;color:var(--dark)}
+.key .k-ay{font-family:"Amiri",serif;font-size:19px;color:var(--brown);margin:4px 0}
+
+/* table */
+.tbl-wrap{overflow-x:auto;margin:18px 0}
+table{width:100%;border-collapse:collapse;font-family:"Cairo",sans-serif;font-size:15px;background:#fff}
+th,td{border:1px solid var(--border);padding:10px 12px;text-align:right;vertical-align:top}
+thead th{background:#f3ede0;color:var(--dark);font-weight:800}
+
+.status-line{font-size:14px;color:var(--muted);text-align:center;margin:28px 0 0;font-family:"Cairo",sans-serif}
+
+/* back to top */
+.totop{position:fixed;bottom:22px;left:18px;width:50px;height:50px;border-radius:50%;border:2px solid var(--yellow);background:linear-gradient(135deg,#241a10,#3d2e1e);color:var(--yellow);font-size:22px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(36,26,16,.3);z-index:55}
+.totop.show{display:flex}
+
+/* ---------- phone ---------- */
+@media (max-width:600px){
+  body{font-size:16px}
+  .cover{margin:0;border-radius:0;padding:44px 16px 36px}
+  .cover h1{font-size:56px}
+  .cover .sub{font-size:20px}
+  .tabs-inner{padding:10px 16px}
+  .ch-head h2{font-size:40px}
+  .ch-icon{font-size:44px}
+  p{font-size:19px}
+  .wis-grid{grid-template-columns:1fr}
+  .story{flex-direction:column;gap:10px}
+  .quote blockquote{font-size:19px}
+}
+
+/* ---------- print ---------- */
+@media print{
+  @page{size:A4;margin:14mm}
+  .progress,.tabs,.totop,.cover .status{display:none!important}
+  body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cover{margin:0;border-radius:0;break-after:page}
+  .chapter{break-before:page;padding-top:0}
+  .box,.quote,.story,.wis,.key,table,tr,figure{break-inside:avoid;page-break-inside:avoid}
+  h3,h4{break-after:avoid}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+
+  /* واجبك */
+  .box-duty{background:linear-gradient(135deg,#3d2e1e,#241a10);color:#fff;border:none;border-radius:14px;padding:22px 24px;margin:18px 0}
+  .box-duty h4{color:#ebd800;font-size:1.25rem;margin:0 0 10px}
+  .box-duty ul.checks{list-style:none;padding:0;margin:0}
+  .box-duty ul.checks li{padding:6px 0;line-height:1.9}
+  .box-duty ul.checks li::before{content:"✔";color:#ebd800;margin-left:8px;font-weight:700}
+
+  /* الغلاف (صورة) */
+  .container{max-width:1100px;margin:0 auto;padding:0 20px}
+  .hero-banner{width:100%;margin:0 0 30px;padding:0;border:none;background:#110c08;overflow:hidden;display:flex;justify-content:center;align-items:center}
+  .hero-cover-img{width:100%;max-width:100%;height:auto;max-height:80vh;object-fit:contain;display:block;margin:0 auto}
+</style>
+<style>
+/* ====== ميزة العلامة المرجعية (Bookmark) ====== */
+.tab { position: relative; }
+.tab.bookmarked {
+    background: linear-gradient(135deg, #fffde8 0%, #fdfbf7 100%);
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px var(--gold), 0 4px 14px rgba(184, 131, 20, .30);
+    padding-left: 34px;
+    color: var(--dark) !important; /* لون داكن واضح جداً في حالة عدم التحديد */
+}
+.tab.bookmarked.active {
+    background: linear-gradient(145deg, #241a10, #3d2e1e);
+    box-shadow: 0 0 0 2px var(--yellow), 0 4px 16px rgba(235, 216, 0, .40);
+    color: #ffffff !important; /* لون أبيض واضح في حالة التحديد */
+}
+.tab.bookmarked::after {
+    content: "🏷";
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    line-height: 1;
+    pointer-events: none;
+    animation: bookmarkPop .42s cubic-bezier(.34,1.56,.64,1);
+    filter: drop-shadow(0 1px 1px rgba(0,0,0,.15));
+}
+@keyframes bookmarkPop {
+    0% { transform: translateY(-50%) scale(0) rotate(-30deg); opacity: 0; }
+    60% { transform: translateY(-50%) scale(1.4) rotate(10deg); opacity: 1; }
+    100% { transform: translateY(-50%) scale(1) rotate(0); opacity: 1; }
+}
+@media print { .tab.bookmarked::after { display: none; } }
+</style>
+</head>
+<body>
+
+<!-- Hero Cover / Header -->
+<header class="hero-banner">
+    <img src="../files/02/a15.jpg" alt="إكسير الطمأنينة" class="hero-cover-img">
+</header>
+
+<div class="progress" id="progress"></div>
+
+<nav class="tabs" aria-label="أقسام الملخص">
+  <div class="tabs-inner" id="tabs">
+    <button class="tab active" data-target="intro">المقدمة</button>
+    <button class="tab" data-target="joy">دعوة إلى الفرح</button>
+    <button class="tab" data-target="keys">مفاتيح السعادة</button>
+    <button class="tab" data-target="khair">لعله خير</button>
+    <button class="tab" data-target="nas">كلام الناس</button>
+    <button class="tab" data-target="pray">أرحنا بها</button>
+    <button class="tab" data-target="env">جاور السعيد تسعد</button>
+    <button class="tab" data-target="fame">مشهور في السماء</button>
+    <button class="tab" data-target="regret">اللبن المسكوب</button>
+    <button class="tab" data-target="compare">لا تمدن عينيك</button>
+    <button class="tab" data-target="dhikr">طمأنينة قلب</button>
+    <button class="tab" data-target="seed">بذر الحب</button>
+    <button class="tab" data-target="minor">ترفّع عن الصغائر</button>
+    <button class="tab" data-target="pleasure">صُنّاع السرور</button>
+    <button class="tab" data-target="refuge">الملاذ الآمن</button>
+    <button class="tab" data-target="neglect">فن التغافل</button>
+    <button class="tab" data-target="change">حتى يغيروا</button>
+    <button class="tab" data-target="content">نعيم الرضا</button>
+    <button class="tab" data-target="avoid">اعتزل ما يؤذيك</button>
+    <button class="tab" data-target="praise">استجداء الثناء</button>
+    <button class="tab" data-target="grace">جمال العفوية</button>
+    <button class="tab" data-target="withme">إنّ معي ربي</button>
+    <button class="tab" data-target="positive">انفض غبار السلبية</button>
+    <button class="tab" data-target="sound">مخموم القلب</button>
+    <button class="tab" data-target="unbreak">غير قابل للكسر</button>
+    <button class="tab" data-target="sins">أغلال المعصية</button>
+    <button class="tab" data-target="vanity">متاع الغرور</button>
+    <button class="tab" data-target="calm">منزلة السكينة</button>
+    <button class="tab" data-target="scale">ميزان الآخرة</button>
+    <button class="tab" data-target="balance">لا إفراط ولا تفريط</button>
+    <button class="tab" data-target="anger">لا تغضب</button>
+    <button class="tab" data-target="principles">المبادئ والأسئلة</button>
+    <button class="tab" data-target="conclusion">الخلاصة النهائية</button>
+    <button class="tab" data-target="duty">واجبك</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ======================= المقدمة ======================= -->
+<section class="chapter" id="intro">
+  <div class="ch-head">
+    <div class="ch-icon">📖</div>
+    <span class="ch-no">المقدمة · ص 2–4</span>
+    <h2>المقدمة</h2>
+    <p class="ch-desc">حمد الله والثناء على كتابه، ووصف أمراض العصر النفسية، وبيان منهج الكتاب.</p>
+  </div>
+
+  <h3>افتتاح المؤلف</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يفتتح المؤلف كتابه بحمد الله على نعمة القرآن الذي جمع فيه ما يصلح البشرية ويهديها ويرحمها، مستشهدًا بقوله تعالى: ﴿وَنَزَّلْنَا عَلَيْكَ الْكِتَابَ تِبْيَانًا لِّكُلِّ شَيْءٍ وَهُدًى وَرَحْمَةً وَبُشْرَىٰ لِلْمُسْلِمِينَ﴾ [النحل: 89]، ثم يصلي على نبي الهدى، ويذكر فضل الاجتماع في بيوت الله لتلاوة كتابه ومدارسته.</p>
+
+  <h3>أمراض العصر النفسية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يرى المؤلف أن الإنسان بطبعه يطلب الراحة والطمأنينة، لكن العصر الحديث شهد انتشار الأمراض النفسية، حتى كثرت المصحات والعيادات، وظهرت مصطلحات لم تكن معروفة من قبل، كـ«الهشاشة النفسية» التي يصفها بأنها مرض العصر المدمر، وقد انعكس ذلك على الصحة النفسية والجسدية للناس، وخلّف عدم استقرار يهدد أمن المجتمعات.</p>
+
+  <h3>الخلاص: الرجوع إلى القرآن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يرى المؤلف أن الخلاص من هذه العلل لا يكون إلا بالفرار إلى الله، واتباع أوامره، واجتناب نواهيه، والتداوي بما أنزله من الذكر الحكيم، مستشهدًا بقوله تعالى: ﴿يَا أَيُّهَا النَّاسُ قَدْ جَاءَتْكُم مَّوْعِظَةٌ مِّن رَّبِّكُمْ وَشِفَاءٌ لِّمَا فِي الصُّدُورِ﴾ [يونس: 57]، ويصف القرآن بأنه الحل لكثير من المشكلات والشفاء لكثير من الاضطرابات.</p>
+
+  <h3>منهج الكتاب</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يسلّط الكتاب الضوء على آيات تعمل كقواعد تنظم سلوك الإنسان وانفعالاته وعلاقاته، وتعينه على مواجهة ضغوط الحياة وصدماتها بحكمة واتزان. ويعرض لأهم التحديات النفسية المعاصرة وكيفية معالجتها شرعًا، ومنها: كلام الناس، واستجداء الثناء، والغضب، والمقارنة المنهي عنها، والتكلف، والمعاصي، والحزن والتحسر. كما يلفت إلى قيم إيجابية حثّ عليها القرآن لتحصين النفس من هذا السيل من الأمراض.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> القرآن عند المؤلف ليس كتاب هداية فحسب، بل علاج للنفس وطريق للطمأنينة، وقواعده تنظم الانفعالات والعلاقات وتعين على مواجهة الضغوط.</p>
+  </div>
+
+  <div class="box box-term">
+    <h4>📌 مصطلحات مهمة</h4>
+    <ul>
+      <li><b>الهشاشة النفسية:</b> وصفها المؤلف بأنها «مرض العصر المدمر».</li>
+      <li><b>كلام الناس:</b> أول الأمراض النفسية التي يعالجها الكتاب، وسيُفصَّل في موضعه.</li>
+    </ul>
+  </div>
+
+  <h3>دعاء المؤلف في ختام المقدمة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يسأل الله أن يجعل كتابه خالصًا لوجهه، وأن ينفع به، وأن يلهم القراء العودة إلى كتاب ربهم تدبرًا وحفظًا وتلاوة وتعلمًا وتعليمًا وتحاكمًا إليه.</p>
+  <p class="ref">كتبه: علي حسن صالح العبيدلي — الكويت، 19 محرم 1445هـ، الموافق 6 أغسطس 2023م (كما هو مدوّن في آخر المقدمة).</p>
+</section>
+
+<!-- ======================= دعوة إلى الفرح ======================= -->
+<section class="chapter" id="joy">
+  <div class="ch-head">
+    <div class="ch-icon">☀️</div>
+    <span class="ch-no">الفصل الأول · ص 5–6</span>
+    <h2>دعوة إلى الفرح</h2>
+    <p class="ch-desc">السعادة الحقيقية بيد الله، ومصدرها فضله ورحمته، وفي القرآن الشفاء من أمراض القلوب.</p>
+  </div>
+
+  <div class="qv">﴿قُلْ بِفَضْلِ اللَّهِ وَبِرَحْمَتِهِ فَبِذَٰلِكَ فَلْيَفْرَحُوا هُوَ خَيْرٌ مِّمَّا يَجْمَعُونَ﴾<div class="ref">[يونس: 58]</div></div>
+
+  <h3>السعادة غاية يسعى إليها الناس</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يلاحظ المؤلف أن الناس اليوم يشكون الاكتئاب والقلق، ويبحثون عن السعادة بطرق شتى: فمنهم من يطلبها في الثراء، ومنهم في الشهرة والمناصب، ومنهم في الدورات التدريبية وكتب تطوير الذات.</p>
+
+  <h3>السعادة الحقيقية بيد الله</h3>
+  <p><span class="tag t-a">قول المؤلف</span> السعادة الحقيقية بيد الله وحده، يهبها لمن أطاعه واتبع نبيه واهتدى بكتابه. ويستشهد المؤلف بقول الشيخ عبد الرحمن السعدي إن فضل الله هو هذا القرآن، ويرى أن من تدبّر آياته وعمل بها وجد فيها سعادة الدنيا والآخرة، ومنهجًا واضحًا يجنبه الحيرة والشقاء.</p>
+
+  <h3>دعوة إلى عرض النفس على القرآن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يدعو المؤلف القارئ إلى أن يعرض نفسه على القرآن: يقرؤه ليقترب من الله، ويتدبره ليجد الطمأنينة، ويستمع إليه ليهدأ قلبه، ويعمل بما فيه ليطلب راحة البال وحسن المآل. ويرى أن هذا الكتاب أساس كل خير، وأن علماء النفس وخبراء التنمية لا يستطيعون توفير ما فيه.</p>
+
+  <h3>القرآن عزة للأمة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> القرآن معجزة خالدة، وهو سبيل عزة الأمة وتمكينها إذا عملت بآياته وحكّمت شرائعه، مستشهدًا بقوله تعالى: ﴿لَقَدْ أَنزَلْنَا إِلَيْكُمْ كِتَابًا فِيهِ ذِكْرُكُمْ﴾ [الأنبياء: 10]، أي: فيه عزكم وشرفكم.</p>
+
+  <h3>ثواب من عاش مع القرآن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> المؤمن الذي يعيش مع القرآن تلاوةً وتدبرًا وحفظًا وعملًا يحجز لنفسه منزلة رفيعة في الآخرة، فيُقال له يوم القيامة: اقرأ وارتق، وهذا الارتقاء نتيجة طبيعية لتعلّمه القرآن والعمل به.</p>
+
+  <h3>الشفاء في القرآن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> القرآن شفاء لأمراض القلوب، فهو يحمي صاحبه من تسلل العلل والشبهات، ويعالج ما استوطن القلب منها، ويخفف ما يعتري النفس من هموم الدنيا ومتاعبها وحزنها. ويستشهد بقوله تعالى: ﴿وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ﴾ [الإسراء: 82]، وبقوله: ﴿فَمَن يُرِدِ اللَّهُ أَن يَهْدِيَهُ يَشْرَحْ صَدْرَهُ لِلْإِسْلَامِ﴾ [الأنعام: 125]. ويذكر أن كثرة سماع القرآن ترمّم النفس وتجمع القلب المشتت، وينقل ذلك عن الدكتور أحمد عبد المنعم.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الفرح الحقيقي مصدره فضل الله ورحمته، والقرآن هو هذا الفضل، فالسعادة تُطلب بالإقبال على الكتاب لا بالمكاسب وحدها.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> السعادة عطاء من الله، والقرآن مصدرها وشفاؤها، ولا تتحقق بالمال أو الشهرة وحدهما.</p>
+    <p><b>تطبيق عملي:</b> خصص وقتًا يوميًا لتلاوة القرآن مع التدبر، واجعل الغاية منه العمل بما فيه لا مجرد الانتهاء من التلاوة.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الفرح الحقيقي يُطلب من الله بالطاعة والاتباع.</li>
+      <li>القرآن شفاء للقلوب من الهموم والحزن، إذا أُقبل عليه بالتدبر والعمل.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= مفاتيح السعادة ======================= -->
+<section class="chapter" id="keys">
+  <div class="ch-head">
+    <div class="ch-icon">🔑</div>
+    <span class="ch-no">الفصل الثاني · ص 7–8</span>
+    <h2>مفاتيح السعادة</h2>
+    <p class="ch-desc">ستة مفاتيح للسعادة مستخرجة من سورة الشرح.</p>
+  </div>
+
+  <div class="qv">﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ * وَوَضَعْنَا عَنكَ وِزْرَكَ * الَّذِي أَنقَضَ ظَهْرَكَ * وَرَفَعْنَا لَكَ ذِكْرَكَ * فَإِنَّ مَعَ الْعُسْرِ يُسْرًا * إِنَّ مَعَ الْعُسْرِ يُسْرًا * فَإِذَا فَرَغْتَ فَانصَبْ * وَإِلَىٰ رَبِّكَ فَارْغَب﴾<div class="ref">[الشرح: 1–8]</div></div>
+
+  <h3>السعادة طريقها واضح</h3>
+  <p><span class="tag t-a">قول المؤلف</span> السعادة أمنية يسعى إليها الناس بكل وسيلة، وطريقها واضح لمن تدبر كتاب الله وعمل بما فيه، وقد أخذ المؤلف مفاتيحها الستة من سورة الشرح.</p>
+
+  <h3>المفتاح الأول: انشراح الصدر</h3>
+  <div class="keys">
+    <div class="key">
+      <h4>1. انشراح الصدر</h4>
+      <div class="k-ay">﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ﴾</div>
+      <p><span class="tag t-a">قول المؤلف</span> انشراح الصدر أن ينبسط القلب ويستعد لقبول أوامر الله، فيبتعد عن الضيق والقلق، ويقبل على الخير، ويرضى بقضاء الله وقدره. ويذكر أن أول ما دعا به موسى عليه السلام عند تكليفه بالرسالة كان قوله: ﴿رَبِّ اشْرَحْ لِي صَدْرِي﴾ [طه: 25].</p>
+      <p><span class="tag t-a">قول المؤلف</span> السعادة ليست سلعة تُشترى ولا منحة تُعطى للحاشية، بل هي نعمة يسبغها الله على المتقين فتطمئن بها قلوبهم.</p>
+    </div>
+    <div class="key">
+      <h4>2. مغفرة الذنوب</h4>
+      <div class="k-ay">﴿وَوَضَعْنَا عَنكَ وِزْرَكَ﴾</div>
+      <p><span class="tag t-a">قول المؤلف</span> الذنوب سبب للحزن والضيق والعسر، ومانعة من الاستمتاع بالحياة المباحة، وقد شبّهها الله في السورة بالأثقال التي تكسر الظهر. والمؤمن يستغفر ربه ليلًا ونهارًا، ويكثر من الطاعات التي يمحو الله بها الخطايا، فيفتح صفحة جديدة عنوانها السعادة بالطاعة.</p>
+    </div>
+    <div class="key">
+      <h4>3. الذكر الحسن</h4>
+      <div class="k-ay">﴿وَرَفَعْنَا لَكَ ذِكْرَكَ﴾</div>
+      <p><span class="tag t-a">قول المؤلف</span> الذكر الحسن يضمن للمرء مكانة في نفوس الناس، فمن أحبه الله أسكن محبته في قلوب عباده. وهو نعمة تُطلب من الله لا تُنال بالذكاء أو المكانة، كما دعا إبراهيم عليه السلام ربه: ﴿وَاجْعَل لِّي لِسَانَ صِدْقٍ فِي الْآخِرِينَ﴾ [الشعراء: 84].</p>
+    </div>
+    <div class="key">
+      <h4>4. حسن الظن بالله</h4>
+      <div class="k-ay">﴿فَإِنَّ مَعَ الْعُسْرِ يُسْرًا * إِنَّ مَعَ الْعُسْرِ يُسْرًا﴾</div>
+      <p><span class="tag t-a">قول المؤلف</span> انتظار الفرج عبادة، وكل عسر يصحبه يسر، فلا يغلب عسرٌ يسرين، وكل مشكلة لها حل، والمرض والحزن والهم لا يدومون. فينبغي للمؤمن أن يعيش متفائلًا مطمئن القلب، لأن السعادة انعكاس لهذا السلام الداخلي والرضا بالقدر.</p>
+    </div>
+    <div class="key">
+      <h4>5. استثمار الوقت</h4>
+      <div class="k-ay">﴿فَإِذَا فَرَغْتَ فَانصَبْ﴾</div>
+      <p><span class="tag t-a">قول المؤلف</span> المسلم لا يعيش الفراغ، بل يعمره بالطاعات والأعمال النافعة، لأن الوساوس والشيطان يهاجمان الإنسان في وقت فراغه، فيزيّن له المعاصي ويجعله شقيًا حزينًا.</p>
+    </div>
+    <div class="key">
+      <h4>6. الإخلاص</h4>
+      <div class="k-ay">﴿وَإِلَىٰ رَبِّكَ فَارْغَب﴾</div>
+      <p><span class="tag t-a">قول المؤلف</span> إذا أخلص الإنسان عمله وقوله لله، صاحبته السعادة في أحواله كلها، فلا يحزنه إحجام الناس عن شكره، ولا يقلقه تهديدهم، لأنه يبتغي بعمله وجه الله.</p>
+    </div>
+  </div>
+
+  <h3>جدول المفاتيح الستة</h3>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>المفتاح</th><th>الآية</th><th>المعنى الموجز عند المؤلف</th></tr></thead>
+      <tbody>
+        <tr><td>1. انشراح الصدر</td><td>﴿أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ﴾</td><td>انبساط القلب واستعداده للطاعة والرضا بالقدر</td></tr>
+        <tr><td>2. مغفرة الذنوب</td><td>﴿وَوَضَعْنَا عَنكَ وِزْرَكَ﴾</td><td>الذنوب سبب للحزن، والاستغفار والطاعة يفتحان صفحة جديدة</td></tr>
+        <tr><td>3. الذكر الحسن</td><td>﴿وَرَفَعْنَا لَكَ ذِكْرَكَ﴾</td><td>محبة الناس وثناؤهم، وهي نعمة تُطلب من الله</td></tr>
+        <tr><td>4. إحسان الظن بالله</td><td>﴿إِنَّ مَعَ الْعُسْرِ يُسْرًا﴾</td><td>انتظار الفرج، ولا يغلب عسر يسرين</td></tr>
+        <tr><td>5. استثمار الوقت</td><td>﴿فَإِذَا فَرَغْتَ فَانصَبْ﴾</td><td>ملء الفراغ بالطاعة حتى لا يستغله الشيطان</td></tr>
+        <tr><td>6. الإخلاص</td><td>﴿وَإِلَىٰ رَبِّكَ فَارْغَب﴾</td><td>العمل لوجه الله، فلا يضر المرء كلام الناس ولا إعراضهم</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> سورة الشرح خريطة عملية للسعادة: انشراح الصدر، ومغفرة الذنوب، والذكر الحسن، وحسن الظن، واستثمار الوقت، والإخلاص لله.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> السعادة تتحقق بعلاقة صحيحة مع الله، وبإدارة صحيحة للوقت والعلاقات.</p>
+    <p><b>تطبيق عملي:</b> اختر مفتاحًا واحدًا كل أسبوع واجعله هدفًا يوميًا؛ ففي أسبوع الإخلاص راجع نيتك قبل كل عمل، وفي أسبوع استثمار الوقت ضع جدولًا لأوقات فراغك.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الصعوبة مؤقتة، ومع كل عسر يسر.</li>
+      <li>الفراغ بيئة يستغلها الشيطان، فاملأه بالنافع.</li>
+      <li>رضا الناس غاية لا تُدرك، ورضا الله هو المطلوب.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= لعله خير ======================= -->
+<section class="chapter" id="khair">
+  <div class="ch-head">
+    <div class="ch-icon">🌱</div>
+    <span class="ch-no">الفصل الثالث · ص 9–10</span>
+    <h2>لعله خير</h2>
+    <p class="ch-desc">إدراك الإنسان محدود، وقد يكون في المكروه خير لا يعلمه.</p>
+  </div>
+
+  <div class="qv">﴿وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ ۖ وَعَسَىٰ أَن تُحِبُّوا شَيْئًا وَهُوَ شَرٌّ لَّكُمْ ۗ وَاللَّهُ يَعْلَمُ وَأَنتُمْ لَا تَعْلَمُونَ﴾<div class="ref">[البقرة: 216]</div></div>
+
+  <h3>محدودية الإدراك البشري</h3>
+  <p><span class="tag t-a">قول المؤلف</span> عقل الإنسان محدود، ونظرته للأحداث قاصرة، فيعجز كثيرًا عن تفسير الأقدار. والله تعالى يبيّن أن الخير قد يكون مخبوءًا في ما ظاهره الشر، وأن المنح تخرج من رحم المحن.</p>
+  <p><span class="tag t-a">قول المؤلف</span> الحياة لا تدوم على حال، فهي تتقلب بين الحزن والفرح، والضيق والسعة، والمرض والعافية. وعلى الإنسان أن يوطن نفسه على تقبل الأقدار المؤلمة، ويرضى بما كتبه الله، ويتجاوز عثراته، لأن ما يكتبه الله لعبده خير له وإن ظهر شره.</p>
+  <p><span class="tag t-a">قول المؤلف</span> النفس لا تدرك مآلات الأمور، فتحكم بعلمها القاصر، فيضيق صدرها عند كل قدر مؤلم إذا لم ترضَ بقضاء الله. وقد أرشدنا القرآن إلى هذه الحقيقة، وإلى السبيل الذي يخفف المشاعر السلبية.</p>
+
+  <h3>آية «لعله خير» في سياقها</h3>
+  <p><span class="tag t-a">قول المؤلف</span> جاءت الآية في سياق الجهاد وما يصاحبه من فقد للأرواح والأموال والتهجير، ثم ختمت بقوله: ﴿وَاللَّهُ يَعْلَمُ وَأَنتُمْ لَا تَعْلَمُونَ﴾، فالأمر المؤلم قد تكون عاقبته فتحًا ونصرًا. وجاء في سياق الطلاق آية أخرى تبيّن أن الكراهية قد يجعل الله فيها خيرًا كثيرًا: ﴿فَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَيَجْعَلَ اللَّهُ فِيهِ خَيْرًا كَثِيرًا﴾ [النساء: 19].</p>
+
+  <div class="box box-term">
+    <h4>📌 مصطلحات مهمة</h4>
+    <ul>
+      <li><b>المنح من رحم المحن:</b> العطايا والخير التي تأتي من رحم الابتلاءات.</li>
+      <li><b>الأقدار المؤلمة:</b> أحداث تبدو شرًّا وفيها خير مخبوء.</li>
+    </ul>
+  </div>
+
+  <h3>قاعدة من قصص الأنبياء: الخيرة فيما اختاره الله</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يستدل المؤلف على هذه القاعدة بقصص من القرآن:</p>
+
+  <div class="story">
+    <div class="story-ico">🌊</div>
+    <div>
+      <h4>أم موسى عليه السلام</h4>
+      <p><span class="tag t-a">قول المؤلف</span> أُمرت أم موسى أن تلقيه في اليم عند خوفها عليه، فامتثلت مع شدة الخوف، فجعل الله العاقبة خيرًا كثيرًا، فرده إليها وأذهب حزنها: ﴿فَرَدَدْنَاهُ إِلَىٰ أُمِّهِ كَيْ تَقَرَّ عَيْنُهَا وَلَا تَحْزَنَ﴾.</p>
+      <div class="moral"><b>العبرة:</b> ما يبدو شرًّا قد يكون طريقًا إلى الخير، والله يعلم وأنتم لا تعلمون.</div>
+    </div>
+  </div>
+
+  <div class="story">
+    <div class="story-ico">⛵</div>
+    <div>
+      <h4>موسى والخضر عليهما السلام</h4>
+      <p><span class="tag t-a">قول المؤلف</span> أفعال الخضر في سورة الكهف بدت لموسى عليه السلام منكرة: خرق السفينة، وقتل الغلام، وإقامة الجدار دون أجر. وقد كان لكل فعل حكمة: حفظ السفينة لأصحابها المساكين، وصون الغلام والديه المؤمنين من عقوقه، وحفظ كنز الغلامين اليتيمين.</p>
+      <div class="moral"><b>العبرة:</b> حكمة الله في أقداره قد تخفى في لحظتها، فلا يحكم الإنسان على الأمر بظاهره.</div>
+    </div>
+  </div>
+
+  <h3>المنح من رحم المحن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يربي القرآن المؤمن على أن العطاء قد يأتي في صورة منع، وأن اليسر يزاحم العسر، وأن الفرج يبدّد ظلمات الهم، فيسكن الرضا قلبه، وتطمئن نفسه عند كل مكروه، ويحسن ظنه بالله مع كل قدر مؤلم.</p>
+
+  <h3>وصية المؤلف للقارئ عند الشدة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يوصي المؤلف القارئ عند كل شدة أو فوات أن يستحضر قوله تعالى: ﴿لَا تَحْسَبُوهُ شَرًّا لَّكُم ۖ بَلْ هُوَ خَيْرٌ لَّكُمْ﴾ [النور: 11]، وأن يعلم أن فهمه محدود، وأن مآلات الأمور بيد الله، فيتوكل عليه، ويبذل الأسباب، ويرقب لطفه في كل موقف، فإن من لطفه أن يقدّر على عباده المصائب والابتلاءات تربيةً لهم وسوقًا إلى كمالهم.</p>
+
+  <h3>أبيات في اللطف الخفي</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يختم المؤلف الفصل بأبيات في معنى اللطف الخفي، وأن اليسر يأتي بعد العسر، وأن الصبر والثقة بالله يفرجان الكرب، ولم تُذكر أسماء قائليها في الصفحات المرسلة.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الإنسان لا يعلم عواقب الأمور، فيحسن الظن بالله ويرضى بقضائه، لأن المكروه قد يخبّئ خيرًا.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> محدودية العلم البشري تستوجب الرضا والتوكل وإحسان الظن، مع بذل الأسباب.</p>
+    <p><b>تطبيق عملي:</b> عند كل مكروه اكتب ثلاثة أمور: ما الذي حدث؟ وما الذي لا أعرفه عن حكمته؟ وما الخطوة التالية التي أبذلها؟</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>ظاهر الحدث لا يكفي للحكم عليه، فالحكمة قد تأتي متأخرة.</li>
+      <li>الرضا بالقدر لا يعني ترك الأسباب، بل بذلها مع التوكل.</li>
+      <li>المحن قد تحمل منحًا لم تكن لتصل إليها دون الابتلاء.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="chapter" id="nas">
+  <div class="ch-head">
+    <div class="ch-icon">🗣️</div>
+    <span class="ch-no">الفصل الرابع · ص 11–12</span>
+    <h2>كلام الناس</h2>
+    <p class="ch-desc">أثر كلام الناس في النفس، وعلاجه بالتسبيح والصلاة والسجود والعبادة.</p>
+  </div>
+
+  <div class="qv">﴿وَلَقَدْ نَعْلَمُ أَنَّكَ يَضِيقُ صَدْرُكَ بِمَا يَقُولُونَ * فَسَبِّحْ بِحَمْدِ رَبِّكَ وَكُن مِّنَ السَّاجِدِينَ * وَاعْبُدْ رَبَّكَ حَتَّىٰ يَأْتِيَكَ الْيَقِينُ﴾<div class="ref">[الحجر: 97–99]</div></div>
+
+  <h3>سهام الافتراء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يصف المؤلف الافتراء والتهكم الموجَّهين إلى الناس بأنهما سهام مسمومة، هدفها الإضرار بالإنسان وتشويه سمعته، لكنها تتحطم على صخرة الإيمان إذا لجأ صاحبها إلى الله بصدق.</p>
+
+  <h3>أثر كلام الناس</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يلاحظ المؤلف أن كثيرًا من الناس يجعلون كلام الغير ميزانًا لأقوالهم وأفعالهم، بل يجعلون منه مصدرًا لسعادتهم أو شقائهم.</p>
+  <p><span class="tag t-a">قول المؤلف</span> ومن الناس من يطلق كلمات جارحة، ويلبسها ثوب النصيحة، وهي بعيدة عن النصح؛ فتضيق بها صدور من وُجهت إليهم، وتتحطم طموحاتهم، ويعيشون في دوامة من الكآبة والحزن.</p>
+
+  <h3>الداء والدواء في القرآن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يرى المؤلف أن القرآن شخّص هذا الداء: كلام الناس الباطل، وبيّن عرضه: ضيق الصدر، ودلّ على الدواء: التسبيح والصلاة والسجود والعبادة، وفيه الوقاية من أن يتأثر الإنسان بهذا الكلام.</p>
+
+  <h3>ما ينبغي أن يدركه القارئ</h3>
+  <p><span class="tag t-a">قول المؤلف</span> من ترك نفسه عرضة لكلام الناس، عاش في القلق والضيق، وفقد الطمأنينة، وصارت حياته ردود أفعال على ما يقوله هذا أو ذاك فيه، حقًا كان أو باطلًا.</p>
+  <p><span class="tag t-a">قول المؤلف</span> يستحضر المؤلف وصف الشيخ محمد الغزالي لأصحاب الحساسية الشديدة تجاه كلام الناس، الذين يفرحون بالمدح ويجزعون من القدح، ويرى أنهم بحاجة إلى التحرر من هذا الوهم، فلا يعلو أحدهم بثناء ولا ينخفض بهجاء، لأن كلام الناس يُوزن بحقيقته.</p>
+
+  <h3>علاج ضيق الصدر بالتسبيح والصلاة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يوصي المؤلف بالمداومة على التسبيح آناء الليل وأطراف النهار، والإكثار من السجود بصلاة الفريضة والنافلة، لأن عاقبة ذلك انشراح الصدر الذي ضاق بسهام الافتراء.</p>
+  <p><span class="tag t-a">قول المؤلف</span> كان النبي ﷺ إذا حزبه أمر فزع إلى الصلاة، والعبد أقرب ما يكون من ربه وهو ساجد، والله سبحانه هو السميع المجيب لدعاء المظلومين.</p>
+  <p><span class="tag t-a">قول المؤلف</span> العابد المنشغل بطاعة ربه لا يتأثر كثيرًا بما يقوله الناس عنه، لأن غايته إرضاء ربه، لا تقييم البشر.</p>
+
+  <h3>الافتراء على خير البشر</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يذكّر المؤلف بأن خير البشر ﷺ رُمي بالكذب والجنون والسحر، وهو الصادق الأمين الأتقى، فاستعان بربه وتسلح بالصبر والصلاة والتسبيح، وانشغل بدعوته وأعرض عن السفهاء، فنصره الله وكفاه، مستشهدًا بقوله تعالى: ﴿فَاصْبِرْ عَلَىٰ مَا يَقُولُونَ وَسَبِّحْ بِحَمْدِ رَبِّكَ﴾ [ق: 39].</p>
+  <p><span class="tag t-a">قول المؤلف</span> يوجّه المؤلف القارئ إلى أن يستعين بالله، ولا يجعل كلام السفهاء يقلق راحته، وأن يكون كالجبل الشامخ، وأن يرد على الجاهل بالسلام كما وصف الله عباد الرحمن: ﴿وَإِذَا خَاطَبَهُمُ الْجَاهِلُونَ قَالُوا سَلَامًا﴾ [الفرقان: 63].</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> كلام الناس لا يؤذي النفس إلا بقدر ما تسمح له أن يؤثر فيها، والعلاج أن يتجه القلب إلى الله بالتسبيح والصلاة والسجود.</p>
+  </div>
+
+  <div class="box box-term">
+    <h4>📌 مصطلحات مهمة</h4>
+    <ul>
+      <li><b>كلام الناس:</b> الكلام الباطل من افتراء وتهكم واتهام يُقصد به الإضرار.</li>
+      <li><b>ضيق الصدر:</b> العرض الناتج عن التأثر بكلام الناس.</li>
+    </ul>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>لا تجعل كلام الناس ميزانًا لقيمتك.</li>
+      <li>عند ضيق الصدر من الافتراء، لجأ إلى التسبيح والصلاة والسجود.</li>
+      <li>إن افتُري عليك، فتذكّر أن خير البشر ﷺ نال مثل ذلك فصبر وأعرض عن السفهاء.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= أرحنا بها ======================= -->
+<section class="chapter" id="pray">
+  <div class="ch-head">
+    <div class="ch-icon">🤲</div>
+    <span class="ch-no">الفصل الخامس · ص 13–14</span>
+    <h2>أرحنا بها</h2>
+    <p class="ch-desc">الصلاة راحة النفس وسكينتها، وعماد الدين، وعون على الصبر والهموم.</p>
+  </div>
+
+  <div class="qv">﴿أَقِمِ الصَّلَاةَ لِدُلُوكِ الشَّمْسِ إِلَىٰ غَسَقِ اللَّيْلِ وَقُرْآنَ الْفَجْرِ ۖ إِنَّ قُرْآنَ الْفَجْرِ كَانَ مَشْهُودًا﴾<div class="ref">[الإسراء: 78]</div></div>
+
+  <h3>الصلاة مأوى الراحة النفسية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يعدّ المؤلف الصلاة صلة العبد بربه، وقرة عين النبي ﷺ، ومأوى الراحة النفسية، وعمود الدين، وأول ما يُسأل عنه العبد، وإقامتها تطمئن القلوب، والمداومة عليها تستقر بها النفوس.</p>
+  <p><span class="tag t-a">قول المؤلف</span> عندما تحاصر الهموم الإنسان من كل جانب، تأتي الصلاة لتخفف عنه الضغوط، فهي الصلة الوثيقة التي تمده بأسباب القوة، وتذيب جليد الضغوط النفسية.</p>
+
+  <h3>طبيعة الإنسان والاستثناء القرآني</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الإنسان بطبعه يخاف من المستقبل، ويجزع عند المصيبة، ويحرص عند المرغوب، واستثنى الله من ذلك المصلين، لأن الصلاة تزكي النفس فتجعلها راضية صابرة شاكرة، لا يقلقها خوف ولا يقعدها حزن. ويستشهد بقوله تعالى: ﴿إِلَّا الْمُصَلِّينَ﴾ [المعارج: 22].</p>
+  <p><span class="tag t-a">قول المؤلف</span> الصلاة زاد الإنسان إلى الآخرة، تحفظ كيانه، وتغفر زلاته، وتحصّنه من الفحشاء والمنكر، مستشهدًا بقوله تعالى: ﴿إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ﴾ [العنكبوت: 45].</p>
+
+  <h3>الصلاة والتوازن بين الحياة وأعمالها</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يرى المؤلف أن الإسلام ضبط الراحة والاستجمام بلا إفراط ولا تفريط، فجاءت الصلاة الموقوتة في أوقات اليوم والليلة لتحدث التوازن بين العمل والأسرة والنفس والجسد والروح، مستشهدًا بقوله تعالى: ﴿إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا﴾ [النساء: 103].</p>
+
+  <h3>«أرحنا بها يا بلال»</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كان النبي ﷺ يطلب الراحة في الصلاة من هموم الحياة ومشاغلها ومسؤولياتها، ومن أمراض القلب وحظوظ النفس، حتى يخرج منها نقيًّا قويًّا.</p>
+
+  <h3>معنى «أقم» في الآية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تكرر لفظ «أقم» في القرآن بصيغ متعددة، فيدل ذلك على إقامة الصلاة في وقتها، وبشروطها وأركانها، وبالخشوع والطمأنينة، وفي القلب، وفي السلوك بالابتعاد عن المعاصي، وفي الحياة بجعلها أولوية.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الصلاة ليست شكلًا فحسب، بل مصدر راحة وتوازن، تحفظ الإنسان من الانفعالات السلبية بتزكية النفس وتنظيم الوقت.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> الصلاة بخشوعها تمنح القلب سكينة، وتنظّم الوقت، وتحفظ من الذنوب والهموم.</p>
+    <p><b>تطبيق عملي:</b> عند كل ضيق، ابدأ بالصلاة قبل أي قرار، واجعل بعدها دقيقة للدعاء والتأمل.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الصلاة وسيلة لتحرير النفس من الجزع والحرص والخوف.</li>
+      <li>الصلاة الموقوتة تنظم الإنسان وتوازن بين عمله وأسرته ونفسه.</li>
+      <li>الصلاة حصانة من الشهوات والشبهات.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= جاور السعيد تسعد ======================= -->
+<section class="chapter" id="env">
+  <div class="ch-head">
+    <div class="ch-icon">🤝</div>
+    <span class="ch-no">الفصل السادس · ص 15–16</span>
+    <h2>جاور السعيد تسعد</h2>
+    <p class="ch-desc">البيئة والصحبة تؤثران في شخصية الإنسان ومشاعره، فاختر من تجاوره.</p>
+  </div>
+
+  <div class="qv">﴿وَاصْبِرْ نَفْسَكَ مَعَ الَّذِينَ يَدْعُونَ رَبَّهُم بِالْغَدَاةِ وَالْعَشِيِّ يُرِيدُونَ وَجْهَهُ﴾<div class="ref">[الكهف: 28]</div></div>
+
+  <h3>أثر البيئة في تكوين الشخصية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> البيئة المحيطة بالإنسان وأصدقاؤه من أهم ما يؤثر في صحته النفسية، فهو يتأثر بها سلبًا أو إيجابًا، فيجب عليه أن يحسن اختيار من يرافق، فلا يصحب السلبيين ولا المثبطين، بل يتخير من يعينه ويرفع معنوياته.</p>
+  <p><span class="tag t-a">قول المؤلف</span> الصحبة تشكّل شخصية الإنسان ونفسيته واتجاهاته، ويستشهد المؤلف بالحديث الذي رواه أحمد: «المرء على دين خليله، فلينظر أحدكم من يخالل».</p>
+
+  <h3>الصديق الصالح نعمة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الصديق الصالح نعمة من الله، يعين على الطاعة، ويبصّر بالعيوب، ويرشد إلى الخير، ومثله كحامل المسك، يستفيد منه صاحبه في كل حال، وتمتد بركة صحبته إلى الآخرة، كما قال تعالى: ﴿الْأَخِلَّاءُ يَوْمَئِذٍ بَعْضُهُمْ لِبَعْضٍ عَدُوٌّ إِلَّا الْمُتَّقِينَ﴾ [الزخرف: 67].</p>
+  <p><span class="tag t-a">قول المؤلف</span> كلمات الصديق إما بلسم يبدد المخاوف، وإما سموم تقضي على الطمأنينة. ويضرب المؤلف مثالًا بأبي بكر الصديق رضي الله عنه في الغار، حين خاف على النبي ﷺ، فجاء الرد الإلهي بالطمأنينة: ﴿إِذْ يَقُولُ لِصَاحِبِهِ لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا﴾ [التوبة: 40].</p>
+
+  <div class="story">
+    <div class="story-ico">🏔️</div>
+    <div>
+      <h4>الغار: صحبة تطمئن القلب</h4>
+      <p><span class="tag t-a">قول المؤلف</span> في الهجرة، وقريش تلاحق النبي ﷺ وصاحبه، ظهر الخوف على أبي بكر، فجاءت كلمات النبي تطمئنه بمعية الله.</p>
+      <div class="moral"><b>العبرة:</b> الصحبة الصالحة تشعر صاحبها بالأمان في أصعب اللحظات.</div>
+    </div>
+  </div>
+
+  <h3>حضور مجالس الذكر</h3>
+  <p><span class="tag t-a">قول المؤلف</span> لا يستهين المؤلف بحسن اختيار الصحبة، فحتى اللحظات القليلة في مجالس الصالحين تحدث فارقًا كبيرًا، ويذكر حديث الملائكة الذين يتتبعون مجالس الذكر، وأن من جلس معهم لا يشقى بهم جليسهم.</p>
+  <p><span class="tag t-a">قول المؤلف</span> يذكر المؤلف قول الشيخ ابن عثيمين: «الجليس الصالح ربما يعم الله بجليسه رحمته، وإن لم يكن مثله».</p>
+
+  <h3>الخلاصة في الصحبة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> من جاور السعيد يسعد، ولو لم يبلغ درجته، فالصحبة الصالحة تنفع ولو بالقليل، ومن ذلك قوله تعالى: ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اتَّقُوا اللَّهَ وَكُونُوا مَعَ الصَّادِقِينَ﴾ [التوبة: 119].</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الإنسان يتشكّل بمن يصاحب، فالصحبة الصالحة تطمئن وتعين، والسيئة تثبّط وتشقي.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> حسن انتقاء الصحبة والبيئة من أسباب الصحة النفسية.</p>
+    <p><b>تطبيق عملي:</b> اجعل لك في كل دائرة (الأسرة، والعمل، والدراسة) شخصًا صالحًا تقتدي به، وقلّل احتكاكك بمن يزرع اليأس فيك.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الإنسان ابن بيئته وصحبته، فاحرص على من تصاحب.</li>
+      <li>مجالس الذكر والصالحين تنفع حتى وإن لم تبلغ مرتبتهم.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= مشهور في السماء ======================= -->
+<section class="chapter" id="fame">
+  <div class="ch-head">
+    <div class="ch-icon">⭐</div>
+    <span class="ch-no">الفصل السابع · ص 17–18</span>
+    <h2>مشهور في السماء</h2>
+    <p class="ch-desc">الفرق بين الشهرة الزائفة في الدنيا والذكر الحسن عند الله.</p>
+  </div>
+
+  <div class="qv">﴿وَرُسُلًا قَدْ قَصَصْنَاهُمْ عَلَيْكَ مِن قَبْلُ وَرُسُلًا لَّمْ نَقْصُصْهُمْ عَلَيْكَ﴾<div class="ref">[النساء: 164]</div></div>
+
+  <h3>آفة الشهرة الزائفة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يرى المؤلف أن حب الشهرة أفسد حياة كثيرين، فباعوا من أجلها المبادئ، وأهدروا الكرامات، وتساقطت القدوات. والمشهور السعيد عند المؤلف من رفع الله ذكره وإن جهله الناس، لا من كشف ستره بنفسه.</p>
+
+  <h3>حب الظهور</h3>
+  <p><span class="tag t-a">قول المؤلف</span> حب الظهور طبيعة بشرية، فالنفس تطرب للثناء، وتحزن إذا خفت الأضواء، والشهرة عند كثيرين سلّم للثراء والمناصب والنفوذ. لكن ثمنها باهظ: راحة البال، وصفاء الذهن، واستقرار الحياة، ويكون حصادها مرًّا إذا لم تُضبط بالشرع والعقل.</p>
+
+  <h3>الشهرة في السماء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> هناك شهرة أخرى ترفع صاحبها عند الله، وهي خاصة بالمؤمنين المتقين الذين يحرصون على مرضاة الله بأعمالهم وأقوالهم. ويستشهد المؤلف بقوله تعالى: ﴿فَاذْكُرُونِي أَذْكُرْكُمْ﴾ [البقرة: 152]، وبالحديث القدسي: «وإن ذكرني في ملأ ذكرته في ملأ خير منهم»، فالذاكر لربه مشهور في السماء. ويستشهد بقوله تعالى: ﴿وَفِي ذَٰلِكَ فَلْيَتَنَافَسِ الْمُتَنَافِسُونَ﴾ [المطففين: 26].</p>
+
+  <h3>الفرق بين شهرة الأرض وشهرة السماء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> شهرة الأرض تُقاس بالمتابعين والتصفيق والتغطية الإعلامية، أما شهرة السماء فمقاييسها الجوهر لا المظهر: النية الصادقة، والإخلاص، وعمل الخير في السر والعلن.</p>
+
+  <h3>ليس شرطًا أن يكون الإنسان مشهورًا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كثير من الرسل لم يذكر الله أسماءهم كلهم في القرآن، ومع ذلك لم ينقص ذلك من قدرهم عنده، ويذكر المؤلف الرجل الذي جاء من أقصى المدينة يسعى، ولا يُعرف اسمه، لكن خلّده إيمانه وصدق دعوته.</p>
+
+  <h3>المخلصون لا يكترثون بالشهرة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يقول المؤلف لقارئه: لا تحرص على أن تُشكر، فيكفيك أن الله يعلم ما تصنع. ويستشهد بموسى عليه السلام الذي اتُّهم وضُيّق عليه، ومع ذلك وصفه الله بقوله: ﴿وَكَانَ عِندَ اللَّهِ وَجِيهًا﴾ [الأحزاب: 69]، فالمكانة الحقيقية عند الله لا تصنعها الأضواء.</p>
+  <p><span class="tag t-a">قول المؤلف</span> يذكر المؤلف عن الشيخ ابن عثيمين أن الهمّ الأسمى للإنسان أن يكون مقبولًا عند الله، فإن كان كذلك كان عند عباد الله كذلك.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> اطلب الذكر عند الله لا الشهرة عند الناس، فهي التي تثبت ولا تتعب صاحبها.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> الشهرة الدنيوية تستنزف الراحة النفسية، والذكر عند الله يورث السكينة.</p>
+    <p><b>تطبيق عملي:</b> قبل أن تنشر إنجازًا أو تبحث عن ثناء، اسأل نفسك: هل أريد وجه الله أم انتباه الناس؟</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الشهرة الحقيقية الذكر عند الله، ولا تحتاج إلى إعلان.</li>
+      <li>المكانة عند الناس ليست مقياسًا للمكانة عند الله.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= اللبن المسكوب ======================= -->
+<section class="chapter" id="regret">
+  <div class="ch-head">
+    <div class="ch-icon">🥛</div>
+    <span class="ch-no">الفصل الثامن · ص 19–20</span>
+    <h2>اللبن المسكوب</h2>
+    <p class="ch-desc">الحسرة على ما فات لا تعيده، والتوبة والعمل يفتحان صفحة جديدة.</p>
+  </div>
+
+  <div class="qv">﴿لِّكَيْلَا تَحْزَنُوا عَلَىٰ مَا فَاتَكُمْ وَلَا مَا أَصَابَكُمْ ۗ وَاللَّهُ خَبِيرٌ بِمَا تَعْمَلُونَ﴾<div class="ref">[آل عمران: 153]</div></div>
+
+  <h3>شريط الذكريات</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الذكريات بمواقفها وفرصها الضائعة وإنجازاتها وإخفاقاتها تلازم الإنسان، والموفّق من يحوّلها إلى دروس يستفيد منها في حاضره ومستقبله، والخاسر من يبقى أسيرها يجترّ الأحزان ويتحسر على الفرص الضائعة.</p>
+
+  <h3>المنافقون بعد أحد</h3>
+  <p><span class="tag t-a">قول المؤلف</span> بعد غزوة أحد حاول المنافقون بث روح الهزيمة والندم في المسلمين بقولهم: ﴿لَوْ كَانَ لَنَا مِنَ الْأَمْرِ شَيْءٌ مَّا قُتِلْنَا هَاهُنَا﴾ [آل عمران: 154]، فجاءت الآيات ترد عليهم وتعالج الألم، وتوجّه القلوب إلى المستقبل.</p>
+
+  <h3>لا تلتفت إلى الوراء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يرشد القرآن المؤمن إلى عدم الالتفات إلى الوراء بالحسرة، وإلى الانطلاق نحو المستقبل بثقة، ومن ذلك قوله تعالى: ﴿لِّكَيْلَا تَأْسَوْا عَلَىٰ مَا فَاتَكُمْ وَلَا تَفْرَحُوا بِمَا آتَاكُمْ﴾ [الحديد: 23]، وأمرهم بعدم الحزن: ﴿وَلَا تَهِنُوا وَلَا تَحْزَنُوا﴾ [آل عمران: 139].</p>
+
+  <h3>القدر مكتوب</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يشير المؤلف إلى ما بيّنه الشيخ عبد الرحمن السعدي من أن الله أخبر عباده بأن ما يصيبهم من خير وشر مكتوب، ليطمئنوا فلا ييأسوا ولا يحزنوا على ما فاتهم، لعلمهم أنه نافذ لا محالة.</p>
+
+  <h3>الماضي لا يكون عائقًا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الماضي بأخطائه وتجاربه الفاشلة لا يجب أن يمنع الانطلاق إلى المستقبل، فباب التوبة مفتوح، وقد قال تعالى: ﴿قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ﴾ [الزمر: 53]، وقال: ﴿إِنَّ الْحَسَنَاتِ يُذْهِبْنَ السَّيِّئَاتِ﴾ [هود: 114].</p>
+
+  <h3>التوجه إلى المستقبل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> فيما يخص الدنيا لا يستحق شيء أن تتحسر على فواته، فما فات مات. ويذكر المؤلف الحديث الذي رواه مسلم: «وإن أصابك شيء فلا تقل: لو أني فعلت كذا وكذا، ولكن قل: قدّر الله وما شاء فعل، فإن لو تفتح عمل الشيطان».</p>
+  <p><span class="tag t-a">قول المؤلف</span> امضِ إلى الأمام مستعينًا بالله، واطوِ صفحة الماضي، واستفد من تجاربك دون أن تغرق فيها، فتلك أمة قد خلت، وماضيك كذلك، والذي تأخذه منه الدروس والعبر.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الماضي يُستفاد منه عبرةً، لا يُعاش حسرةً؛ فما فات لا يعود، والتوبة والعمل الصالح يفتحان صفحة جديدة.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> لا تُضيّع حاضرك على ماضٍ لا يعود، وتعلّم من تجاربك وتب إلى ربك وامضِ.</p>
+    <p><b>تطبيق عملي:</b> عند الندم على خطأ، اكتب ما تعلمته منه في سطر، ثم خطط لخطوة واحدة نحو المستقبل، واستبدل «لو» بعبارة «قدّر الله وما شاء فعل».</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>التحسر على ما فات لا يغيّره، بل يضيّع الوقت والصحة النفسية.</li>
+      <li>عبارة «لو» تفتح باب الوسوسة، وعبارة «قدّر الله» تفتح باب الرضا.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= لا تمدن عينيك ======================= -->
+<section class="chapter" id="compare">
+  <div class="ch-head">
+    <div class="ch-icon">👀</div>
+    <span class="ch-no">الفصل التاسع · ص 21–22</span>
+    <h2>لا تمدن عينيك</h2>
+    <p class="ch-desc">مراقبة الناس وحسدهم ومقارنة النفس بهم تسلب الراحة، والرضا بما قسمه الله هو العلاج.</p>
+  </div>
+
+  <div class="qv">﴿وَلَا تَمُدَّنَّ عَيْنَيْكَ إِلَىٰ مَا مَتَّعْنَا بِهِ أَزْوَاجًا مِّنْهُمْ زَهْرَةَ الْحَيَاةِ الدُّنْيَا لِنَفْتِنَهُمْ فِيهِ ۚ وَرِزْقُ رَبِّكَ خَيْرٌ وَأَبْقَىٰ﴾<div class="ref">[طه: 131]</div></div>
+
+  <h3>قسمة الأرزاق وحكمة التفاضل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> قسم الله الأرزاق بين الناس لحكمة، ومقياس التفاضل الحقيقي التقوى، كما قال تعالى: ﴿إِنَّ أَكْرَمَكُمْ عِندَ اللَّهِ أَتْقَاكُمْ﴾ [الحجرات: 13]، ولكن كثيرًا من الناس لم يرضَ بما قسمه الله، فأرهق نفسه بالمقارنات.</p>
+
+  <h3>المقارنة داء عضال</h3>
+  <p><span class="tag t-a">قول المؤلف</span> المقارنة داء يفتك بالنفس، ويضرم نيران الحقد والحسد، وهي بوابة الكبائر، وقد كانت أساس معصية إبليس حين قال: ﴿أَنَا خَيْرٌ مِّنْهُ﴾ [الأعراف: 12]، فكانت سببًا في طرده من رحمة الله.</p>
+
+  <h3>دوامة المقارنات</h3>
+  <p><span class="tag t-a">قول المؤلف</span> من يتطلع إلى ما متّع الله به غيره يعيش مهمومًا، يتحسر عند كل نعمة يراها عند الآخرين، ويتمنى زوالها عنهم، فلا يهنأ له بال، ولا يطيب له قرار. ويظن بعض الناس أن السعادة في الأموال والملذات، فيقارن حاله بحال المتنعمين، ولا يعلم ما خفي عنه من تقدير الله.</p>
+
+  <h3>قصة قارون</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يستشهد المؤلف بقصة قارون: خرج على قومه في زينته، فتمنى بعض ضعاف الإيمان مثل ما أوتي، فردّ عليهم أهل العلم: ﴿وَيْلَكُمْ ثَوَابُ اللَّهِ خَيْرٌ لِّمَنْ آمَنَ وَعَمِلَ صَالِحًا﴾ [القصص: 80].</p>
+
+  <div class="story">
+    <div class="story-ico">🏚️</div>
+    <div>
+      <h4>العاقبة: خسف قارون</h4>
+      <p><span class="tag t-a">قول المؤلف</span> خسف الله بقارون وداره الأرض، فذهبت زينته وأمواله هباءً، فأدرك الذين تمنوا مكانه أن الرزق بيد الله يبسطه ويقدره.</p>
+      <div class="moral"><b>العبرة:</b> بريق المال يخدع من لا يعلم أن وراءه تقدير الله، والباقي عند الله خير وأبقى.</div>
+    </div>
+  </div>
+
+  <h3>لا تدع المظاهر تخدعك</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كم من نعمة كانت نقمة على صاحبها، وكم من متاع كان استدراجًا لمن لم يشكر الله عليه. فارضَ بما قسمه الله لك تكن أغنى الناس، وافرح بما أنعم به على غيرك تكن أسعد الناس.</p>
+
+  <h3>علاج الآية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الآية تعالج كل نفس ابتُليت بهذا الداء، فكلما اتسعت عيناك على ما عند غيرك ضاق صدرك. وكلما دعتك نفسك إلى المقارنة، فذكّرها بقوله تعالى: ﴿وَرِزْقُ رَبِّكَ خَيْرٌ وَأَبْقَىٰ﴾.</p>
+  <p><span class="tag t-a">قول المؤلف</span> يستشهد المؤلف بمعنى قول الدكتور سلمان العودة: عش ودع الآخرين يعيشون، فالفرص التي خلقها الله لا تنحصر، والطرق إلى الجنة لا حصر لها.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> المقارنة بالآخرين تسرق الرضا، والرزق مقسوم بحكمة الله، وطريق السعادة هو الرضا بما قسمه الله لك.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> ترك المقارنة والحسد والرضا بالقسمة باب الراحة النفسية.</p>
+    <p><b>تطبيق عملي:</b> عند المقارنة، اذكر ثلاث نعم عندك لم تكن عند غيرك، وقل: ﴿وَرِزْقُ رَبِّكَ خَيْرٌ وَأَبْقَىٰ﴾.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>المقارنة أول أبواب الحسد، والحسد أول أبواب المعصية.</li>
+      <li>التقوى معيار التفاضل، لا المال ولا المتاع.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= طمأنينة قلب ======================= -->
+<section class="chapter" id="dhikr">
+  <div class="ch-head">
+    <div class="ch-icon">🕊️</div>
+    <span class="ch-no">الفصل العاشر · ص 23–24</span>
+    <h2>طمأنينة قلب</h2>
+    <p class="ch-desc">ذكر الله بلسم للقلوب المرهقة، وسكينة للنفوس المضطربة، وباب إلى السعادة.</p>
+  </div>
+
+  <div class="qv">﴿الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُم بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ﴾<div class="ref">[الرعد: 28]</div></div>
+
+  <h3>الذكر دواء الهموم</h3>
+  <p><span class="tag t-a">قول المؤلف</span> ذكر الله بلسم للقلوب المرهقة، وزاد للمؤمن في الشدائد، وسلوة عند المصائب، ورصيد يدّخره ليوم لا ينفع فيه مال ولا بنون.</p>
+  <p><span class="tag t-a">قول المؤلف</span> الذي خلق النفس هو القادر على وصف دوائها، وقد أمر الله عباده بالإكثار من ذكره: ﴿يَا أَيُّهَا الَّذِينَ آمَنُوا اذْكُرُوا اللَّهَ ذِكْرًا كَثِيرًا﴾ [الأحزاب: 41]، لأنه الدرع الذي يصدّ المشكلات.</p>
+
+  <h3>الذكر في الدنيا والآخرة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> وعد الله الذاكرين بالمغفرة والأجر العظيم: ﴿وَالذَّاكِرِينَ اللَّهَ كَثِيرًا وَالذَّاكِرَاتِ أَعَدَّ اللَّهُ لَهُم مَّغْفِرَةً وَأَجْرًا عَظِيمًا﴾ [الأحزاب: 35]، وفي الدنيا يكون الذكر بلسمًا يزيح معاناة الحياة، ويشعر الإنسان بلذة القرب من الخالق، ولذلك قال تعالى: ﴿أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ﴾.</p>
+  <p><span class="tag t-a">قول المؤلف</span> بذكر الله تطمئن القلوب، فلا تشقيها الهموم، ولا تبطر عند النعمة، ولا تغريها الشهوات، فتقبل على الحياة راضية مستقرة قوية بالله.</p>
+
+  <h3>الذكر يجمع المتفرق</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يستشهد المؤلف بكلام الإمام ابن القيم في أن الذكر يجمع ما تفرق من القلب والإرادة والهم، ويفرّق ما اجتمع من الغموم والأحزان، ويقرّب البعيد وهو الآخرة، ويبعد القريب وهو الدنيا.</p>
+
+  <h3>قصة ذي النون</h3>
+  <p><span class="tag t-a">قول المؤلف</span> دعا يونس عليه السلام في ظلمات بطن الحوت بقوله: ﴿لَّا إِلَٰهَ إِلَّا أَنتَ سُبْحَانَكَ إِنِّي كُنتُ مِنَ الظَّالِمِينَ﴾ [الأنبياء: 87]، ﴿فَاسْتَجَبْنَا لَهُ وَنَجَّيْنَاهُ مِنَ الْغَمِّ ۚ وَكَذَٰلِكَ نُنجِي الْمُؤْمِنِينَ﴾ [الأنبياء: 88]. ويذكر المؤلف الحديث الصحيح أن هذه الدعوة لم يدعُ بها مسلم في شيء قط إلا استجاب الله له.</p>
+
+  <div class="story">
+    <div class="story-ico">🐋</div>
+    <div>
+      <h4>يونس في بطن الحوت</h4>
+      <p><span class="tag t-a">قول المؤلف</span> في ظلمات ثلاث، لجأ يونس عليه السلام إلى الذكر والتوبة والإخلاص، فكشف الله همه، وأخرجه من الظلمات.</p>
+      <div class="moral"><b>العبرة:</b> مهما اشتدت الظلمات، فالذكر والتوبة مفتاح الفرج.</div>
+    </div>
+  </div>
+
+  <h3>من أعرض عن ذكر الله</h3>
+  <p><span class="tag t-a">قول المؤلف</span> ذكر الله يحيي القلب ويعافي البدن ويطمئن النفس، والغفلة عنه تميت القلب وتضطرب بها النفس، كما قال النبي ﷺ: «مثل الذي يذكر ربه والذي لا يذكر ربه، مثل الحي والميت». والإعراض عن الذكر مقدمة للضنك، كما قال تعالى: ﴿وَمَنْ أَعْرَضَ عَن ذِكْرِي فَإِنَّ لَهُ مَعِيشَةً ضَنكًا﴾ [طه: 124].</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الذكر باب تطمئن منه القلوب، ويجمع الشتات، ويكشف الكرب، والإعراض عنه سبب للضنك.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> ذكر الله يُطمئن القلب في الشدة والرخاء، وهو باب الأجر والمغفرة.</p>
+    <p><b>تطبيق عملي:</b> اجعل لك وردًا يوميًا من الذكر صباحًا ومساءً، واذكر الله عند كل ضيق.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الذكر يحيي القلب، والغفلة تميته.</li>
+      <li>من أعرض عن ذكر الله فله معيشة ضنكًا، ومن ذكره اطمأن قلبه.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= عليك بذر الحب ======================= -->
+<section class="chapter" id="seed">
+  <div class="ch-head">
+    <div class="ch-icon">🌾</div>
+    <span class="ch-no">الفصل الحادي عشر · ص 25–26</span>
+    <h2>عليك بذر الحب</h2>
+    <p class="ch-desc">ابذل الأسباب وتوكل على الله، ولا تحزن إن لم تتحقق النتائج.</p>
+  </div>
+
+  <div class="qv">﴿فَذَكِّرْ إِنَّمَا أَنتَ مُذَكِّرٌ * لَّسْتَ عَلَيْهِم بِمُصَيْطِرٍ﴾<div class="ref">[الغاشية: 21–22]</div></div>
+
+  <h3>الهدف يحتاج إلى سعي</h3>
+  <p><span class="tag t-a">قول المؤلف</span> لكل إنسان أهداف وأحلام يتمناها، ولا تتحول إلى واقع إلا بنية صادقة وهمة عالية وعمل متواصل. وعليه أولًا أن يتوكل على الله، ثم أن يعرف مسؤولياته فيتقنها، ويترك ما لا يملك تغييره، فكم من عامل أنهك نفسه بانتظار نتائج لا يتحكم فيها، وكم من ناصح خاب أمله لأن نصيحته لم تُقبل، وكم من والد ووالدة أهلكهما الحزن على صلاح أبنائهم.</p>
+
+  <h3>مهمة الدعوة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> أعظم المهام الدعوة إلى توحيد الله، وقد أُمر النبي ﷺ بالتذكير والبلاغ، فعليه أن يبلّغ ويجتهد ويصبر على الأذى، أما الاستجابة فليست إليه: ﴿لَّيْسَ عَلَيْكَ هُدَاهُمْ وَلَٰكِنَّ اللَّهَ يَهْدِي مَن يَشَاءُ﴾ [البقرة: 272]. وهذه قاعدة للسعادة: اجتهد فيما كُلفت به، ولا تنشغل بما خرج عن مسؤوليتك.</p>
+
+  <h3>النتائج ليست دليل الفشل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> عدم تحقق النتيجة لا يعني فشل العمل ولا قصور صاحبه، فأنت مسؤول عن السعي لا عن النتيجة. ويذكر المؤلف قول الشيخ الألباني: المهم أن تموت على الطريق، لا أن تصل إلى نهايته. ونوح عليه السلام لبث يدعو قومه ألف سنة إلا خمسين عامًا، فلم يؤمن معه إلا قليل: ﴿وَمَا آمَنَ مَعَهُ إِلَّا قَلِيلٌ﴾ [هود: 40]، ومع ذلك لم ينقص ذلك من قدره شيئًا، كما في حديث «عُرضت عليّ الأمم».</p>
+  <p><span class="tag t-a">قول المؤلف</span> لا ينبغي أن يتحول عدم تحقق ما ترجوه إلى حزن وحسرة ونَدم. وقد خاطب الله نبيه بقوله: ﴿فَلَا تَذْهَبْ نَفْسُكَ عَلَيْهِمْ حَسَرَاتٍ﴾ [فاطر: 8]، فقد بلّغ الرسالة وأدى الأمانة، وعليه بعد ذلك ألا يذيب نفسه أسفًا على من أعرض.</p>
+
+  <h3>النجاح لا يُقاس بالثمار المرئية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> ليس من شروط النجاح أن ترى ثمرة ما زرعته. فخديجة رضي الله عنها ماتت والإسلام محاصر في شِعب أبي طالب، وحمزة رضي الله عنه استشهد ولم يرَ حصاد جهاده، والغلام في قصة أصحاب الأخدود ثبت على مبدئه ولم يرَ أثر تضحيته. ومع ذلك كان أجرهم محفوظًا.</p>
+  <p><span class="tag t-a">قول المؤلف</span> ومن خرج مهاجرًا إلى الله ثم أدركه الموت قبل أن يصل، كُتب له أجره: ﴿وَمَن يَخْرُجْ مِن بَيْتِهِ مُهَاجِرًا إِلَى اللَّهِ وَرَسُولِهِ ثُمَّ يُدْرِكْهُ الْمَوْتُ فَقَدْ وَقَعَ أَجْرُهُ عَلَى اللَّهِ﴾ [النساء: 100].</p>
+
+  <div class="quote">
+    <blockquote>«فعليك بذر الحب، لا قطف الجنى»</blockquote>
+    <cite>من أبيات يختم بها المؤلف الفصل، ولم يُذكر قائلها في الصفحات المرسلة</cite>
+  </div>
+
+  <div class="wis-grid">
+    <div class="wis">
+      <div class="wis-num">الحكمة ①</div>
+      <div class="wis-txt">فعليك بذر الحب لا قطف الجنى</div>
+      <div class="wis-src">من أبيات الكتاب · القائل غير مذكور في الصفحات المرسلة</div>
+    </div>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> واجبك بذل الأسباب والسعي، أما النتائج فبيد الله، ولا يضرك ألا تُرى ثمرة عملك في حياتك.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> ركّز على ما تملك، وهو الجهد والإخلاص، واترك النتيجة لله.</p>
+    <p><b>تطبيق عملي:</b> قبل كل عمل، اكتب ما يقع ضمن مسؤوليتك وما لا يقع، واعمل على الأول فقط.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>أنت مسؤول عن السعي لا عن النتيجة.</li>
+      <li>نوح عليه السلام لم يُقلّل أجره قلة المستجيبين.</li>
+      <li>الهجرة التي لم تتم كُتب أجرها، فالنية والسعي لهما أجر.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= ترفّع عن الصغائر ======================= -->
+<section class="chapter" id="minor">
+  <div class="ch-head">
+    <div class="ch-icon">🕊️</div>
+    <span class="ch-no">الفصل الثاني عشر · ص 27–28</span>
+    <h2>ترفّع عن الصغائر</h2>
+    <p class="ch-desc">الانشغال بالأمور الصغيرة يقتل الطموح، والترفع عنها حكمة.</p>
+  </div>
+
+  <div class="qv">﴿وَعِبَادُ الرَّحْمَٰنِ الَّذِينَ يَمْشُونَ عَلَى الْأَرْضِ هَوْنًا وَإِذَا خَاطَبَهُمُ الْجَاهِلُونَ قَالُوا سَلَامًا﴾<div class="ref">[الفرقان: 63]</div></div>
+
+  <h3>معارك لا تستحق الوقت</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الصراعات اليومية كثيرًا ما تكون معارك تافهة تُلهي الإنسان عن حياته الحقيقية وأهدافه الكبرى. فكلمة جارحة أو موقف عابر أو نقاش في وسائل التواصل قد يشعل في النفس رغبة الرد والانتقام، فيُعدّ الإنسان العدة ويحسب أنه يستعيد كرامته، والحقيقة أن الجهد فيها ضائع، والمنتصر فيها مهزوم.</p>
+  <p><span class="tag t-a">قول المؤلف</span> هذه المعارك تتحول إلى خصومة شخصية، ويكون سلاحها الكذب والطعن، وثمنها قطيعة الرحم وفقد الصداقات والكراهية، فهل تستحق دقيقة من عمرك، فضلًا عن أن تكون همّك الأكبر؟ ويقول الدكتور عبد الوهاب المسيري: لا أحب الدخول في المعارك الصغيرة، وأفضّل الاستسلام فيها حتى لا تستنفد طاقتي فيما لا يفيد.</p>
+
+  <h3>النبي ﷺ وحملات التشويه</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تعرّض النبي ﷺ لحملات تشويه تحاول جرّه إلى الدفاع عن نفسه في تفاصيل جانبية، وتبعده عن مهمته الكبرى، فاتُّهم بالسحر والشعر والجنون، كما قال تعالى: ﴿قَالَ الْكَافِرُونَ إِنَّ هَٰذَا لَسَاحِرٌ مُّبِينٌ﴾ [يونس: 2]. وأرشده الله إلى الطريق الصحيح: ﴿فَأَعْرِضْ عَنْهُمْ وَعِظْهُمْ﴾ [النساء: 63]، و﴿فَأَعْرِضْ عَنْهُمْ وَتَوَكَّلْ عَلَى اللَّهِ﴾ [النساء: 81].</p>
+
+  <h3>السفهاء والاستفزاز</h3>
+  <p><span class="tag t-a">قول المؤلف</span> السفهاء يستمتعون بجرّ الناس إلى الصغائر، فلا تنجرّ خلفهم ولا تستجب لاستفزازهم، وامتثل لقوله تعالى: ﴿خُذِ الْعَفْوَ وَأْمُرْ بِالْعُرْفِ وَأَعْرِضْ عَنِ الْجَاهِلِينَ﴾ [الأعراف: 199]. والإعراض يحفظك من الغرق في مستنقعهم، وقد قال الله في وصف عباد الرحمن: ﴿وَإِذَا خَاطَبَهُمُ الْجَاهِلُونَ قَالُوا سَلَامًا﴾.</p>
+
+  <div class="quote">
+    <blockquote>«سلامًا لكل كلمة جارحة تهدف إلى دفعك للرد والجدل»</blockquote>
+    <cite>من كلام المؤلف في هذا الفصل</cite>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> المعارك الصغيرة تسرق الطاقة والوقت والأخلاق، فالترفع عنها والإعراض عن السفهاء يحفظ الصحة النفسية ويتيح التفرغ للأهداف الكبرى.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> لا تدخل كل معركة تُعرض عليك، وقدّم السلام على الجدل.</p>
+    <p><b>تطبيق عملي:</b> قبل الرد على أي استفزاز، اسأل: هل سيضيف هذا الرد شيئًا إلى هدفي الكبير؟ فإن لم يضف، فقل: سلامًا.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>ليس كل ما يُقال يستحق الرد.</li>
+      <li>الإعراض عن الجاهلين حكمة، والتركيز على الأهداف الكبرى أولى.</li>
+      <li>من يجرّك إلى الجدل يستنزف وقتك، فاختر السلام.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= صُنّاع السرور ======================= -->
+<section class="chapter" id="pleasure">
+  <div class="ch-head">
+    <div class="ch-icon">🎁</div>
+    <span class="ch-no">الفصل الثالث عشر · ص 29–30</span>
+    <h2>صُنّاع السرور</h2>
+    <p class="ch-desc">إدخال السرور على الآخرين والعطاء والإحسان سبيل إلى السعادة.</p>
+  </div>
+
+  <div class="qv">﴿فَأَمَّا مَنْ أَعْطَىٰ وَاتَّقَىٰ * وَصَدَّقَ بِالْحُسْنَىٰ * فَسَنُيَسِّرُهُ لِلْيُسْرَىٰ﴾<div class="ref">[الليل: 5–7]</div></div>
+
+  <h3>العطاء خلق الكرماء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> العطاء خلق يهذّب النفس ويطهرها من الشح والحسد، وهو امتثال للأوامر القرآنية، واقتداء بالنبي ﷺ الذي كان أجود الناس. وقد وصف الله المتقين بالإنفاق: ﴿وَمِمَّا رَزَقْنَاهُمْ يُنفِقُونَ﴾ [البقرة: 3]، ووصف عباد الرحمن بالاعتدال فيه: ﴿وَالَّذِينَ إِذَا أَنفَقُوا لَمْ يُسْرِفُوا وَلَمْ يَقْتُرُوا﴾ [الفرقان: 67].</p>
+
+  <h3>العطاء بوابة السعادة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> المنفق لا ينتظر جزاءً ولا شكورًا من الناس، لأنه يتاجر مع رب الناس في تجارة لا تعرف الكساد: ﴿إِنَّمَا نُطْعِمُكُمْ لِوَجْهِ اللَّهِ لَا نُرِيدُ مِنكُمْ جَزَاءً وَلَا شُكُورًا﴾ [الإنسان: 9]. والله يجازي بالبركة في المال والذرية، وانشراح الصدر، وطمأنينة النفس، وفي الآخرة بجنة عرضها السماوات والأرض.</p>
+
+  <h3>العطاء ليس مالًا فقط</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كثيرون يحصرون العطاء في المال، والمجالات أوسع من ذلك: تعليم الناس، والمشاركة في الأفراح والأحزان، والإصلاح بين المتخاصمين، والكلمة الطيبة، والابتسامة، وإماطة الأذى عن الطريق، وبذل الجاه في الشفاعة، قال تعالى: ﴿مَّن يَشْفَعْ شَفَاعَةً حَسَنَةً يَكُن لَّهُ نَصِيبٌ مِّنْهَا﴾ [النساء: 85].</p>
+
+  <h3>الإيثار في المدينة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يصف القرآن الأنصار الذين آثروا المهاجرين على أنفسهم رغم حاجتهم، فلم يجدوا في صدورهم حاجة مما أُوتي إخوانهم: ﴿وَيُؤْثِرُونَ عَلَىٰ أَنفُسِهِمْ وَلَوْ كَانَ بِهِمْ خَصَاصَةٌ﴾ [الحشر: 9]. وما حملهم على ذلك إلا الإيمان، والرغبة فيما عند الله.</p>
+
+  <div class="quote">
+    <blockquote>«صُنّاع السرور» لقب يستحقه أهل الجود والكرم</blockquote>
+    <cite>من كلام المؤلف في هذا الفصل</cite>
+  </div>
+
+  <h3>الجزاء من جنس العمل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> من أعطى واتقى يسّر الله له أمره، فيجعل له من كل هم فرجًا، ومن كل ضيق مخرجًا. ويُروى عن ابن عباس رضي الله عنهما قوله: صاحب المعروف لا يقع، وإن وقع وجد متكأ.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> السعادة تُصنع بإسعاد الآخرين، والعطاء ليس مالًا فقط، بل يشمل الكلمة الطيبة والمشاركة والشفاعة.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> العطاء بمختلف صوره يوسع الصدر، ويجلب التيسير من الله.</p>
+    <p><b>تطبيق عملي:</b> اعمل كل يوم عملًا من أعمال العطاء، ولو كان كلمة طيبة أو ابتسامة أو إماطة أذى عن طريق.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>العطاء لا يقتصر على المال، فالكلمة الطيبة والابتسامة والشفاعة عطاء.</li>
+      <li>من أعطى لوجه الله فجزاؤه عند الله.</li>
+      <li>الإيثار يملأ القلب سرورًا.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الملاذ الآمن ======================= -->
+<section class="chapter" id="refuge">
+  <div class="ch-head">
+    <div class="ch-icon">🏠</div>
+    <span class="ch-no">الفصل الرابع عشر · ص 31–32</span>
+    <h2>الملاذ الآمن</h2>
+    <p class="ch-desc">الفرار إلى الله، وهو الملجأ والحصن الحصين في الشدائد.</p>
+  </div>
+
+  <div class="qv">﴿فَفِرُّوا إِلَى اللَّهِ ۖ إِنِّي لَكُم مِّنْهُ نَذِيرٌ مُّبِينٌ﴾<div class="ref">[الذاريات: 50]</div></div>
+
+  <h3>الإنسان في كبد</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الحياة مجبولة على التعب والمشقة: ﴿لَقَدْ خَلَقْنَا الْإِنسَانَ فِي كَبَدٍ﴾ [البلد: 4]. والهموم تأتي دون موعد، والضعيف يبحث عن ملجأ يستند إليه، والمؤمن يعرف أن الملجأ الحقيقي هو الله، بالاعتصام بحبله، وبث الشكوى إليه، والإلحاح في الدعاء.</p>
+
+  <h3>النبي ﷺ في الطائف</h3>
+  <p><span class="tag t-a">قول المؤلف</span> بعد وفاة أبي طالب خرج النبي ﷺ إلى الطائف داعيًا، فأساء أهلها استقباله وسلّطوا عليه سفهاءهم، فاستظل بشجرة في طريق عودته، ورفع شكواه إلى ربه: «اللهم إليك أشكو ضعف قوتي، وقلة حيلتي، وهواني على الناس...»، فأعقبه الله انشراحًا وتفريجًا لهمه.</p>
+
+  <div class="story">
+    <div class="story-ico">🌳</div>
+    <div>
+      <h4>الطائف: شكوى إلى الله</h4>
+      <p><span class="tag t-a">قول المؤلف</span> استقبله السفهاء بالأذى، فاستظل بشجرة ورفع شكواه إلى ربه، فأعقبه الله الفرج.</p>
+      <div class="moral"><b>العبرة:</b> إذا ضاقت بك الدنيا، فابث شكواك إلى من بيده الفرج.</div>
+    </div>
+  </div>
+
+  <h3>الأنبياء يلجؤون إلى الله</h3>
+  <p><span class="tag t-a">قول المؤلف</span> هذه سنة الأنبياء: يعقوب عليه السلام قال: ﴿إِنَّمَا أَشْكُو بَثِّي وَحُزْنِي إِلَى اللَّهِ﴾ [يوسف: 86]، وأيوب عليه السلام نادى ربه: ﴿أَنِّي مَسَّنِيَ الضُّرُّ وَأَنتَ أَرْحَمُ الرَّاحِمِينَ﴾ [الأنبياء: 83]، وزكريا عليه السلام دعا: ﴿رَبِّ لَا تَذَرْنِي فَرْدًا﴾ [الأنبياء: 89]، فاستجاب الله لهم جميعًا.</p>
+
+  <h3>الفرار إلى الله</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الفرار إلى الله تحرر من أغلال الخوف والحزن والذنوب، فهو فرار من ضيق الهموم إلى سعة الفرج، ومن ظلمات الحزن إلى أنوار السكينة. ويقول المؤلف لكل مثقل بالهموم: اتجه إلى من قال له: ﴿كُن فَيَكُونُ﴾ [البقرة: 117]، واعلم أنه: ﴿لَّا مَلْجَأَ مِنَ اللَّهِ إِلَّا إِلَيْهِ﴾ [التوبة: 118].</p>
+
+  <div class="quote">
+    <blockquote>«ففروا إلى الله، فروا من ضيق الهموم إلى سعة الفرج»</blockquote>
+    <cite>من كلام المؤلف في هذا الفصل</cite>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الملاذ الحقيقي في الشدائد هو الله وحده، باللجوء إليه والشكوى له والدعاء.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> عند الشدة، فرّ إلى الله بالدعاء والشكوى والتوبة، ولا تعلّق قلبك بغيره.</p>
+    <p><b>تطبيق عملي:</b> اكتب شكواك إلى الله في ورقة كل ليلة، ثم ادعُ بها قبل النوم.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الإنسان في كبد، فاستعد للهموم بالتوكل.</li>
+      <li>الأنبياء لجأوا إلى الله في شدائدهم، فاتبعهم.</li>
+      <li>لا ملجأ من الله إلا إليه.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= فن التغافل ======================= -->
+<section class="chapter" id="neglect">
+  <div class="ch-head">
+    <div class="ch-icon">🌙</div>
+    <span class="ch-no">الفصل الخامس عشر · ص 33–34</span>
+    <h2>فن التغافل</h2>
+    <p class="ch-desc">غض الطرف عن زلات الآخرين فن يحفظ القلوب ويصفو به الود.</p>
+  </div>
+
+  <div class="qv">﴿قَالُوا إِن يَسْرِقْ فَقَدْ سَرَقَ أَخٌ لَّهُ مِن قَبْلُ ۚ فَأَسَرَّهَا يُوسُفُ فِي نَفْسِهِ وَلَمْ يُبْدِهَا لَهُمْ﴾<div class="ref">[يوسف: 77]</div></div>
+
+  <h3>الناس متنوعون</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الناس يختلفون في شخصياتهم وأحوالهم النفسية وبيئاتهم، والعاقل يحسن التعامل معهم بالتقبل والتغاضي والاحتواء، وهذا ما يسمى فن التغافل، وهو فن الحكماء أصحاب النفوس الراقية، لأنه يقوم على ضبط الانفعال وتهذيب النفس والترفع عن الصغائر.</p>
+  <p><span class="tag t-a">قول المؤلف</span> التغافل هو غض الطرف عن هفوات الناس، وعدم تتبع زلاتهم وتصيّد أخطائهم، بقصد كسب قلوبهم وحفظ الود، امتثالًا لقوله تعالى: ﴿خُذِ الْعَفْوَ وَأْمُرْ بِالْعُرْفِ وَأَعْرِضْ عَنِ الْجَاهِلِينَ﴾ [الأعراف: 199].</p>
+
+  <h3>التغافل راحة للنفس</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يُروى عن الإمام أحمد بن حنبل أنه قال: تسعة أعشار العافية في التغافل عن الزلات. والتغافل يحفظ الطاقة من أن تُستنزف في تتبع الهفوات والرد على الإساءات، ويمنح صاحبه سعادة في علاقاته مع أرحامه وأصدقائه وجيرانه.</p>
+
+  <h3>النبي ﷺ والتغافل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> حين أفشت بعض أزواج النبي ﷺ سرًّا، لم يتوسع في العتاب، بل أعرض عن بعض، كما قال تعالى: ﴿عَرَّفَ بَعْضَهُ وَأَعْرَضَ عَن بَعْضٍ﴾ [التحريم: 3]. وقال أنس رضي الله عنه: خدمت رسول الله ﷺ عشر سنين، فما قال لي أف قط، ولا قال لشيء فعلته: لم فعلت؟</p>
+
+  <h3>يوسف عليه السلام</h3>
+  <p><span class="tag t-a">قول المؤلف</span> حين اتهمه إخوته بالسرقة ظلمًا، لم يردّ عليهم بالتفنيد، بل كتم الإساءة في نفسه: ﴿فَأَسَرَّهَا يُوسُفُ فِي نَفْسِهِ وَلَمْ يُبْدِهَا لَهُمْ﴾، فقدّم كسب القلوب على رد الإساءة.</p>
+
+  <h3>الغيبة والتجسس</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تصيّد الزلات مرض يضعف الصحة النفسية ويقضي على العلاقات، قال تعالى: ﴿وَلَا تَجَسَّسُوا وَلَا يَغْتَب بَّعْضُكُم بَعْضًا﴾ [الحجرات: 12]. فاجعل التغافل غطاءً لعيوب من تحب، واستمتع بصفاء ذهنك وطاقتك التي لم تُستنزف في ردود عبثية.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> التغافل عن الزلات ليس ضعفًا، بل حكمة تحفظ العلاقات وتريح النفس.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> تغافل عن الأخطاء الصغيرة، واحفظ قلبك وقلوب من تحب.</p>
+    <p><b>تطبيق عملي:</b> في كل خطأ صغير يصدر من قريب، اسأل: هل يستحق هذا الخطأ أن يُقال؟ فإن لم يكن، فتغافل عنه.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>تسعة أعشار العافية في التغافل عن الزلات.</li>
+      <li>النبي ﷺ كان يُعرض عن بعض الأمور، فاجعل ذلك منهجك.</li>
+      <li>يوسف عليه السلام كتم الإساءة في نفسه، فكان أعلى رتبة في الصفح.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= حتى يغيّروا ما بأنفسهم ======================= -->
+<section class="chapter" id="change">
+  <div class="ch-head">
+    <div class="ch-icon">🌅</div>
+    <span class="ch-no">الفصل السادس عشر · ص 35–36</span>
+    <h2>حتى يغيّروا ما بأنفسهم</h2>
+    <p class="ch-desc">التغيير نحو الأفضل ينبع من النفس، وسنة الله ثابتة لا تتبدل.</p>
+  </div>
+
+  <div class="qv">﴿إِنَّ اللَّهَ لَا يُغَيِّرُ مَا بِقَوْمٍ حَتَّىٰ يُغَيِّرُوا مَا بِأَنفُسِهِمْ﴾<div class="ref">[الرعد: 11]</div></div>
+
+  <h3>سنن الله ثابتة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> سنن الله في الكون ثابتة لا تتبدل ولا تحابي أحدًا: ﴿وَلَن تَجِدَ لِسُنَّةِ اللَّهِ تَبْدِيلًا﴾ [الفتح: 23]، ومن أعظمها سنة التغيير، وهي تفتح أبواب السعادة لكل من عرفها وعمل بها.</p>
+
+  <h3>التغيير ينبع من النفس</h3>
+  <p><span class="tag t-a">قول المؤلف</span> التغيير ليس سلعة تُشترى ولا معجزة تُنتظر، بل حلم قريب لمن صدقت نيته وقويت عزيمته، فهو من صنع الإنسان نفسه. وقد بيّن الله أنه يغيّر حال من يقرر أن يغيّر ما بنفسه.</p>
+
+  <h3>التشاؤم يعطل التغيير</h3>
+  <p><span class="tag t-a">قول المؤلف</span> عدم القدرة على التغيير غالبًا ما يكون بسبب أفكار تشاؤمية ومشاعر سلبية تقتل الأمل، والآية تعيد إلى الإنسان الثقة بقدرته، وتؤكد أن التغيير في متناول يده إذا أقبل عليه متوكلًا على الله آخذًا بالأسباب. ويقول الشيخ ابن باز: إن الله لا يغيّر ما بقوم من خير إلى شر، ولا من شر إلى خير، إلا بعد أن يغيروا ما بأنفسهم.</p>
+
+  <h3>النبي ﷺ يُؤمر بالتغيير</h3>
+  <p><span class="tag t-a">قول المؤلف</span> حين كُلّف النبي ﷺ بالرسالة، أُمر بأن يبدأ من نفسه: ﴿قُمْ فَأَنذِرْ * وَرَبَّكَ فَكَبِّرْ * وَثِيَابَكَ فَطَهِّرْ * وَالرُّجْزَ فَاهْجُرْ﴾ [المدثر: 2–5]، وأن يصبر على ما سيلقاه من مقاومة التغيير.</p>
+
+  <h3>الإيمان محرك التغيير</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الإيمان بالله يزكي النفس ويرفع الهمة ويمنح صاحبه روحًا لا تعرف العجز. ومثال ذلك السحرة الذين آمنوا بعد أن كانوا يطلبون الأجر من فرعون، فقالوا: ﴿لَن نُّؤْثِرَكَ عَلَىٰ مَا جَاءَنَا مِنَ الْبَيِّنَاتِ﴾ [طه: 72]، وقال ابن عباس عنهم: كانوا في الصباح سحرة، وفي آخر النهار شهداء بررة.</p>
+
+  <h3>لا تنتظر منقذًا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> لا تجعل التغيير أمنيات معلقة بالظروف، بل ابدأ الخطوة الأولى بنفسك، والله يقول: ﴿قَدْ أَفْلَحَ مَن زَكَّاهَا * وَقَدْ خَابَ مَن دَسَّاهَا﴾ [الشمس: 9–10].</p>
+
+  <div class="quote">
+    <blockquote>«لا تنتظر منقذًا... ولكن اصنع التغيير بنفسك وفي نفسك»</blockquote>
+    <cite>من كلام المؤلف في هذا الفصل</cite>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> التغيير الحقيقي يبدأ من النفس بقرار ونية صادقة وإيمان بالله، لا من انتظار الظروف.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> غيّر ما بنفسك، فالله يغيّر ما حولك.</p>
+    <p><b>تطبيق عملي:</b> اختر عادة سيئة واحدة تريد تغييرها، واكتب خطوة صغيرة تبدأ بها اليوم.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>سنة التغيير ثابتة لمن يقرر أن يغيّر ما بنفسه.</li>
+      <li>الإيمان يمنح الإنسان روحًا لا تعرف العجز.</li>
+      <li>التغيير ممكن، فالسحرة غيّر الإيمان حياتهم في لحظة.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= نعيم الرضا ======================= -->
+<section class="chapter" id="content">
+  <div class="ch-head">
+    <div class="ch-icon">🌿</div>
+    <span class="ch-no">الفصل السابع عشر · ص 37–38</span>
+    <h2>نعيم الرضا</h2>
+    <p class="ch-desc">الرضا بما قسم الله سكون القلب واطمئنانه، وهو باب السعادة.</p>
+  </div>
+
+  <div class="qv">﴿فَخُذْ مَا آتَيْتُكَ وَكُن مِّنَ الشَّاكِرِينَ﴾<div class="ref">[الأعراف: 144]</div></div>
+
+  <h3>الرضا والتقبل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تسمي نظريات تطوير الذات هذا الشعور «التقبل»، والإسلام يسميه «الرضا»، وهو أن يقنع المؤمن بما قسمه الله له، ويستشعر نعمه، فيرى الموجود أعظم من المفقود، فيحمد ربه.</p>
+
+  <h3>الرضا ليس استسلامًا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يعرّف العلماء الرضا بأنه سكون القلب إلى اختيار الله، وقبول الأقدار دون جزع أو سخط. وهو لا يعني الاستسلام أو ترك الأخذ بالأسباب، بل بذل الجهد مع التسليم بما اختاره الله.</p>
+
+  <h3>الغنى غنى القلب</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الغنى الحقيقي غنى القلب الراضي، لا غنى الأموال والمناصب، وقد قال تعالى: ﴿إِلَّا مَنْ أَتَى اللَّهَ بِقَلْبٍ سَلِيمٍ﴾ [الشعراء: 89]، والقلب السليم هو الذي تلقى أقدار الله بالتسليم، ويوقن أن ما يكتبه الله خير مما يتمناه العبد لنفسه.</p>
+
+  <h3>نماذج من الرضا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> موسى عليه السلام قال: ﴿وَعَجِلْتُ إِلَيْكَ رَبِّ لِتَرْضَىٰ﴾ [طه: 84]، فكان رضاه طريقه إلى مرضاة الله. وأيوب عليه السلام صبر على المرض ورضي، فكان رضاه بوابة للفرج. وإبراهيم عليه السلام لما أُمر بذبح ابنه، رضي، وقال ابنه: ﴿يَا أَبَتِ افْعَلْ مَا تُؤْمَرُ﴾ [الصافات: 102]، ففداه الله بذبح عظيم.</p>
+
+  <h3>النعم لا تُحصى</h3>
+  <p><span class="tag t-a">قول المؤلف</span> حين يفقد الإنسان بعض النعم، فلينظر إلى ما بقي من النعم، فهي لا تُحصى: ﴿وَإِن تَعُدُّوا نِعْمَتَ اللَّهِ لَا تُحْصُوهَا﴾ [إبراهيم: 34]. وزيارة مريض أو متأمل حال المحتاجين تعيد للإنسان الشعور بقيمة نعمه، والشكر يزيدها: ﴿لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ﴾ [إبراهيم: 7].</p>
+
+  <div class="quote">
+    <blockquote>«الرضا بوابة السعادة الدنيا، وطريق العبور إلى الجنة»</blockquote>
+    <cite>من كلام المؤلف في هذا الفصل</cite>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الرضا بالقضاء ليس تخلّيًا عن السعي، بل طمأنينة القلب مع بذل الأسباب، والشكر يزيد النعم.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> الرضا والشكر طريقان متلازمان إلى السعادة.</p>
+    <p><b>تطبيق عملي:</b> كل مساء اكتب ثلاث نعم لم تكن تنتبه لها، واشكر الله عليها.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الرضا ليس استسلامًا، بل سكون القلب مع بذل الأسباب.</li>
+      <li>نعم الله لا تُحصى، فكلما استحضرت نعمة زاد شكرك.</li>
+      <li>من رضي نال الرضا من الله.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= اعتزل ما يؤذيك ======================= -->
+<section class="chapter" id="avoid">
+  <div class="ch-head">
+    <div class="ch-icon">🚪</div>
+    <span class="ch-no">الفصل الثامن عشر · ص 39–40</span>
+    <h2>اعتزل ما يؤذيك</h2>
+    <p class="ch-desc">العلاقات المرهقة والنقاشات العقيمة والمواقف المؤذية تسلب الراحة، والاعتزال عنها حل.</p>
+  </div>
+
+  <div class="qv">﴿وَإِذَا سَمِعُوا اللَّغْوَ أَعْرَضُوا عَنْهُ وَقَالُوا لَنَا أَعْمَالُنَا وَلَكُمْ أَعْمَالُكُمْ سَلَامٌ عَلَيْكُمْ لَا نَبْتَغِي الْجَاهِلِينَ﴾<div class="ref">[القصص: 55]</div></div>
+
+  <h3>العلاقات المرهقة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> بعض الناس يشتري لنفسه التعب والقلق بالاستمرار في علاقات فشلت مرارًا، وبمجالسة من أضروه مرات، ثم يشكو ضيق العيش واضطراب النفس.</p>
+
+  <h3>وصية عمر: اعتزل ما يؤذيك</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يورد المؤلف وصية الفاروق عمر بن الخطاب رضي الله عنه: «اعتزل ما يؤذيك»، وهي طريق التجنب لكل من أصابه الضرر من علاقة أو موقف أو نقاش.</p>
+
+  <div class="quote">
+    <blockquote>«اعتزل ما يؤذيك»</blockquote>
+    <cite>الفاروق عمر بن الخطاب رضي الله عنه، كما يورده المؤلف</cite>
+  </div>
+
+  <h3>متى يصبح الاعتزال واجبًا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> إذا كان في المجالسة ضرر على الدين وثوابته، وجب الإعراض، كما أمر الله نبيه: ﴿وَإِذَا رَأَيْتَ الَّذِينَ يَخُوضُونَ فِي آيَاتِنَا فَأَعْرِضْ عَنْهُمْ﴾ [الأنعام: 68]. فالنصح لا ينفع مع من استهزأ بآيات الله، والبقاء معهم ضرر على الدين والنفس.</p>
+
+  <h3>الاعتزال والتكريم الرباني</h3>
+  <p><span class="tag t-a">قول المؤلف</span> اعتزال الباطل ومجالسه تكريم من الله، كما اعتزل إبراهيم عليه السلام قومه فوهب الله له إسحاق ويعقوب، ولما اعتزل أصحاب الكهف قومهم آواهم الله إلى الكهف ويسّر لهم أمرهم: ﴿فَأْوُوا إِلَى الْكَهْفِ يَنشُرْ لَكُم رَبُّكُم مِّن رَّحْمَتِهِ﴾ [الكهف: 16].</p>
+
+  <h3>الاعتزال ليس سلبية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الاعتزال عن الأذى قرار شجاع مبني على قراءة للواقع، يرجّح حفظ الدين والنفس وراحة البال على الانغماس في نقاشات عقيمة، وليس رفعًا للراية البيضاء.</p>
+
+  <h3>لا تتعب نفسك بما لا يستحق</h3>
+  <p><span class="tag t-a">قول المؤلف</span> إذا دعتك نفسك إلى جدل عقيم فأعرض، وإذا وصلت علاقة إلى طريق مسدود فأنهها بلطف، وإذا أزعجتك مجالس بعينها فاهجرها. ولست مضطرًا لتذوق مرارة الأذى، فالنصيحة العُمَرية باعتزال الأذى مخرج مشروع.</p>
+
+  <div class="quote">
+    <blockquote>«سلام عليكم لا نبتغي الجاهلين»</blockquote>
+    <cite>من كلام المؤلف في هذا الفصل، مستوحى من آية سورة القصص</cite>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الاعتزال عن الأذى حكمة وشجاعة، وليس انهزامًا، وهو وسيلة لحفظ الدين والصحة والسكينة.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> ابتعد عن الأذى بأدب، ولا تدخل معارك لا تنفعك.</p>
+    <p><b>تطبيق عملي:</b> اكتب قائمة بالأشخاص والمواقف التي تسلب راحتك، وقرر كيف تقلل الاحتكاك بها بلباقة.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>لا تشتر لنفسك التعب، فاختر علاقاتك بعناية.</li>
+      <li>الإعراض بأدب عن الجاهلين عبادة وحكمة.</li>
+      <li>الاعتزال عن الأذى سبيل إلى التكريم الرباني.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= استجداء الثناء ======================= -->
+<section class="chapter" id="praise">
+  <div class="ch-head">
+    <div class="ch-icon">🌟</div>
+    <span class="ch-no">الفصل التاسع عشر · ص 41–42</span>
+    <h2>استجداء الثناء</h2>
+    <p class="ch-desc">العمل لأجل مدح الناس وثنائهم يفسد الأجر ويُضعف الهمّة، والعمل الخالص لوجه الله يورث السعادة الحقة.</p>
+  </div>
+
+  <div class="qv">﴿إِنَّمَا نُطْعِمُكُمْ لِوَجْهِ اللَّهِ لَا نُرِيدُ مِنكُمْ جَزَاءً وَلَا شُكُورًا﴾<div class="ref">[الإنسان: 9]</div></div>
+
+  <h3>مبدأ المقابل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> من يعطي الناس ويعلّق عطاءه على مقابل معنوي أو مادي، يقطع المعروف، ويتوقف عن العطاء إذا لم يُقابَل بما يريد. أما من يعطي ابتغاء وجه الله، فيجد لذة إيمانية وإن لم يلقَ شكرًا من الناس.</p>
+
+  <h3>سبب فتور الناشطين</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كثير من الناشطين يفترون لأنهم ينتظرون كلمة شكر أو تقديرًا يوازي جهدهم، فإذا غاب ذلك أصابهم الإحباط. والأصلح ألا يرفع الإنسان سقف توقعاته من الناس، فيكون عمله خالصًا لا تحركه المجاملة.</p>
+
+  <h3>موسى عليه السلام عند ماء مدين</h3>
+  <p><span class="tag t-a">قول المؤلف</span> سقى موسى عليه السلام للفتاتين ثم تولى إلى الظل، دون أن ينتظر أجرًا ماديًا ولا كلمة شكر، فقال: ﴿رَبِّ إِنِّي لِمَا أَنزَلْتَ إِلَيَّ مِنْ خَيْرٍ فَقِيرٌ﴾ [القصص: 24]، لأنه يعلم أن الأجر عند من بيده خزائن السماوات والأرض.</p>
+
+  <div class="story">
+    <div class="story-ico">💧</div>
+    <div>
+      <h4>موسى عليه السلام عند ماء مدين</h4>
+      <p><span class="tag t-a">قول المؤلف</span> سقى للفتاتين ثم انصرف إلى الظل، دون انتظار جزاء أو ثناء، فكان عمله خالصًا لله.</p>
+      <div class="moral"><b>العبرة:</b> اعمل المعروف ثم انصرف، وليكن أجرك عند من لا يضيع أجر المحسنين.</div>
+    </div>
+  </div>
+
+  <h3>المقايضة تُفسد المعروف</h3>
+  <p><span class="tag t-a">قول المؤلف</span> المعروف المرتبط بانتظار الثناء يفقد بريقه وبركته، ويصبح تبادل مصالح. ويستشهد المؤلف بقول الشيخ علي الفيفي في معنى التخلص من فكرة المقايضة في العطاء، والإخلاص لله يحرر من قيد مراقبة الناس، ويمنح الرضا الحقيقي.</p>
+
+  <h3>الثناء قد يشجع لكنه ليس الغاية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الثناء قد يرفع همة صاحب المعروف، لكن قلوب أهل البذل معلقة بما عند الله: ﴿وَمَا عِندَ اللَّهِ خَيْرٌ وَأَبْقَىٰ لِلَّذِينَ آمَنُوا وَعَلَىٰ رَبِّهِمْ يَتَوَكَّلُونَ﴾ [الشورى: 36]. ومن يعمل ليُمدح يطرب لثنائهم ويحزن لتجاهلهم، أما من يعمل متيقنًا بوعد الله فلن يضيع عنده شيء.</p>
+
+  <h3>لا تستهدف بمعروفك الشكر</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يقول الشيخ محمد المختار الشنقيطي معنى مؤداه: إذا ابتلاك الله بأن ينسى من أحسنت إليه شكرك، فقد يكون ذلك لحبه لك، لأنه لو شكرك لفُتنت وصرت تعمل للشكر. فلا تفسد نيتك بطلب الثناء، واجعل عملك لله كما قال تعالى: ﴿إِنَّمَا نُطْعِمُكُمْ لِوَجْهِ اللَّهِ﴾، سواء أعنت محتاجًا، أو أتقنت عملك، أو عبدت الله بعيدًا عن أعين الناس.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> العمل الذي يُنتظر به ثناء الناس يفتر إذا غاب الثناء، والعمل الخالص لله يبقى مثمرًا وإن لم يُشكر صاحبه.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> اجعل معروفك لله، وانتظر أجرك منه وحده.</p>
+    <p><b>تطبيق عملي:</b> قبل أن تقدّم معروفًا، اسأل نفسك: هل أنا مستعد أن يمضي دون أن يُشكر؟ فإن كانت الإجابة لا، فراجع نيتك.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>المعروف الذي يُعلّق على الشكر ينقطع بانقطاعه.</li>
+      <li>موسى عليه السلام سقى ثم تولى إلى الظل دون أن ينتظر مقابلًا.</li>
+      <li>من أخلص لله وجد لذة لا يعادلها ثناء الناس.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= جمال العفوية ======================= -->
+<section class="chapter" id="grace">
+  <div class="ch-head">
+    <div class="ch-icon">🌼</div>
+    <span class="ch-no">الفصل العشرون · ص 43–44</span>
+    <h2>جمال العفوية</h2>
+    <p class="ch-desc">البساطة والصدق مع النفس ومع الناس تمنح الراحة، والتكلّف والتصنّع يملآن الحياة بالكآبة والشقاء.</p>
+  </div>
+
+  <div class="qv">﴿قُلْ مَا أَسْأَلُكُمْ عَلَيْهِ مِنْ أَجْرٍ وَمَا أَنَا مِنَ الْمُتَكَلِّفِينَ﴾<div class="ref">[ص: 86]</div></div>
+
+  <h3>لكل إنسان قدراته</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الناس يختلفون في قدراتهم وثقافاتهم، وفي ذلك ميدان للتنافس والعطاء، لكن بعضهم يرهق نفسه ماديًا ومعنويًا ليظهر بمظهر لا يشبهه، وهذا يخالف قوله تعالى: ﴿لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا﴾ [البقرة: 286].</p>
+
+  <h3>التكلف والادعاء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الادعاءات والمظاهر التي لا تعبر عن حقيقة صاحبها تجلب على أهلها الكذب والزيف، وتحرمهم هدوء البساطة. ويقول المنفلوطي: ما خلط التكلف عملًا من أعمال الذوق إلا شوّه وجهه، وذهب بحسنه.</p>
+
+  <h3>تصنّع العلم والبطولات</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تصنّع العلم وادعاء البطولات الزائفة لتحصيل مكانة لا يستحقها الإنسان عاقبته وخيمة، قال تعالى: ﴿لَا تَحْسَبَنَّ الَّذِينَ يَفْرَحُونَ بِمَا أَتَوا وَّيُحِبُّونَ أَن يُحْمَدُوا بِمَا لَمْ يَفْعَلُوا﴾ [آل عمران: 188]، وفي الصحيح: «المتشبع بما لم يعط كلابس ثوبي زور».</p>
+
+  <h3>العفوية والبساطة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> العفوية تكشف عن تصالح الإنسان مع نفسه، وثقته بها، وعدم تأثره بأحكام الناس، فلا يرتدي لباسًا مزيفًا من الأقوال والأفعال ليلفت الأنظار.</p>
+
+  <h3>النبي ﷺ وبساطته</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تميّز النبي ﷺ بعفويته وتواضعه، فكان يجلس مع أصحابه دون تميّز في الهيئة أو المكان، حتى إن الغريب ربما سأل: أيكم محمد؟ وكان يقول كما في الآية: ﴿وَمَا أَنَا مِنَ الْمُتَكَلِّفِينَ﴾ [ص: 86]، فكانت سيرته تُغني عن أي دعاية.</p>
+
+  <div class="quote">
+    <blockquote>«ما أنا من المتكلفين»</blockquote>
+    <cite>من آية سورة ص، ويكررها المؤلف في هذا الفصل بوصفها منهج حياة</cite>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> التكلف يرهق صاحبه ويكشفه، والعفوية والصدق يمنحان السكينة والثقة.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> كن كما أنت، واعمل بقدر طاقتك، ولا تدّعِ ما ليس فيك.</p>
+    <p><b>تطبيق عملي:</b> في منشور أو حديث، تجنب كل صفة لا تشبهك، واكتب أو تحدث بما تؤمن به فعلًا.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>لا يكلف الله نفسًا إلا وسعها، فلا ترهق نفسك بإظهار ما ليس فيك.</li>
+      <li>المتشبع بما لم يعط كلابس ثوبي زور.</li>
+      <li>النبي ﷺ كان بسيطًا عفويًا، فكانت سيرته أبلغ من أي دعاية.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= إنّ معي ربي ======================= -->
+<section class="chapter" id="withme">
+  <div class="ch-head">
+    <div class="ch-icon">🌤️</div>
+    <span class="ch-no">الفصل الحادي والعشرون · ص 45–46</span>
+    <h2>إنّ معي ربي</h2>
+    <p class="ch-desc">معية الله للعبد هي أعظم أسباب الطمأنينة والنصر والتوفيق، وهي أغلى ما يناله المؤمن.</p>
+  </div>
+
+  <div class="qv">﴿لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا فَأَنزَلَ اللَّهُ سَكِينَتَهُ عَلَيْهِ وَأَيَّدَهُ بِجُنُودٍ لَّمْ تَرَوْهَا﴾<div class="ref">[التوبة: 40]</div></div>
+
+  <h3>القرب من الكبار لا يكفي</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كثيرون يتفاخرون بقربهم من الأثرياء والمشاهير، ويعلقون عليهم آمالهم في الحماية والنفع، ولا يدركون أن هذه المعية البشرية قد تجلب الشقاء إذا لم تكن خالصة لله.</p>
+
+  <h3>معية الله تأتي بالسعادة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> المعية التي تورث السكينة والعز والفرج هي معية الله لأوليائه، تحوّل الخوف أمنًا، والحزن فرحًا، والقلق طمأنينة، وتخرج صاحبها من ضيق الهموم إلى سعة رحمة الله.</p>
+
+  <h3>النبي ﷺ في الغار</h3>
+  <p><span class="tag t-a">قول المؤلف</span> في الهجرة، حين لاحقت قريش النبي ﷺ وصاحبه أبا بكر، خاف أبو بكر فقال: لو نظر أحدهم تحت قدميه لرآنا، فقال النبي ﷺ: «لا تحزن إن الله معنا»، فنزلت السكينة وتثبّت الصديق.</p>
+
+  <div class="story">
+    <div class="story-ico">🕳️</div>
+    <div>
+      <h4>الغار: «إن الله معنا»</h4>
+      <p><span class="tag t-a">قول المؤلف</span> في الغار، وقف الصديق خائفًا على رسول الله، فطمأنه النبي ﷺ بمعية الله، فأنزل الله سكينته عليه.</p>
+      <div class="moral"><b>العبرة:</b> إذا عرفت أن الله معك، فلا تحزن مهما اشتد الخطر.</div>
+    </div>
+  </div>
+
+  <h3>ثمار المعية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> من فاز بمعية الله لم يعرف الخوف إلى قلبه سبيلًا، كما قال الله لموسى وهارون حين خافا من فرعون: ﴿قَالَ لَا تَخَافَا ۖ إِنَّنِي مَعَكُمَا أَسْمَعُ وَأَرَىٰ﴾ [طه: 46]. وكذلك قال موسى عليه السلام لقومه حين أدركهم فرعون: ﴿كَلَّا ۖ إِنَّ مَعِيَ رَبِّي سَيَهْدِينِ﴾ [الشعراء: 62].</p>
+
+  <h3>معية الله تُكتسب بالعمل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يذكر الدكتور محمد راتب النابلسي أن المعية أعلى درجات التكريم، ولها ثمن ليس ماديًا، بل صفات يحققها المؤمن: الإيمان: ﴿وَأَنَّ اللَّهَ مَعَ الْمُؤْمِنِينَ﴾ [الأنفال: 19]، والتقوى والإحسان: ﴿إِنَّ اللَّهَ مَعَ الَّذِينَ اتَّقَوا وَّالَّذِينَ هُم مُّحْسِنُونَ﴾ [النحل: 128]، والصبر: ﴿إِنَّ اللَّهَ مَعَ الصَّابِرِينَ﴾ [الأنفال: 46].</p>
+
+  <h3>استشعر معية الله في كل أحوالك</h3>
+  <p><span class="tag t-a">قول المؤلف</span> إذا خذلك القريب وجفاك البعيد، أو أطبقت عليك الهموم، أو كادك الخصوم، فردّد: <b>إن معي ربي</b>، فهي تسلّيك وتثبّتك.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> معية الله تُنال بالتقوى والإحسان والصبر والصدق، وهي الأمان الحقيقي في كل شدة.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> استحضر معية الله عند كل ضيق، وتحقق بأسبابها من التقوى والإحسان والصبر.</p>
+    <p><b>تطبيق عملي:</b> عند كل قلق، قل: «إن معي ربي»، ثم اسأل نفسك: ما الصفة التي أحتاج أن أحققها لأكون في معيته؟</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>القرب من الله أعظم من القرب من أي ذي جاه أو مال.</li>
+      <li>معية الله تُكتسب بالتقوى والإحسان والصبر وإقامة الصلاة.</li>
+      <li>من كان الله معه فلا يخاف أحدًا مهما كثر خصومه.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= انفض غبار السلبية ======================= -->
+<section class="chapter" id="positive">
+  <div class="ch-head">
+    <div class="ch-icon">🌱</div>
+    <span class="ch-no">الفصل الثاني والعشرون · ص 47–48</span>
+    <h2>انفض غبار السلبية</h2>
+    <p class="ch-desc">السلبية بوابة العجز، والإيجابية قرار ومبادرة تفتح أبواب الإنجاز.</p>
+  </div>
+
+  <div class="qv">﴿قَالَ مَا مَكَّنِّي فِيهِ رَبِّي خَيْرٌ فَأَعِينُونِي بِقُوَّةٍ أَجْعَلْ بَيْنَكُمْ وَبَيْنَهُمْ رَدْمًا﴾<div class="ref">[الكهف: 95]</div></div>
+
+  <h3>السلبية بوابة العجز</h3>
+  <p><span class="tag t-a">قول المؤلف</span> السلبية تقعد صاحبها عن العمل، وتشل تفكيره، وتحكم على مشروعاته بالفشل المبكر، ولا يتخلص منها إلا بالعمل الجاد والانشغال بمشروع نافع.</p>
+
+  <h3>أثر الإيجابية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يؤكد علماء النفس أن الإنسان نتاج أفكاره ومعتقداته. فمن جعل السلبية نهجًا عاش على هامش الحياة يتأثر ولا يؤثر، ومن سلك الإيجابية حوّل الأعمال الصغيرة إلى إنجازات كبيرة. والإيجابية نهر عطاء يثبّت الإنسان في الشدائد، ويزرع الأمل إذا ساد القنوط.</p>
+
+  <h3>الإيجابية قرار ومبادرة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الإيجابية قرار يخلّص النفس من عقدة الفشل، ومبادرة تنهي التردد وتحدد الخطوة الأولى، وفي القرآن نماذج متعددة لها.</p>
+
+  <div class="story">
+    <div class="story-ico">🧱</div>
+    <div>
+      <h4>ذو القرنين وقوم يأجوج ومأجوج</h4>
+      <p><span class="tag t-a">قول المؤلف</span> وجد ذو القرنين قومًا عاجزين لا يجيدون غير الشكوى، فأشركهم في البناء والدفاع عن أنفسهم: ﴿فَأَعِينُونِي بِقُوَّةٍ أَجْعَلْ بَيْنَكُمْ وَبَيْنَهُمْ رَدْمًا﴾، فلم يبقوا متفرجين.</p>
+      <div class="moral"><b>العبرة:</b> الإيجابية تبدأ بأن تُشرك الناس في الحل، لا بأن تنتظر منهم أن يعينوك.</div>
+    </div>
+  </div>
+
+  <h3>نماذج من الإيجابية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> مؤمن آل فرعون جاء ﴿مِنْ أَقْصَى الْمَدِينَةِ رَجُلٌ يَسْعَىٰ﴾ [يس: 20] رغم بُعد المكان وبساطة حاله، ولم يتذرع بوجود رسل يكفونه الدعوة. والنملة التي حذّرت قومها من جيش سليمان ﴿وَهُمْ لَا يَشْعُرُونَ﴾ [النمل: 18] استشعرت المسؤولية وقامت بدورها.</p>
+
+  <div class="quote">
+    <blockquote>«الإيجابية قرار ومبادرة»</blockquote>
+    <cite>من كلام المؤلف في هذا الفصل</cite>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الإيجابية قرار يتخذه الإنسان بنفسه، ومبادرة صغيرة تفتح باب الإنجاز الكبير.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> السلبية تُنتج العجز، والإيجابية تُنتج الإنجاز.</p>
+    <p><b>تطبيق عملي:</b> اختر عملًا صغيرًا تعيده كل يوم بنية الإصلاح، وابدأ خطوته الأولى اليوم دون انتظار.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الإنسان نتاج أفكاره، فغيّر فكرتك تتغير حياتك.</li>
+      <li>الإيجابية تبدأ بقرار، ثم بمبادرة، ثم بعمل.</li>
+      <li>لا تتذرع بوجود غيرك لتتخلى عن دورك.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= مخموم القلب ======================= -->
+<section class="chapter" id="sound">
+  <div class="ch-head">
+    <div class="ch-icon">💚</div>
+    <span class="ch-no">الفصل الثالث والعشرون · ص 49–50</span>
+    <h2>مخموم القلب</h2>
+    <p class="ch-desc">سلامة الصدر عبادة قلبية تورث الطمأنينة والسكينة، وتخلّص صاحبها من الشرور والخصومات.</p>
+  </div>
+
+  <div class="qv">﴿وَنَزَعْنَا مَا فِي صُدُورِهِم مِّنْ غِلٍّ إِخْوَانًا عَلَىٰ سُرُرٍ مُّتَقَابِلِينَ﴾<div class="ref">[الحجر: 47]</div></div>
+
+  <h3>سلامة الصدر مصدر الفلاح</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الفلاح في الآخرة والسعادة في الدنيا يكونان في القلب السليم، المتحرر من حظوظ النفس، المكتفي بما قسمه الله، الممتلئ محبة لإخوانه. ويذكر المؤلف قول ابن رجب: المؤمن يسره ما يسر أخاه، ويريد لأخيه ما يريده لنفسه.</p>
+
+  <h3>أصحاب النبي ﷺ أسوة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> ضرب الصحابة أروع الأمثلة في التحاب والإيثار، وكشف القرآن صورة قلوبهم النقية: ﴿وَلَا يَجِدُونَ فِي صُدُورِهِمْ حَاجَةً مِّمَّا أُوتُوا وَيُؤْثِرُونَ عَلَىٰ أَنفُسِهِمْ﴾ [الحشر: 9].</p>
+
+  <h3>طريق سلامة الصدر</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تبدأ سلامة الصدر بالاستعانة بالله وإخلاص العمل له، ثم بتزكية النفس وتطهيرها من الحقد والحسد والبغضاء، وتعويدها على حب الخير للآخرين.</p>
+
+  <h3>من صفات أهل الجنة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> سلامة الصدر من أسباب دخول الجنة، وهي صفة من صفات أهلها: ﴿إِلَّا مَنْ أَتَى اللَّهَ بِقَلْبٍ سَلِيمٍ﴾ [الشعراء: 89]، فهي دعوة إلى التحلي بها.</p>
+
+  <h3>مخموم القلب في الحديث</h3>
+  <p><span class="tag t-a">قول المؤلف</span> في الحديث الصحيح سُئل النبي ﷺ: أي الناس أفضل؟ فقال: «كل مخموم القلب صدوق اللسان»، قالوا: صدوق اللسان نعرفه، فما مخموم القلب؟ قال: «هو التقي النقي، لا إثم فيه، ولا بغي، ولا غل، ولا حسد».</p>
+  <p><span class="tag t-a">قول المؤلف</span> فصاحب القلب المخموم يتخلص من آفة كسب الأعداء، ويريح نفسه من تمنّي زوال نعم الله عن الناس، فيعيش مرتاح البال مطمئن النفس.</p>
+
+  <h3>سلامة الصدر نعيم معجل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> سلامة الصدر من النعيم المعجل في الحياة، فصاحبها يعيش مطمئنًا خالي البال، ينعم بحب الناس وحب الله. ويقول الدكتور عمر المقبل: من أوتي صدرًا سليمًا لإخوانه المسلمين فقد تعجّل شيئًا من نعيم الجنة.</p>
+
+  <div class="quote">
+    <blockquote>«كل مخموم القلب صدوق اللسان»</blockquote>
+    <cite>حديث يورده المؤلف عن رسول الله ﷺ في هذا الفصل</cite>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> سلامة الصدر تُنال بالتقوى وتزكية النفس وحب الخير للآخرين، وهي طريق إلى الراحة في الدنيا والآخرة.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> نقِّ قلبك من الغل والحسد، وأحب لأخيك ما تحب لنفسك.</p>
+    <p><b>تطبيق عملي:</b> عند شعورك بالحسد تجاه أحد، ادعُ له بالخير مرة واحدة، وتذكر نعمة الله عليك.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>سلامة الصدر من الغل والحسد والغش أصل السعادة.</li>
+      <li>الإيثار مع الحاجة دليل على سلامة القلب.</li>
+      <li>من خلّص قلبه للناس عاش مطمئنًا، ومن امتلأ بالحقد عاش مكدرًا.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= غير قابل للكسر ======================= -->
+<section class="chapter" id="unbreak">
+  <div class="ch-head">
+    <div class="ch-icon">🪨</div>
+    <span class="ch-no">الفصل الرابع والعشرون · ص 51–52</span>
+    <h2>غير قابل للكسر</h2>
+    <p class="ch-desc">الحياة ميدان للتحدي والعمل، والفشل محطة لا نهاية، والصبر والمضي بعد العثرة هو طريق النجاح.</p>
+  </div>
+
+  <div class="qv">﴿وَلَا تَهِنُوا وَلَا تَحْزَنُوا وَأَنتُمُ الْأَعْلَوْنَ إِن كُنتُم مُّؤْمِنِينَ﴾<div class="ref">[آل عمران: 139]</div></div>
+
+  <h3>الابتلاء سنة الحياة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كتب الله الابتلاءات على عباده ليميز الصابر من الجازع، والشاكر من الجاحد. فالحياة مزيج من الألم والأمل، والنجاح والفشل، والفرح والحزن، قال تعالى: ﴿لَتَرْكَبُنَّ طَبَقًا عَن طَبَقٍ﴾ [الانشقاق: 19].</p>
+
+  <h3>حين يتعثر الإنسان</h3>
+  <p><span class="tag t-a">قول المؤلف</span> بعض الناس إذا أخفق في عمل أو تعثر في مشروع، يعدّ ذلك ضربة قاضية، فيرفع الراية البيضاء ويجلس متحسرًا.</p>
+
+  <h3>النبي ﷺ يصبر على الابتلاء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تعرض النبي ﷺ لشدائد متتالية: يُتمٌ، وفقد للأم والعم والزوجة خديجة رضي الله عنها، ثم ما لقيه في الطائف، فلم يزده ذلك إلا ثباتًا، فعوّضه الله خيرًا: ﴿أَلَمْ يَجِدْكَ يَتِيمًا فَآوَىٰ * وَوَجَدَكَ ضَالًّا فَهَدَىٰ * وَوَجَدَكَ عَائِلًا فَأَغْنَىٰ﴾ [الضحى: 6–8].</p>
+
+  <div class="story">
+    <div class="story-ico">⚔️</div>
+    <div>
+      <h4>أُحد: من الهزيمة إلى نصر أكبر</h4>
+      <p><span class="tag t-a">قول المؤلف</span> بعد أحد ذاق المسلمون مرارة الهزيمة، فعالج القرآن آثارها بآيات ترفع المعنويات وتشحذ الهمم للانطلاق نحو المستقبل.</p>
+      <div class="moral"><b>العبرة:</b> الهزيمة ليست نهاية المطاف، والإخفاق خطوة نحو النجاح.</div>
+    </div>
+  </div>
+
+  <h3>لا تهنوا ولا تحزنوا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> نهى الله المؤمنين عن الحزن الذي يقعد بهم عن العمل، وعن الوهن الذي يخالف صفات المؤمن، فاستجابوا وانطلقوا إلى حمراء الأسد، وفتحوا صفحة جديدة من الانتصارات. والتعثر ليس عجزًا دائمًا.</p>
+
+  <h3>الاحتراز من الإخفاق</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يقول النبي ﷺ في الحديث الصحيح: «احرص على ما ينفعك، واستعن بالله ولا تعجز»، فكل كبوة مصيرها النهوض، وكل إخفاق يُعالج بتكرار المحاولة والإصرار، والعجز هو عدو النجاح الأول.</p>
+
+  <div class="quote">
+    <blockquote>«احرص على ما ينفعك، واستعن بالله ولا تعجز»</blockquote>
+    <cite>حديث رواه مسلم، كما يورده المؤلف</cite>
+  </div>
+
+  <div class="wis-grid">
+    <div class="wis">
+      <div class="wis-num">الحكمة ①</div>
+      <div class="wis-txt">لا تحسبِ المجدَ تمرًا أنتَ آكله<br>لن تبلغ المجد حتى تلعق الصبرا</div>
+      <div class="wis-src">من أبيات الكتاب · القائل غير مذكور في الصفحات المرسلة</div>
+    </div>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الإخفاق والتعثر جزء طبيعي من الطريق، والعبرة في الصبر والمحاولة المتكررة والاستعانة بالله.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> الكبوة مرحلة لا نهاية؛ فقم وحاول مرة أخرى.</p>
+    <p><b>تطبيق عملي:</b> بعد كل إخفاق، اكتب درسًا واحدًا تعلمته، ثم ابدأ المحاولة التالية في اليوم نفسه.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>التعثر ليس عجزًا دائمًا.</li>
+      <li>النبي ﷺ واجه الابتلاء بالصبر والشكر، فعوّضه الله خيرًا.</li>
+      <li>استعن بالله ولا تعجز.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= أغلال المعصية ======================= -->
+<section class="chapter" id="sins">
+  <div class="ch-head">
+    <div class="ch-icon">⛓️</div>
+    <span class="ch-no">الفصل الخامس والعشرون · ص 53–54</span>
+    <h2>أغلال المعصية</h2>
+    <p class="ch-desc">ضيق الصدر وحيرة النفس ووحشة القلب آثار للمعصية، والتوبة والاستغفار طريق الخلاص.</p>
+  </div>
+
+  <div class="qv">﴿قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ﴾<div class="ref">[الزمر: 53]</div></div>
+
+  <h3>المعصية تُخرج من دائرة الطمأنينة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الوقوع في الخطأ طبيعة بشرية، لكن الإصرار على الذنب وإتباع السيئة بالسيئة هو ما يُخرج الإنسان من دائرة الطمأنينة، ويجعله أسيرًا لهواه.</p>
+
+  <h3>الهموم وراء المعصية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كثير من الهموم والضيق والشقاء مردّه إلى ذنوب صارت سلوكًا معتادًا. ويستشهد المؤلف بقوله تعالى: ﴿وَمَنْ أَعْرَضَ عَن ذِكْرِي فَإِنَّ لَهُ مَعِيشَةً ضَنكًا﴾ [طه: 124]، ويذكر قول ابن القيم إن من عقوبات المعاصي وحشةً يجدها العاصي في قلبه، لا تزيلها لذات الدنيا مجتمعة.</p>
+
+  <h3>نداء الرحمة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> وسط هذا الضيق يأتي النداء الإلهي ليفتح نوافذ الرجاء: ﴿وَتُوبُوا إِلَى اللَّهِ جَمِيعًا أَيُّهَ الْمُؤْمِنُونَ لَعَلَّكُمْ تُفْلِحُونَ﴾ [النور: 31]. والتوبة تعني الإقلاع عن الذنب، والندم، والاستغفار، والعزم على عدم العودة، والله يبدل السيئات حسنات: ﴿فَأُولَٰئِكَ يُبَدِّلُ اللَّهُ سَيِّئَاتِهِمْ حَسَنَاتٍ﴾ [الفرقان: 70].</p>
+
+  <h3>لا تقنطوا من رحمة الله</h3>
+  <p><span class="tag t-a">قول المؤلف</span> مهما بلغ الذنب فرحمة الله واسعة. ويلفت الدكتور بندر الشراري النظر إلى أن الله قال: ﴿أَسْرَفُوا﴾ ولم يقل «أذنبوا»، ثم قال: ﴿لَا تَقْنَطُوا﴾، فالإسراف لا يحول دون المغفرة، والقنوط هو المحذور.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> وحشة الذنوب سببها الإصرار عليها، والخلاص منها بالتوبة والاستغفار، ورحمة الله أوسع من الذنوب.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> لا تيأس من رحمة الله مهما أسرفت، وعُد إليه تائبًا.</p>
+    <p><b>تطبيق عملي:</b> اجعل لنفسك وقفة استغفار يومية قصيرة، وإذا وقعت في خطأ فابدأ التوبة في الحال.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الضيق والوحشة في القلب من آثار المعصية المتراكمة.</li>
+      <li>التوبة تبدل السيئات حسنات لمن صدق فيها.</li>
+      <li>الإسراف لا يحول دون المغفرة، والقنوط هو المحذور.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= متاع الغرور ======================= -->
+<section class="chapter" id="vanity">
+  <div class="ch-head">
+    <div class="ch-icon">🎭</div>
+    <span class="ch-no">الفصل السادس والعشرون · ص 55–56</span>
+    <h2>متاع الغرور</h2>
+    <p class="ch-desc">الدنيا لعب ولهو وزينة وتفاخر، ومن جعلها أكبر همه أضاع آخرته وشقي في دنياه.</p>
+  </div>
+
+  <div class="qv">﴿اعْلَمُوا أَنَّمَا الْحَيَاةُ الدُّنْيَا لَعِبٌ وَلَهْوٌ وَزِينَةٌ وَتَفَاخُرٌ بَيْنَكُمْ وَتَكَاثُرٌ فِي الْأَمْوَالِ وَالْأَوْلَادِ ۖ وَمَا الْحَيَاةُ الدُّنْيَا إِلَّا مَتَاعُ الْغُرُورِ﴾<div class="ref">[الحديد: 20]</div></div>
+
+  <h3>الدنيا الحلوة الخضرة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الدنيا تسحر الناس بزخرفها، فيتزاحمون على أبوابها، ويتنافسون في حطامها، فتفسد من أجلها القلوب، وتتقطع الأرحام، ويغيب الاطمئنان، ويطارد المفتون بها المال والتطلعات حتى يحاصره القلق.</p>
+
+  <h3>الدنيا ليست أكبر الهم</h3>
+  <p><span class="tag t-a">قول المؤلف</span> من جعل الدنيا غايته يطارد سرابًا ويملأ جيبًا مثقوبًا، لأنه ظن أن السعادة في ملذاتها. ويذكر المؤلف قول ابن القيم إن القرآن مملوء بالتزهيد في الدنيا والإخبار بخستها وسرعة فنائها.</p>
+
+  <div class="story">
+    <div class="story-ico">💰</div>
+    <div>
+      <h4>الدنيا لا تعدل جناح بعوضة</h4>
+      <p><span class="tag t-a">قول المؤلف</span> يورد المؤلف الحديث الذي رواه الترمذي: «لو كانت الدنيا تعدل عند الله جناح بعوضة ما سقى كافرًا منها شربة ماء»، وكان النبي ﷺ يستعيذ بالله أن تستحوذ الدنيا على قلبه.</p>
+      <div class="moral"><b>العبرة:</b> الدنيا في ميزان الله أحقر من أن تكون غاية الإنسان.</div>
+    </div>
+  </div>
+
+  <h3>من كانت الدنيا همه</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يورد المؤلف الحديث الذي رواه ابن ماجه: «من كانت الدنيا همه فرّق الله عليه أمره، وجعل فقره بين عينيه، ولم يأته من الدنيا إلا ما كُتب له». فصاحب الدنيا أمره مشتت، لا يقنع بعطاء، ولا يرضى بقضاء.</p>
+
+  <h3>لعب ولهو</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تكفي تدبر آيات القرآن لتصغير الدنيا في عين العاقل، قال تعالى: ﴿وَمَا هَٰذِهِ الْحَيَاةُ الدُّنْيَا إِلَّا لَهْوٌ وَلَعِبٌ ۚ وَإِنَّ الدَّارَ الْآخِرَةَ لَهِيَ الْحَيَوَانُ﴾ [العنكبوت: 64]. فمن جعلها لعبًا ولهوًا ضيّع عمره، ومن جعلها وسيلة لا غاية أفلح.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الدنيا وسيلة لا غاية، ومن جعلها غايته ضاع في الدنيا والآخرة.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> اجعل الدنيا في يدك لا في قلبك.</p>
+    <p><b>تطبيق عملي:</b> قبل أي شراء أو طلب مال، اسأل: هل هذا يقربني من آخرتي أم يشغلني عنها؟</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>من جعل الدنيا همه تفرقت عليه أموره.</li>
+      <li>الدنيا لعب ولهو إذا كانت غاية، ووسيلة إذا كانت طريقًا.</li>
+      <li>الرضا بالقسمة يحفظ القلب من الطمع.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= منزلة السكينة ======================= -->
+<section class="chapter" id="calm">
+  <div class="ch-head">
+    <div class="ch-icon">🕊️</div>
+    <span class="ch-no">الفصل السابع والعشرون · ص 57–58</span>
+    <h2>منزلة السكينة</h2>
+    <p class="ch-desc">السكينة نعمة يلقيها الله في قلوب عباده عند الشدائد، تثبّت الأقدام وتزيد الإيمان.</p>
+  </div>
+
+  <div class="qv">﴿هُوَ الَّذِي أَنزَلَ السَّكِينَةَ فِي قُلُوبِ الْمُؤْمِنِينَ لِيَزْدَادُوا إِيمَانًا مَّعَ إِيمَانِهِمْ﴾<div class="ref">[الفتح: 4]</div></div>
+
+  <h3>الاضطراب في الشدائد</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تمر بالإنسان نوازل تضطرب لها القلوب، فيحتاج إلى ما يثبّته ويبصّر عقله، فيسأل ربه السكينة، فتطيب نفسه ويواجه الشدائد ثابت الخطى. ويرى المؤلف أن كثيرًا من الناس اليوم يعانون من هشاشة نفسية تظهر في القلق والاكتئاب والخوف غير المبرر، نتيجة عجزهم عن مواجهة الشدائد.</p>
+
+  <h3>السكينة في القرآن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> ذكر الله السكينة في مواضع منها غزوة حنين، حين ضاقت الأرض على المسلمين، فأنزل الله سكينته على رسوله والمؤمنين فكان النصر: ﴿ثُمَّ أَنزَلَ اللَّهُ سَكِينَتَهُ عَلَىٰ رَسُولِهِ وَعَلَى الْمُؤْمِنِينَ﴾ [التوبة: 26]، وفي الغار: ﴿فَأَنزَلَ اللَّهُ سَكِينَتَهُ عَلَيْهِ﴾ [التوبة: 40].</p>
+
+  <div class="story">
+    <div class="story-ico">🛡️</div>
+    <div>
+      <h4>الخندق: السكينة تُطلب بالدعاء</h4>
+      <p><span class="tag t-a">قول المؤلف</span> يذكر المؤلف ما في الصحيحين أن النبي ﷺ كان ينقل التراب يوم الخندق، وكان يوصي أصحابه: «السكينة السكينة»، ويسأل الله أن ينزلها في المواقف العصيبة.</p>
+      <div class="moral"><b>العبرة:</b> في الشدة اطلب السكينة من الله بالدعاء، واعمل بجد في الوقت نفسه.</div>
+    </div>
+  </div>
+
+  <h3>من أسباب السكينة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يقول ابن القيم إن السكينة إذا نزلت على القلب اطمأن بها، وسكنت إليها الجوارح، واكتسبت الوقار، وحالت بين اللسان وقول الباطل، فلا ينزعج صاحبها بعدها لما يرد عليه. ويذكر المؤلف أن ابن تيمية كان إذا اشتدت عليه الأمور قرأ آيات السكينة.</p>
+
+  <div class="quote">
+    <blockquote>«السكينة السكينة»</blockquote>
+    <cite>توجيه النبي ﷺ لأصحابه وأمته، كما يورده المؤلف</cite>
+  </div>
+
+  <h3>السكينة منحة لا تُرى</h3>
+  <p><span class="tag t-a">قول المؤلف</span> السكينة لا تُرى، لكن آثارها تظهر في ثبات صاحبها، ورضاه بقضاء الله، وحكمته في الكلام، وخشوعه في العبادة. وقال العلماء: السكينة من منازل المواهب لا المكاسب، فالمؤمن يجتهد، والله يكرم ويُنعم.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> السكينة تنزل على القلب الذي يعمل ويتضرع إلى الله، فتثبته في الشدة وتزيد إيمانه.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> عند الاضطراب، اسأل الله السكينة، واقرأ آياتها، واعمل بما يقربك إليه.</p>
+    <p><b>تطبيق عملي:</b> احفظ آيات السكينة في سورة الفتح والتوبة، واقرأها عند كل نازلة.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>السكينة منحة من الله لمن اجتهد وسأله.</li>
+      <li>النبي ﷺ كان يسأل الله السكينة في المواقف العصيبة، فاقتدِ به.</li>
+      <li>أثر السكينة يظهر في الثبات والحكمة والخشوع.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= ميزان الآخرة ======================= -->
+<section class="chapter" id="scale">
+  <div class="ch-head">
+    <div class="ch-icon">⚖️</div>
+    <span class="ch-no">الفصل الثامن والعشرون · ص 59–60</span>
+    <h2>ميزان الآخرة</h2>
+    <p class="ch-desc">الآخرة خير وأبقى، والنظر إليها بميزانها الحقيقي يصلح حال الإنسان ويريح قلبه.</p>
+  </div>
+
+  <div class="qv">﴿وَالْآخِرَةُ خَيْرٌ وَأَبْقَىٰ﴾<div class="ref">[الأعلى: 17]</div></div>
+
+  <h3>موازين باطلة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كثيرون يحزنون لفوات مكاسب دنيوية، ظنًّا منهم أنها مصدر السعادة، ولو وزنوا الأمور بميزان الآخرة لعلموا أن السعادة الحقيقية في رضا الله وثقل الموازين يوم الحساب. وقد انتشر اليوم التشكي وعدم الرضا، فانعكس ذلك على العلاقات والصحة النفسية.</p>
+
+  <h3>ميزان القرآن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> القرآن يصوّب هذه النظرة، ويرفع سقف الأهداف، ويجعل الدار الآخرة هي الغاية والمقصد، فيحرر المؤمن من التعلق بالدنيا.</p>
+
+  <h3>سحرة فرعون</h3>
+  <p><span class="tag t-a">قول المؤلف</span> تحولت رغبة السحرة في المكافأة الفرعونية إلى تضحية غير عابئة بالتهديد، لأنهم وزنوا الأمور بميزان الآخرة: ﴿فَاقْضِ مَا أَنتَ قَاضٍ ۖ إِنَّمَا تَقْضِي هَٰذِهِ الْحَيَاةَ الدُّنْيَا﴾ [طه: 72]، ﴿وَاللَّهُ خَيْرٌ وَأَبْقَىٰ﴾ [طه: 73].</p>
+
+  <div class="story">
+    <div class="story-ico">🪙</div>
+    <div>
+      <h4>عائشة والشاة</h4>
+      <p><span class="tag t-a">قول المؤلف</span> ذبحت عائشة رضي الله عنها شاة وتصدقت بها، وأبقت الكتف، فقال النبي ﷺ: «بقي كلها غير كتفها». فما أُنفق في سبيل الله هو الباقي.</p>
+      <div class="moral"><b>العبرة:</b> ما أنفقته في سبيل الله هو الباقي، وما أمسكته هو الفاني.</div>
+    </div>
+  </div>
+
+  <h3>الآخرة خير من الدنيا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يقول الشيخ السعدي: الآخرة خير من الدنيا في كل وصف مطلوب، وأبقى لأنها دار خلد وبقاء، والمؤمن العاقل لا يبيع لذة ساعة براحة الأبد، وحب الدنيا على حساب الآخرة رأس كل خطيئة.</p>
+
+  <h3>الآخرة حاضرة في الذهن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> إذا حضرت الآخرة في ذهن الإنسان بمشاهدها وحقيقتها، طابت نفسه، واتزنت مشاعره، فلا يحسد غيره على نعمة، ولا يظلم في سبيل مكسب زائل، ولا يحزن على فوات مطلوب دنيوي، بل يسارع في الخيرات.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> وزن الأمور بميزان الآخرة يحرر القلب من الهم، ويجعل الأولويات واضحة.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> اسأل دائمًا: كيف يكون هذا الأمر عند الله؟ فإن كان يثمر في الآخرة فاسعَ إليه.</p>
+    <p><b>تطبيق عملي:</b> عند كل قرار كبير، اكتب ما سيبقى منه بعد عشر سنوات، وما سيكون عند الله.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الآخرة خير وأبقى، فلا تبع الباقي بالفاني.</li>
+      <li>ما أنفقته في الله هو الباقي.</li>
+      <li>من استحضر الآخرة طابت نفسه وقلّ همه.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= لا إفراط ولا تفريط ======================= -->
+<section class="chapter" id="balance">
+  <div class="ch-head">
+    <div class="ch-icon">⚖️</div>
+    <span class="ch-no">الفصل التاسع والعشرون · ص 61–62</span>
+    <h2>لا إفراط ولا تفريط</h2>
+    <p class="ch-desc">الوسطية والاعتدال منهج الإسلام في كل جوانب الحياة، والتوازن بين الحاجات مطلب.</p>
+  </div>
+
+  <div class="qv">﴿وَكَذَٰلِكَ جَعَلْنَاكُمْ أُمَّةً وَسَطًا لِّتَكُونُوا شُهَدَاءَ عَلَى النَّاسِ وَيَكُونَ الرَّسُولُ عَلَيْكُمْ شَهِيدًا﴾<div class="ref">[البقرة: 143]</div></div>
+
+  <h3>الوسطية منهج</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الإسلام يعطي كل جانب من جوانب الحياة حقه: الروح والجسد، والعبادة والعمل، والرزق والراحة، دون إفراط ولا تفريط. والوسطية اعتدال بين طرفين، وهي صفة كريمة تقع بين صفتين ذميمتين.</p>
+
+  <h3>الاعتدال في القرآن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> مع الحث على الآخرة جاء الأمر بعدم نسيان الدنيا: ﴿وَابْتَغِ فِيمَا آتَاكَ اللَّهُ الدَّارَ الْآخِرَةَ ۖ وَلَا تَنسَ نَصِيبَكَ مِنَ الدُّنْيَا﴾ [القصص: 77]. وفي الإنفاق: ﴿وَلَا تَجْعَلْ يَدَكَ مَغْلُولَةً إِلَىٰ عُنُقِكَ وَلَا تَبْسُطْهَا كُلَّ الْبَسْطِ﴾ [الإسراء: 29]، وفي الأكل والشرب: ﴿وَلَا تُسْرِفُوا﴾ [الأعراف: 31].</p>
+
+  <h3>اعتدال المشاعر</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الإفراط أو التفريط في المشاعر، من غضب ورضا، وفرح وحزن، بوابة للاضطرابات النفسية. ويستشهد المؤلف بالدعاء الوارد في صحيح النسائي: «وأسألك كلمة الحق في الرضا والغضب».</p>
+
+  <div class="quote">
+    <blockquote>«كل خلق محمود هو وسط بين خلقين ذميمين»</blockquote>
+    <cite>قال الإمام ابن القيم، كما يورده المؤلف</cite>
+  </div>
+
+  <p><span class="tag t-a">قول المؤلف</span> يقول ابن القيم إن الاعتدال يحمل الإنسان على توسط أخلاقه بين طرفي الإفراط والتفريط، فالجود وسط بين البخل والتبذير.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الفضيلة وسط بين طرفين ذميمين، والاعتدال في كل جوانب الحياة هو طريق السعادة المتزنة.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> وازن بين الروح والجسد، والدنيا والآخرة، والعطاء والاقتصاد، والرضا والغضب.</p>
+    <p><b>تطبيق عملي:</b> راجع أسبوعك، وسجّل جانبًا تفرط فيه وجانبًا تفرط في تركه، وعدّل ميزان وقتك.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الوسطية منهج في كل شؤون الحياة، لا في العبادة وحدها.</li>
+      <li>كل خلق محمود وسط بين خلقين ذميمين.</li>
+      <li>الاعتدال في المشاعر يقي من الاضطرابات النفسية.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= لا تغضب ======================= -->
+<section class="chapter" id="anger">
+  <div class="ch-head">
+    <div class="ch-icon">🔥</div>
+    <span class="ch-no">الفصل الثلاثون · ص 63–64</span>
+    <h2>لا تغضب</h2>
+    <p class="ch-desc">الغضب نزغة من نزغات الشيطان، وكظم الغيظ والتحكم فيه من صفات المتقين.</p>
+  </div>
+
+  <div class="qv">﴿وَالْكَاظِمِينَ الْغَيْظَ وَالْعَافِينَ عَنِ النَّاسِ ۗ وَاللَّهُ يُحِبُّ الْمُحْسِنِينَ﴾<div class="ref">[آل عمران: 134]</div></div>
+
+  <h3>الغضب مدمّر</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الغضب لحظة تفقد فيها السيطرة على العقل، فيقدم الإنسان على أقوال وأفعال تهوي به، ولا يصحو إلا بعد فوات الأوان. ويذكر المؤلف قول عطاء بن أبي رباح: ما أبكى العلماء إلا بكاء آخر العمر من غضبة يغضبها أحدهم فتهدم عمل خمسين أو ستين سنة.</p>
+
+  <h3>لا تغضب</h3>
+  <p><span class="tag t-a">قول المؤلف</span> في الصحيح أن رجلًا طلب من النبي ﷺ وصية، فقال: «لا تغضب»، وكرر ذلك. ويعلّق ابن حجر بأن هذه الكلمة الموجزة تجمع من الحكمة ودرء المفاسد ما يتعذر إحصاؤه، والمقصود الغضب الدنيوي، فالغضب جماع الشر.</p>
+
+  <h3>الغضب فطرة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الغضب فطري، منه المحمود كغضب النبي ﷺ للحق، ومنه المذموم الذي يشعله الشيطان فتنقطع به الأرحام وتُسفك به الدماء. ومن صفات المؤمنين: ﴿وَإِذَا مَا غَضِبُوا هُمْ يَغْفِرُونَ﴾ [الشورى: 37].</p>
+
+  <h3>الاستعاذة من نزغ الشيطان</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الغضب نزغة شيطانية يظل ينفخ فيها حتى تحرق صاحبها، فالعلاج الاستعاذة بالله: ﴿وَإِمَّا يَنزَغَنَّكَ مِنَ الشَّيْطَانِ نَزْغٌ فَاسْتَعِذْ بِاللَّهِ﴾ [فصلت: 36]، ثم الأخذ بالتوجيه النبوي من الوضوء والصلاة وتغيير الجلسة.</p>
+
+  <h3>الصُّرعة الحقيقية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> سأل النبي ﷺ أصحابه: «ما تعدون الصُّرعة فيكم؟»، قالوا: الذي لا يصرعه الرجال، قال: «ليس بذلك، ولكنه الذي يملك نفسه عند الغضب». فالقوة الحقيقية في ملك النفس، ومن صفات المتقين كظم الغيظ.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الغضب يُطفأ بالاستعاذة وكظم الغيظ وتغيير الحال، والقوة الحقيقية في ملك النفس عند الغضب.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> إذا غضبت فاستعذ بالله، واسكت، وغيّر حالك، ثم تكلم.</p>
+    <p><b>تطبيق عملي:</b> اتفق مع نفسك على قاعدة: عند الغضب الشديد لا تتكلم قبل أن تتوضأ أو تغير جلستك.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الغضب جماع الشر، فإذا كففته سلمت.</li>
+      <li>الصُّرعة الحقيقية من يملك نفسه عند الغضب.</li>
+      <li>الاستعاذة بالله من الشيطان أول علاج للغضب.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= المبادئ والأسئلة ======================= -->
+<section class="chapter" id="principles">
+  <div class="ch-head">
+    <div class="ch-icon">🧭</div>
+    <span class="ch-no">بعد انتهاء الكتاب</span>
+    <h2>المبادئ والأسئلة</h2>
+    <p class="ch-desc">أهم المبادئ التي يقوم عليها الكتاب، وأسئلة للتأمل والمراجعة الذاتية.</p>
+  </div>
+
+  <h3>المبادئ الحاكمة</h3>
+  <div class="box box-key">
+    <h4>1. الطمأنينة ثمرة للقرب من الله</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> معية الله والرضا بقضائه والسكينة في قلبه هي مصادر الطمأنينة التي يتكرر ذكرها في الكتاب.</p>
+  </div>
+  <div class="box box-key">
+    <h4>2. ركّز على ما تملك</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الإنسان مسؤول عن السعي والإخلاص، لا عن النتائج ولا عن استجابة الآخرين.</p>
+  </div>
+  <div class="box box-key">
+    <h4>3. المعروف لله وحده</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> العطاء الخالص لا ينتظر مقابلًا من الناس، ويتجه إلى الأجر عند الله.</p>
+  </div>
+  <div class="box box-key">
+    <h4>4. الوسطية والاعتدال</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الفضيلة وسط بين طرفين، والتوازن بين حاجات النفس والجسد والدنيا والآخرة مطلب.</p>
+  </div>
+  <div class="box box-key">
+    <h4>5. العفوية والصدق</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> التكلف يرهق صاحبه، والبساطة والصدق يمنحان الراحة والثقة.</p>
+  </div>
+  <div class="box box-key">
+    <h4>6. التغافل والاعتزال عن الأذى</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> لا تدخل كل معركة، وتغافل عن الزلات، واعتزل ما يؤذيك بأدب.</p>
+  </div>
+  <div class="box box-key">
+    <h4>7. الإيجابية والعمل</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الإيجابية قرار ومبادرة، والسلبية تُنتج العجز، والتعثر ليس نهاية.</p>
+  </div>
+  <div class="box box-key">
+    <h4>8. ملك النفس عند الغضب</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> كظم الغيظ والاستعاذة بالله والتوبة من الذنوب طريق إلى السلام الداخلي.</p>
+  </div>
+
+  <h3>أسئلة للتأمل والمراجعة</h3>
+  <div class="box box-sum">
+    <ol>
+      <li>ما الشيء الذي أشغل بالي وهو خارج عن مسؤوليتي؟ وكيف أتركه؟</li>
+      <li>متى كان آخر معروف قدمته ولم أنتظر عليه شكرًا؟</li>
+      <li>أي علاقة أو موقف يسلب راحتي اليوم، وهل أستطيع أن أعتزله بأدب؟</li>
+      <li>هل أتكلف في حديثي أو منشوراتي ما ليس فيّ؟</li>
+      <li>ما الذنب الذي أحتاج أن أبدأ بالتوبة منه اليوم؟</li>
+      <li>في أي جانب من حياتي أفرط، وفي أي جانب أفرط في الترك؟</li>
+      <li>عند آخر غضب لي، هل ملكت نفسي أم ملكني؟ وماذا كان بإمكاني أن أفعل؟</li>
+      <li>ما الخطوة الإيجابية الصغيرة التي أستطيع تنفيذها هذا الأسبوع؟</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================= الخلاصة النهائية ======================= -->
+<section class="chapter" id="conclusion">
+  <div class="ch-head">
+    <div class="ch-icon">🏁</div>
+    <span class="ch-no">بعد انتهاء الكتاب</span>
+    <h2>الخلاصة النهائية</h2>
+    <p class="ch-desc">خلاصة الكتاب كله، وتُضاف إلى التفاصيل السابقة ولا تُغني عنها.</p>
+  </div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الكبرى للكتاب</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الطمأنينة لا تأتي من الظروف ولا من رضا الناس، وإنما من القرب من الله، والرضا بقضائه، وإحسان العمل، وتزكية القلب، والابتعاد عن الذنوب والمعارك العبثية، والنظر إلى الدنيا والآخرة بميزان صحيح.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ محاور الكتاب الكبرى</h4>
+    <ul>
+      <li><b>الإيمان والقلب:</b> مفاتيح السعادة، وسلامة الصدر، والسكينة، ومعية الله، والذكر، وطمأنينة القلب.</li>
+      <li><b>الأسباب والنتائج:</b> بذر الحب والسعي دون تعلّق بالنتائج، واعتزال الأذى، والإيجابية، والعمل مع التوكل.</li>
+      <li><b>العلاقات مع الناس:</b> التغافل، وجاور السعيد تسعد، وكلام الناس، وصناع السرور، واستجداء الثناء، والعفوية.</li>
+      <li><b>التوازن النفسي:</b> الوسطية، والرضا، وترفع عن الصغائر، والغضب، والتعامل مع الحزن والابتلاء.</li>
+      <li><b>منظور الآخرة:</b> ميزان الآخرة، ومتاع الغرور، والملاذ الآمن، والتوبة من أغلال المعصية.</li>
+    </ul>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 ما يُضاف إلى الحياة اليومية</h4>
+    <ul>
+      <li>ابدأ يومك بالتوجه إلى الله بالدعاء والذكر.</li>
+      <li>وزن أمورك بميزان الآخرة قبل أن تتأثر بموازين الناس.</li>
+      <li>اعمل وتوكل، ودع النتائج لله.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= واجبك ======================= -->
+<section class="chapter" id="duty">
+  <div class="ch-head">
+    <div class="ch-icon">✔️</div>
+    <span class="ch-no">بعد انتهاء الكتاب</span>
+    <h2>واجبك</h2>
+    <p class="ch-desc">خطوات عملية مقترحة لتطبيق ما في الكتاب.</p>
+  </div>
+
+  <div class="box box-duty">
+    <h4>واجبك بعد قراءة الكتاب</h4>
+    <ul class="checks">
+      <li>✔ اختر فصلًا واحدًا وطبّق توجيهه لمدة أسبوع كامل.</li>
+      <li>✔ اكتب قائمة بما يقع ضمن مسؤوليتك وما لا يقع، واعمل على الأول فقط.</li>
+      <li>✔ اجعل لك وقفة استغفار وذكر يومية قصيرة.</li>
+      <li>✔ قبل أي رد غاضب، توضأ أو غيّر جلستك، ثم تكلم.</li>
+      <li>✔ أعط معروفًا هذا الأسبوع لوجه الله، ولا تنتظر عليه شكرًا.</li>
+      <li>✔ عُد إلى هذا الملخص كلما ضاقت بك الدنيا.</li>
+    </ul>
+  </div>
+</section>
+<p class="status-line">— انتهى الكتاب: الصفحات من 1 حتى 64 —</p>
+
+</main>
+
+<button class="totop" id="totop" aria-label="العودة إلى الأعلى">↑</button>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+  var progress = document.getElementById('progress');
+  var totop = document.getElementById('totop');
+
+  function setActive(id){
+    tabs.forEach(function(t){
+      var on = t.getAttribute('data-target') === id;
+      t.classList.toggle('active', on);
+      if(on && t.scrollIntoView){
+        try { t.scrollIntoView({block:'nearest', inline:'center'}); } catch(e){}
+      }
+    });
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var el = document.getElementById(t.getAttribute('data-target'));
+      if(el){
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        el.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+        setActive(el.id);
+      }
+    });
+  });
+
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? Math.min(100, (y / max) * 100) : 0;
+    progress.style.width = pct + '%';
+    totop.classList.toggle('show', y > 600);
+
+    var current = sections[0].id;
+    sections.forEach(function(s){
+      if(s.getBoundingClientRect().top <= 120) current = s.id;
+    });
+    setActive(current);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      window.requestAnimationFrame(function(){ onScroll(); ticking = false; });
+      ticking = true;
+    }
+  }, {passive:true});
+  window.addEventListener('resize', onScroll);
+
+  totop.addEventListener('click', function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+  });
+
+  onScroll();
+})();
+</script>
+
+<!-- ====== ميزة العلامة المرجعية (Bookmark) ====== -->
+<script>
+(function(){
+    var BOOKMARK_KEY = 'elixir_tranquility_bookmark_v1';
+    var bookmarked = null;
+    try { bookmarked = localStorage.getItem(BOOKMARK_KEY); } catch(e){}
+
+    var tabEls = document.querySelectorAll('.tab');
+
+    function refreshBookmarkUI(){
+        tabEls.forEach(function(t){
+            var target = t.getAttribute('data-target');
+            var on = bookmarked && target === bookmarked;
+            t.classList.toggle('bookmarked', !!on);
+            if(on){
+                t.setAttribute('title','هذه علامة توقفك. اضغط مرة أخرى لإزالة العلامة 🏷');
+            } else {
+                t.removeAttribute('title');
+            }
+        });
+    }
+
+    function saveBookmark(id){
+        bookmarked = id;
+        try {
+            if(id){ localStorage.setItem(BOOKMARK_KEY, id); }
+            else { localStorage.removeItem(BOOKMARK_KEY); }
+        } catch(e){}
+        refreshBookmarkUI();
+    }
+
+    // تهيئة الحالة عند تحميل الصفحة
+    refreshBookmarkUI();
+
+    // عند الضغط على أي تبويب: تبديل العلامة
+    tabEls.forEach(function(t){
+        t.addEventListener('click', function(){
+            var target = t.getAttribute('data-target');
+            if(!target) return;
+            if(bookmarked === target){
+                saveBookmark(null);   // إزالة العلامة
+            } else {
+                saveBookmark(target); // وضع العلامة هنا
+            }
+        });
+    });
+
+    // محاولة تمركز التبويب المُعلَّم أفقيًا في شريط التبويبات عند فتح الصفحة
+    if(bookmarked){
+        var bTab = document.querySelector('.tab[data-target="'+bookmarked+'"]');
+        if(bTab){
+            try { bTab.scrollIntoView({inline:'center', block:'nearest'}); } catch(e){}
+        }
+    }
+})();
+</script>
+
+</body>
+</html>

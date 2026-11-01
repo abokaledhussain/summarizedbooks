@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#1e3c72">
+<title>تحميل كتب تراث</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; overflow-x: hidden; }
+  body {
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh; padding: 12px; color: #333;
+    -webkit-text-size-adjust: 100%;
+  }
+  .container {
+    max-width: 500px; margin: 0 auto; background: white;
+    border-radius: 18px; box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    overflow: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white; padding: 20px 16px; text-align: center;
+  }
+  .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .header p { opacity: 0.9; font-size: 12px; }
+  .content { padding: 16px; }
+  .step {
+    background: #f8f9fa; border-radius: 14px; padding: 14px;
+    margin-bottom: 14px; border-right: 4px solid #667eea;
+  }
+  .step-title {
+    font-size: 14px; font-weight: 700; color: #1e3c72;
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .step-num {
+    background: #667eea; color: white; width: 24px; height: 24px;
+    min-width: 24px; border-radius: 50%; display: flex;
+    align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+  }
+  input[type="file"] { display: none; }
+  .file-btn, .btn-main {
+    width: 100%; border: none; border-radius: 12px;
+    cursor: pointer; font-family: inherit; font-weight: 700;
+    transition: transform 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    gap: 8px; user-select: none;
+  }
+  .file-btn { background: #667eea; color: white; padding: 14px; font-size: 15px; }
+  .file-btn:active { transform: scale(0.97); background: #5568d3; }
+  .btn-main {
+    background: linear-gradient(135deg, #28a745, #20c997);
+    color: white; padding: 16px; font-size: 16px; margin-top: 4px;
+    box-shadow: 0 6px 20px rgba(40,167,69,0.3);
+  }
+  .btn-main:active:not(:disabled) { transform: scale(0.97); }
+  .btn-main:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+  .info {
+    margin-top: 10px; font-size: 13px; color: #555;
+    background: white; padding: 10px 12px; border-radius: 10px;
+    display: none; line-height: 1.5; word-break: break-word;
+  }
+  .info.show { display: block; }
+  .info.success { color: #1e7e34; background: #d4edda; }
+  .info.error { color: #721c24; background: #f8d7da; }
+  .info.warn { color: #856404; background: #fff3cd; }
+  .progress-wrap { margin-top: 12px; display: none; }
+  .progress-wrap.show { display: block; }
+  .progress-bar {
+    background: #e9ecef; border-radius: 12px; height: 26px;
+    overflow: hidden; position: relative;
+  }
+  .progress-fill {
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    height: 100%; width: 0%; transition: width 0.3s;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 12px; font-weight: 700;
+  }
+  .status {
+    margin-top: 10px; font-size: 13px; text-align: center;
+    color: #555; line-height: 1.5; min-height: 20px;
+  }
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 8px; margin-top: 12px;
+  }
+  .stat {
+    background: white; padding: 10px 6px; border-radius: 10px;
+    text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+  .stat-num { font-size: 20px; font-weight: 700; display: block; }
+  .stat-label { font-size: 11px; color: #666; margin-top: 2px; }
+  .stat.ok .stat-num { color: #28a745; }
+  .stat.fail .stat-num { color: #dc3545; }
+  .stat.skip .stat-num { color: #ffc107; }
+  .log {
+    max-height: 180px; overflow-y: auto; background: #1a1a1a;
+    color: #0f0; padding: 10px; border-radius: 10px;
+    font-family: 'Courier New', monospace; font-size: 11px;
+    margin-top: 12px; direction: ltr; text-align: left;
+    display: none; -webkit-overflow-scrolling: touch;
+  }
+  .log.show { display: block; }
+  .log-entry { padding: 2px 0; line-height: 1.4; }
+  .log-entry.err { color: #ff6b6b; }
+  .log-entry.ok { color: #51cf66; }
+  .log-entry.info { color: #74c0fc; }
+  .note {
+    background: #e7f3ff; border-right: 4px solid #2196f3;
+    padding: 10px 12px; border-radius: 10px; font-size: 12px;
+    color: #0c5460; margin-top: 10px; line-height: 1.6;
+  }
+  .restart-btn {
+    position: fixed; bottom: 16px; left: 16px;
+    background: #dc3545; color: white; border: none;
+    border-radius: 50%; width: 50px; height: 50px;
+    font-size: 22px; cursor: pointer;
+    box-shadow: 0 4px 15px rgba(220,53,69,0.5);
+    display: none; z-index: 100;
+    align-items: center; justify-content: center;
+  }
+  .restart-btn.show { display: flex; }
+  .restart-btn:active { transform: scale(0.9); }
+  .toast {
+    position: fixed; bottom: 20px; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #333; color: white; padding: 12px 20px;
+    border-radius: 25px; font-size: 13px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s; z-index: 200;
+    max-width: 90%; text-align: center;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+  @media (max-width: 360px) {
+    .header h1 { font-size: 17px; }
+    .stat-num { font-size: 17px; }
+    .file-btn, .btn-main { font-size: 14px; padding: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>📚 تحميل كتب تراث</h1>
+    <p>حمّل جميع كتبك بصيغة EPUB دفعة واحدة</p>
+  </div>
+  
+  <div class="content">
+    <div class="step">
+      <div class="step-title">
+        <span class="step-num">1</span>
+        اختر ملف الحالة (JSON)
+      </div>
+      <input type="file" id="jsonFile" accept=".json,.txt,application/json,text/plain">
+      <button class="file-btn" id="chooseFileBtn">📁 اختيار ملف JSON</button>
+      <div class="info" id="fileInfo"></div>
+    </div>
+    
+    <div class="step">
+      <div class="step-title">
+        <span class="step-num">2</span>
+        ابدأ التحميل
+      </div>
+      <button class="btn-main" id="downloadBtn" disabled>⬇️ تحميل جميع الكتب</button>
+      <div class="note" id="platformNote">⏳ جاري اكتشاف المتصفح...</div>
+      
+      <div class="progress-wrap" id="progressWrap">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill">0%</div>
+        </div>
+        <div class="status" id="status"></div>
+        <div class="stats">
+          <div class="stat ok">
+            <span class="stat-num" id="statOk">0</span>
+            <div class="stat-label">✅ نجح</div>
+          </div>
+          <div class="stat skip">
+            <span class="stat-num" id="statSkip">0</span>
+            <div class="stat-label">⏭️ موجود</div>
+          </div>
+          <div class="stat fail">
+            <span class="stat-num" id="statFail">0</span>
+            <div class="stat-label">❌ فشل</div>
+          </div>
+        </div>
+        <div class="log" id="logBox"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="restart-btn" id="restartBtn">⏹</button>
+<div class="toast" id="toast"></div>
+
+<script>
+// ============ حالة عامة ============
+let bookIds = [];
+let isDownloading = false;
+let shouldStop = false;
+let dirHandle = null;
+
+// ============ اكتشاف المنصة ============
+const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+// File System Access API متاح فقط على سطح المكتب
+const supportsFS = ('showDirectoryPicker' in window) && !isMobile;
+
+// ============ عناصر DOM ============
+const $ = id => document.getElementById(id);
+const jsonFileInput = $('jsonFile');
+const chooseFileBtn = $('chooseFileBtn');
+const downloadBtn = $('downloadBtn');
+const fileInfo = $('fileInfo');
+const progressWrap = $('progressWrap');
+const progressFill = $('progressFill');
+const statusEl = $('status');
+const statOk = $('statOk');
+const statSkip = $('statSkip');
+const statFail = $('statFail');
+const logBox = $('logBox');
+const restartBtn = $('restartBtn');
+const toastEl = $('toast');
+const platformNote = $('platformNote');
+
+// ============ تحديث الملاحظة حسب المنصة ============
+if (supportsFS) {
+  platformNote.innerHTML = '💡 سيُطلب منك اختيار <strong>مجلد الحفظ</strong> مرة واحدة، ثم تُحفظ الكتب بداخله.';
+} else {
+  platformNote.innerHTML = '💡 <strong>على الجوال:</strong> سيُجمَّع كل 15 كتاباً في ملف <strong>ZIP</strong> منفصل. اضغط <strong>السماح</strong> عند طلب التنزيل.';
+}
+
+// ============ اختيار الملف ============
+chooseFileBtn.addEventListener('click', () => jsonFileInput.click());
+
+jsonFileInput.addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  chooseFileBtn.textContent = '⏳ جاري القراءة...';
+  
+  try {
+    const text = await file.text();
+    const data = JSON.parse(text);
+    bookIds = extractBookIds(data);
+    
+    if (bookIds.length === 0) {
+      showInfo('❌ لم يتم العثور على أرقام كتب', 'error');
+      downloadBtn.disabled = true;
+      chooseFileBtn.textContent = '📁 اختيار ملف JSON';
+      return;
+    }
+    
+    showInfo(`✅ تم العثور على ${bookIds.length} كتاباً`, 'success');
+    downloadBtn.disabled = false;
+    chooseFileBtn.textContent = '📁 تغيير الملف';
+    showToast(`تم تحميل ${bookIds.length} كتاب`);
+  } catch (err) {
+    showInfo('❌ خطأ: ' + err.message, 'error');
+    downloadBtn.disabled = true;
+    chooseFileBtn.textContent = '📁 اختيار ملف JSON';
+  }
+});
+
+// ============ استخراج الأرقام ============
+function extractBookIds(data) {
+  const ids = new Set();
+  function walk(obj, depth = 0) {
+    if (!obj || typeof obj !== 'object' || depth > 10) return;
+    if (obj.books_local && typeof obj.books_local === 'object') {
+      Object.keys(obj.books_local).forEach(k => {
+        const n = parseInt(k);
+        if (!isNaN(n) && n > 0) ids.add(n);
+      });
+    }
+    if (Array.isArray(obj)) {
+      obj.forEach(item => {
+        if (typeof item === 'number' && item > 0) ids.add(item);
+        else if (typeof item === 'string' && /^\d+$/.test(item)) ids.add(parseInt(item));
+        else walk(item, depth + 1);
+      });
+    } else {
+      for (const key of Object.keys(obj)) {
+        if (key === 'books_local' && typeof obj[key] === 'object') {
+          Object.keys(obj[key]).forEach(k => {
+            const n = parseInt(k);
+            if (!isNaN(n) && n > 0) ids.add(n);
+          });
+        } else if (typeof obj[key] === 'object' && obj[key] !== null && depth < 5) {
+          walk(obj[key], depth + 1);
+        }
+      }
+    }
+  }
+  walk(data);
+  return [...ids].sort((a, b) => a - b);
+}
+
+// ============ مساعدات ============
+function showInfo(msg, type) {
+  fileInfo.textContent = msg;
+  fileInfo.className = 'info show ' + type;
+}
+function showToast(msg) {
+  toastEl.textContent = msg;
+  toastEl.classList.add('show');
+  setTimeout(() => toastEl.classList.remove('show'), 2500);
+}
+function log(msg, type) {
+  const div = document.createElement('div');
+  div.className = 'log-entry ' + (type || '');
+  const time = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  div.textContent = `[${time}] ${msg}`;
+  logBox.appendChild(div);
+  logBox.scrollTop = logBox.scrollHeight;
+}
+function updateProgress(current, total) {
+  const pct = Math.round((current / total) * 100);
+  progressFill.style.width = pct + '%';
+  progressFill.textContent = pct + '%';
+}
+function updateStats(ok, skip, fail) {
+  statOk.textContent = ok;
+  statSkip.textContent = skip;
+  statFail.textContent = fail;
+}
+
+// ============ تحميل كتاب ============
+async function fetchBook(id) {
+  const url = `https://files.turath.io/epub/${id}.epub`;
+  const res = await fetch(url, {
+    headers: {
+      'User-Agent': 'Mozilla/5.0',
+      'Referer': 'https://app.turath.io/',
+    }
+  });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const blob = await res.blob();
+  const bytes = new Uint8Array(await blob.slice(0, 4).arrayBuffer());
+  if (bytes[0] !== 0x50 || bytes[1] !== 0x4B) throw new Error('ليس EPUB صالح');
+  return blob;
+}
+
+// ============ إيقاف ============
+restartBtn.addEventListener('click', () => {
+  shouldStop = true;
+  log('⏹️ تم طلب الإيقاف...', 'err');
+});
+
+// ============ البدء ============
+downloadBtn.addEventListener('click', startDownload);
+
+async function startDownload() {
+  if (bookIds.length === 0 || isDownloading) return;
+  
+  isDownloading = true;
+  shouldStop = false;
+  downloadBtn.disabled = true;
+  downloadBtn.textContent = '⏳ جاري التحميل...';
+  progressWrap.classList.add('show');
+  logBox.classList.add('show');
+  restartBtn.classList.add('show');
+  
+  try {
+    if (supportsFS) {
+      await downloadWithFolderPicker();
+    } else {
+      await downloadAsZips();
+    }
+  } catch (err) {
+    log('❌ خطأ عام: ' + err.message, 'err');
+  }
+  
+  restartBtn.classList.remove('show');
+  downloadBtn.disabled = false;
+  downloadBtn.textContent = '⬇️ إعادة التحميل';
+  isDownloading = false;
+}
+
+// ============ الطريقة 1: اختيار المجلد (سطح المكتب) ============
+async function downloadWithFolderPicker() {
+  try {
+    dirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      statusEl.textContent = 'تم الإلغاء';
+      return;
+    }
+    throw err;
+  }
+  
+  let ok = 0, skip = 0, fail = 0;
+  
+  for (let i = 0; i < bookIds.length; i++) {
+    if (shouldStop) {
+      statusEl.textContent = `⏹️ توقف عند ${i}/${bookIds.length}`;
+      return;
+    }
+    
+    const id = bookIds[i];
+    updateProgress(i, bookIds.length);
+    statusEl.textContent = `📥 تحميل ${id} (${i + 1}/${bookIds.length})`;
+    
+    // تخطي الموجود
+    try {
+      await dirHandle.getFileHandle(`${id}.epub`);
+      log(`${id}: موجود مسبقاً`, 'info');
+      skip++;
+      updateStats(ok, skip, fail);
+      continue;
+    } catch {}
+    
+    try {
+      const blob = await fetchBook(id);
+      const fileHandle = await dirHandle.getFileHandle(`${id}.epub`, { create: true });
+      const writable = await fileHandle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      
+      const sizeMB = (blob.size / 1024 / 1024).toFixed(2);
+      log(`${id}: ✅ ${sizeMB} MB`, 'ok');
+      ok++;
+    } catch (err) {
+      log(`${id}: ❌ ${err.message}`, 'err');
+      fail++;
+    }
+    updateStats(ok, skip, fail);
+    await new Promise(r => setTimeout(r, 100));
+  }
+  
+  updateProgress(bookIds.length, bookIds.length);
+  statusEl.innerHTML = `🎉 <strong>اكتمل!</strong> نجح: ${ok} | موجود: ${skip} | فشل: ${fail}`;
+  showToast(`انتهى: ${ok} نجح، ${fail} فشل`);
+}
+
+// ============ الطريقة 2: ملفات ZIP (الجوال) ============
+async function downloadAsZips() {
+  const BATCH_SIZE = 15; // عدد الكتب في كل ZIP
+  const totalBatches = Math.ceil(bookIds.length / BATCH_SIZE);
+  let ok = 0, fail = 0, totalSkip = 0;
+  
+  for (let batch = 0; batch < totalBatches; batch++) {
+    if (shouldStop) break;
+    
+    const start = batch * BATCH_SIZE;
+    const end = Math.min(start + BATCH_SIZE, bookIds.length);
+    const batchIds = bookIds.slice(start, end);
+    
+    statusEl.textContent = `📦 إعداد الدفعة ${batch + 1}/${totalBatches} (${batchIds.length} كتاب)`;
+    log(`--- الدفعة ${batch + 1}: كتب ${start + 1}-${end} ---`, 'info');
+    
+    const zip = new JSZip();
+    let batchOk = 0;
+    
+    for (let i = 0; i < batchIds.length; i++) {
+      if (shouldStop) break;
+      
+      const id = batchIds[i];
+      const globalIndex = start + i;
+      updateProgress(globalIndex, bookIds.length);
+      statusEl.textContent = `📥 [دفعة ${batch + 1}/${totalBatches}] كتاب ${id} (${i + 1}/${batchIds.length})`;
+      
+      try {
+        const blob = await fetchBook(id);
+        zip.file(`${id}.epub`, blob);
+        const sizeMB = (blob.size / 1024 / 1024).toFixed(2);
+        log(`  ${id}: ✅ ${sizeMB} MB`, 'ok');
+        ok++;
+        batchOk++;
+      } catch (err) {
+        log(`  ${id}: ❌ ${err.message}`, 'err');
+        fail++;
+      }
+      updateStats(ok, totalSkip, fail);
+      await new Promise(r => setTimeout(r, 300));
+    }
+    
+    // إنشاء وتنزيل ZIP الدفعة
+    if (batchOk > 0) {
+      statusEl.textContent = `🗜️ ضغط الدفعة ${batch + 1}...`;
+      log(`🗜️ ضغط ${batchOk} كتاباً...`, 'info');
+      
+      try {
+        const zipBlob = await zip.generateAsync(
+          { type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 1 } },
+          (meta) => {
+            progressFill.style.width = Math.round(meta.percent) + '%';
+            progressFill.textContent = `ضغط ${Math.round(meta.percent)}%`;
+          }
+        );
+        
+        const zipUrl = URL.createObjectURL(zipBlob);
+        const a = document.createElement('a');
+        a.href = zipUrl;
+        a.download = `turath-books-part-${batch + 1}-of-${totalBatches}.zip`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(zipUrl), 15000);
+        
+        const sizeMB = (zipBlob.size / 1024 / 1024).toFixed(2);
+        log(`✅ ZIP ${batch + 1}: ${sizeMB} MB`, 'ok');
+        showToast(`الدفعة ${batch + 1} جاهزة (${sizeMB} MB)`);
+      } catch (err) {
+        log(`❌ فشل إنشاء ZIP: ${err.message}`, 'err');
+      }
+      
+      // انتظار بين الدفعات ليفتح المتصفح التنزيل
+      await new Promise(r => setTimeout(r, 2000));
+    }
+  }
+  
+  updateProgress(bookIds.length, bookIds.length);
+  statusEl.innerHTML = `🎉 <strong>اكتمل!</strong> ${ok} كتاب في ${totalBatches} ملف ZIP. فشل: ${fail}`;
+  showToast(`انتهى! ${ok} كتاب في ${totalBatches} ZIP`);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ملخص مميز بالأصفر | مقرر مختصر في العيش بحكمة والاختيار بذكاء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Scheherazade+New:wght@400;600;700&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf7;
+  --paper-light:#ffffff;
+  --paper-dark:#f3eee3;
+  --ink:#1c1917;
+  --ink-soft:#44403c;
+  --brown:#3d2e1e;
+  --brown-dark:#241a10;
+  --yellow-accent:#ebd800;
+  --yellow-light:#fffde6;
+  --yellow-dark:#857500;
+  --gold:#b38314;
+  --gold-light:#d9ab38;
+  --border:#dcd3c1;
+  --green:#1b5238;
+  --red:#8c2323;
+  --ease:cubic-bezier(.2,.8,.3,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  min-height:100vh; overflow-x:hidden; color:var(--ink); background:var(--paper);
+  font-family:"Cairo","Segoe UI",Tahoma,sans-serif; line-height:2; font-size:16px;
+}
+
+/* شريط التقدم */
+.progress{position:fixed;top:0;right:0;left:0;height:4px;background:rgba(61,46,30,.08);z-index:120;pointer-events:none;}
+.progress span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--yellow-accent),var(--gold-light));box-shadow:0 0 12px rgba(235,216,0,.8);transition:width .12s linear;}
+
+.book{width:min(940px,100%);margin:auto;min-height:100vh;background:var(--paper-light);box-shadow:0 0 50px rgba(36,26,16,.08);}
+
+/* الغلاف */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-banner {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding: 0;
+    border: none;
+    background: #110c08;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-cover-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.cover::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 20%,rgba(235,216,0,.18) 0 2px,transparent 3px),radial-gradient(circle at 80% 70%,rgba(226,192,104,.12) 0 2px,transparent 3px);background-size:40px 40px,55px 55px;pointer-events:none;}
+.cover-frame{position:relative;max-width:560px;margin:auto;border:1px solid rgba(226,192,104,.6);padding:40px 22px;border-radius:12px;}
+.cover-badge{display:inline-block;background:var(--yellow-accent);color:var(--brown-dark);font-weight:800;font-size:13px;padding:4px 16px;border-radius:30px;letter-spacing:.5px;}
+.cover h1{font-family:"Scheherazade New","Amiri",serif;font-size:clamp(46px,9vw,78px);line-height:1.2;margin:22px 0 6px;color:var(--yellow-accent);text-shadow:0 4px 14px rgba(0,0,0,.35);}
+.cover .subtitle{font-family:"Amiri",serif;font-size:clamp(18px,3vw,22px);color:#f3eee3;line-height:1.9;}
+.cover .rule{width:120px;height:2px;margin:24px auto;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
+.cover .authors{font-family:"Amiri",serif;font-size:19px;line-height:2.1;color:#ffffff;}
+.cover .authors span{display:block;font-size:14px;color:var(--gold-light);font-family:"Cairo",sans-serif;letter-spacing:1px;}
+.cover .meta{margin-top:24px;font-size:13px;color:#d9cbb0;}
+
+/* شريط التبويبات */
+.tabs{
+  position:sticky;top:0;z-index:90;display:flex;justify-content:center;flex-wrap:wrap;gap:6px;
+  padding:10px clamp(8px,2.5vw,20px);background:rgba(253,251,247,.98);border-bottom:1px solid var(--border);
+  box-shadow:0 4px 15px rgba(44,37,35,.05);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+}
+.tab-btn{
+  flex:1 1 118px;max-width:165px;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 8px;
+  background:#f5f0e6;border:1px solid var(--border);border-radius:10px;color:var(--brown-dark);
+  font-family:"Cairo",sans-serif;font-weight:700;font-size:13px;cursor:pointer;min-height:44px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s,background .3s,color .3s;
+  position: relative;
+}
+.tab-btn:hover{transform:translateY(-2px);border-color:var(--gold);background:#eae3d2;}
+.tab-btn.active{background:linear-gradient(145deg,var(--brown-dark),var(--brown));color:#fff!important;border-color:var(--gold-light);box-shadow:0 6px 18px rgba(36,26,16,.25);}
+.tab-btn:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+/* اللوحات */
+.panel{display:block;scroll-margin-top:110px;}
+@media screen{[hidden]{display:none !important;}}
+.content{padding:50px clamp(20px,6.5vw,65px) 70px;}
+
+.chapter-head{text-align:center;margin-bottom:40px;}
+.chapter-head .symbol{font-size:36px;margin-bottom:8px;display:inline-block;}
+.chapter-head small{color:var(--gold);font-weight:800;letter-spacing:1.5px;font-size:13.5px;}
+.chapter-head h2{font-family:"Scheherazade New","Amiri",serif;color:var(--brown-dark);font-size:clamp(30px,5.2vw,42px);line-height:1.35;margin-top:2px;font-weight:700;}
+.chapter-head p{font-family:"Amiri",serif;color:var(--ink-soft);font-size:20px;line-height:2;font-weight:600;}
+
+h3.sec{font-family:"Scheherazade New","Amiri",serif;color:var(--brown-dark);font-size:clamp(24px,4vw,30px);margin:46px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--gold);display:inline-block;font-weight:700;}
+h4.sub{color:var(--brown-dark);font-size:18px;margin:26px 0 8px;font-weight:700;}
+p.body{font-family:"Amiri",serif;font-size:20px;line-height:2.15;text-align:justify;margin-bottom:14px;color:var(--ink);}
+p.body.small{font-size:18px;}
+.hl{background:#fef389;color:#241a10;padding:2px 6px;border-radius:4px;font-weight:700;border:1px solid #e0cf30;}
+ul.plain{list-style:none;padding:0;}
+ul.plain li{position:relative;padding-right:22px;margin-bottom:8px;font-family:"Amiri",serif;font-size:19px;line-height:2;color:var(--ink);}
+ul.plain li::before{content:"◆";position:absolute;right:0;color:var(--gold);font-size:12px;top:4px;}
+
+/* صناديق الفكرة والتوضيح */
+.box{position:relative;margin:26px 0;padding:22px 24px 20px;border-radius:8px;background:#fdfcf7;border:1px solid var(--border);border-right:6px solid var(--gold);box-shadow:0 3px 10px rgba(0,0,0,.02);}
+.box .box-title{font-weight:800;font-size:17px;color:var(--brown-dark);margin-bottom:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.box .box-body{font-family:"Amiri",serif;font-size:19.5px;line-height:2.1;color:var(--ink);}
+.box .box-body p{margin-bottom:8px;}
+.box .box-body p:last-child{margin-bottom:0;}
+.box.core{background:#fffde8;border-right-color:#c4a400;border-color:#ebe3a4;}
+.box.summary{background:#f2f8f4;border-right-color:var(--green);border-color:#cce3d5;}
+.box.lesson{background:#fdf9ed;border-right-color:var(--gold);border-color:#ebdcb8;}
+.box.practice{background:#f2f8f4;border-right-color:var(--green);border-color:#cce3d5;}
+.box.terms{background:#fdf2f2;border-right-color:var(--red);border-color:#f3cdcd;}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:20px;background:#ebdcb8;color:var(--brown-dark);}
+.tag.author{background:#d2e6d9;color:var(--green);}
+.tag.infer{background:#f5e8be;color:#594300;}
+
+/* القصص */
+.story{margin:34px 0;padding:28px 26px;background:#fcfaf5;border:1px solid var(--border);border-radius:10px;box-shadow:0 6px 18px rgba(44,37,35,.03);}
+.story-head{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;}
+.story-icon{width:52px;height:52px;min-width:52px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--brown-dark);color:#ffffff;font-size:24px;}
+.story-label{color:var(--gold);font-size:13px;font-weight:800;}
+.story h4{font-family:"Scheherazade New","Amiri",serif;font-size:clamp(23px,3.8vw,30px);line-height:1.3;color:var(--brown-dark);font-weight:700;}
+.story p{font-family:"Amiri",serif;font-size:19.5px;line-height:2.15;text-align:justify;margin-bottom:12px;color:var(--ink);}
+.story p:last-child{margin-bottom:0;}
+.story .lesson-line{margin-top:14px;padding-top:12px;border-top:1px dashed var(--border);font-weight:700;color:var(--brown-dark);font-family:"Cairo",sans-serif;font-size:15.5px;line-height:1.9;}
+
+/* الاقتباس المحوري */
+.quote{position:relative;padding:26px 30px;margin:26px 0;text-align:center;color:#ffffff;background:linear-gradient(145deg,var(--brown-dark),#3a2b1c);border-radius:8px;border:1px solid var(--gold);box-shadow:0 8px 20px rgba(0,0,0,.15);}
+.quote p{font-family:"Amiri",serif;font-size:22px;line-height:1.95;font-style:italic;}
+.quote small{display:block;margin-top:10px;color:var(--yellow-accent);font-size:15.5px;font-style:normal;font-weight:700;}
+
+/* بطاقات الحكم */
+.quotes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:16px;}
+.qcard{background:#ffffff;border:1px solid var(--border);border-radius:8px;padding:18px 20px;box-shadow:0 4px 12px rgba(0,0,0,.03);}
+.qcard .qn{float:left;font-size:13px;color:var(--gold);font-weight:800;margin-left:8px;background:#f5eee0;padding:1px 8px;border-radius:10px;}
+.qcard p{font-family:"Amiri",serif;font-size:18.5px;line-height:1.95;color:var(--ink);}
+.qcard .qa{display:block;margin-top:8px;font-family:"Cairo",sans-serif;font-size:13.5px;font-weight:700;color:var(--green);}
+.qcard.wide{grid-column:1 / -1;}
+
+/* الواجبات */
+.duty-box{margin-top:34px;padding:26px 26px 20px;border-radius:10px;background:linear-gradient(145deg,var(--brown-dark),#22170d);color:#ffffff;border:1px solid var(--gold-light);box-shadow:0 8px 22px rgba(0,0,0,.15);}
+.duty-box h3{color:var(--yellow-accent);font-family:"Scheherazade New",serif;font-size:27px;margin-bottom:12px;font-weight:700;}
+.duty-box p.intro-d{font-family:"Amiri",serif;font-size:19px;line-height:2;color:#f3eae0;margin-bottom:12px;}
+.duty-list{list-style:none;padding:0;}
+.duty-list li{position:relative;padding-right:28px;font-family:"Amiri",serif;font-size:19px;line-height:2.05;margin-bottom:10px;color:#ffffff;}
+.duty-list li::before{content:"✔";position:absolute;right:0;color:var(--yellow-accent);font-weight:700;}
+
+/* أسئلة المراجعة */
+.review{margin-top:30px;padding:22px 24px;border-radius:8px;background:var(--paper-dark);border:1px solid var(--border);}
+.review h4{color:var(--brown-dark);font-size:18.5px;margin-bottom:10px;font-weight:700;}
+.review ol{padding-right:22px;}
+.review li{font-family:"Amiri",serif;font-size:19px;line-height:2;margin-bottom:6px;color:var(--ink);}
+
+/* المبادئ */
+.principles{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px;}
+.principle{background:#ffffff;border:1px solid var(--border);padding:18px 18px 16px;border-radius:8px;box-shadow:0 3px 10px rgba(0,0,0,.02);}
+.principle .pi{font-size:24px;}
+.principle h4{color:var(--brown-dark);font-size:18px;margin:4px 0 6px;font-weight:700;}
+.principle p{font-family:"Amiri",serif;font-size:18px;line-height:2;color:var(--ink-soft);}
+
+table.cov{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px;background:var(--paper-light);}
+table.cov th,table.cov td{border:1px solid var(--border);padding:10px 12px;text-align:right;vertical-align:top;line-height:1.7;}
+table.cov th{background:var(--paper-dark);color:var(--brown-dark);font-weight:700;}
+
+.note-src{margin:24px 0;padding:18px 20px;border-radius:8px;background:#fdf2f2;border-right:6px solid var(--red);border-top:1px solid #f3cdcd;border-bottom:1px solid #f3cdcd;border-left:1px solid #f3cdcd;font-size:16.5px;line-height:2;color:var(--ink);}
+.note-src strong{color:var(--red);}
+
+.footer{text-align:center;padding:25px 20px 40px;color:var(--ink-soft);border-top:1px solid var(--border);font-size:14px;font-weight:600;}
+
+.top{position:fixed;bottom:18px;left:18px;width:46px;height:46px;display:flex;align-items:center;justify-content:center;border-radius:50%;background:var(--brown-dark);color:var(--yellow-accent);text-decoration:none;font-size:20px;box-shadow:0 4px 16px rgba(0,0,0,.25);z-index:50;opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility .4s;}
+.top.show{opacity:1;visibility:visible;}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+.reveal.visible{opacity:1;transform:none;}
+
+@media (max-width:600px){
+  body{font-size:15px;}
+  .content{padding:30px 16px 45px;}
+  .quotes,.principles{grid-template-columns:1fr;}
+  .story{padding:22px 18px;}
+  .story-head{flex-direction:column;align-items:flex-start;gap:8px;}
+  .duty-box{padding:20px 16px 14px;}
+  .box{padding:18px 16px;}
+  .tabs{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:6px 10px;gap:6px;}
+  .tabs::-webkit-scrollbar{display:none;}
+  .tab-btn{flex:0 0 auto;max-width:none;min-height:36px;font-size:13px;padding:6px 14px;white-space:nowrap;}
+  .cover-frame{padding:30px 14px;}
+  table.cov{font-size:13.5px;}
+}
+
+/* الطباعة */
+@page{size:A4;margin:16mm 14mm;}
+@media print{
+  html,body{background:#fff;color:#000;}
+  body{font-size:12pt;line-height:1.8;}
+  .book{box-shadow:none;width:100%;min-height:0;}
+  .progress,.tabs,.top{display:none !important;}
+  .panel{display:block !important;page-break-before:always;break-before:page;scroll-margin:0;}
+  .panel:first-of-type{page-break-before:auto;}
+  .cover{-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:40px 20px;}
+  .reveal{opacity:1 !important;transform:none !important;}
+  .box,.story,.quote,.duty-box,.review,.qcard,.principle{page-break-inside:avoid;break-inside:avoid;}
+  .duty-box,.quote,.cover,.tag,.hl{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  a{color:inherit;text-decoration:none;}
+  p.body,.story p,.box .box-body,.qcard p{font-size:11.5pt;}
+}
+</style>
+<style>
+/* ====== ميزة العلامة المرجعية (Bookmark) ====== */
+.tab-btn.bookmarked{
+  background:linear-gradient(135deg,#fffde8 0%,#fdfbf7 100%);
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px var(--gold), 0 4px 14px rgba(184,134,11,.30);
+  padding-left:34px;
+  color: var(--brown-dark) !important; /* لون داكن واضح جداً في حالة عدم التحديد */
+}
+.tab-btn.bookmarked.active{
+  background:linear-gradient(145deg,var(--brown-dark),var(--brown));
+  box-shadow:0 0 0 2px var(--gold-light), 0 4px 16px rgba(217,171,56,.40);
+  color: #ffffff !important; /* لون أبيض واضح في حالة التحديد */
+}
+.tab-btn.bookmarked::after{
+  content:"🏷";
+  position:absolute;
+  top:50%;
+  left:8px;
+  transform:translateY(-50%);
+  font-size:14px;
+  line-height:1;
+  pointer-events:none;
+  animation:bookmarkPop .42s cubic-bezier(.34,1.56,.64,1);
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.15));
+}
+@keyframes bookmarkPop{
+  0%{transform:translateY(-50%) scale(0) rotate(-30deg);opacity:0}
+  60%{transform:translateY(-50%) scale(1.4) rotate(10deg);opacity:1}
+  100%{transform:translateY(-50%) scale(1) rotate(0);opacity:1}
+}
+@media print{.tab-btn.bookmarked::after{display:none}}
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<div class="book">
+
+<!-- ======== الغلاف ======== -->
+<!-- Hero Cover / Header -->
+<header class="hero-banner">
+    <img src="../files/08/a8.jpg" alt="غلاف كتاب مميز بالأصفر" class="hero-cover-img">
+</header>
+
+<!-- ======== التبويبات ======== -->
+<nav class="tabs" id="tabs" role="tablist" aria-label="أقسام الملخص">
+  <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="p-intro" data-panel="p-intro" type="button">المقدمة</button>
+  <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-kind" data-panel="p-kind" type="button">الإحسان</button>
+  <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-gen" data-panel="p-gen" type="button">الكرم</button>
+  <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-simple" data-panel="p-simple" type="button">المتع البسيطة</button>
+  <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-att" data-panel="p-att" type="button">التوجه الذهني</button>
+  <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-mar" data-panel="p-mar" type="button">الزواج</button>
+  <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-fath" data-panel="p-fath" type="button">الأبوة</button>
+  <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-princ" data-panel="p-princ" type="button">المبادئ والأسئلة</button>
+  <button class="tab-btn" role="tab" aria-selected="false" aria-controls="p-final" data-panel="p-final" type="button">الخلاصة النهائية</button>
+</nav>
+
+<!-- ======================================================= -->
+<!-- اللوحة 0: المقدمة -->
+<!-- ======================================================= -->
+<section class="panel content" id="p-intro" role="tabpanel">
+  <div class="chapter-head reveal">
+    <div class="symbol">📖</div>
+    <small>المقدمة</small>
+    <h2>قلم التمييز الأصفر</h2>
+    <p>ما الكتاب؟ وكيف يُقرأ؟ وما الذي يميزه عن غيره؟</p>
+  </div>
+
+  <div class="note-src reveal">
+    <strong>ملاحظة عن المصدر والدقة:</strong>
+    النسخة المقروءة ملف PDF ممسوح ضوئياً (صور لا نص مستخرج)، وقد قُرئت صفحاتها الـ229 واحدة واحدة بصرياً. الأسماء والاقتباسات والتواريخ منقولة كما ظهرت في الصفحات. بعض أسماء قائلي الاقتباسات قد تحتاج إلى مراجعة مع الطبعة المطبوعة، وقد وضعتُ علامة على ما أراه غامضاً في موضعه. ما لم يذكره الكتاب صراحة يُعلَّم في هذا الملخص بأنه <strong>استنتاج من الملخّص</strong>.
+  </div>
+
+  <div class="box reveal">
+    <div class="box-title">الفكرة الجوهرية <span class="tag author">قول المؤلفين</span></div>
+    <div class="box-body">
+      <p>الحياة الطيبة تُبنى على أسس بسيطة متكررة يمكن لأي إنسان أن يتعلمها: الإحسان، والكرم، وتقدير المتع البسيطة، والتوجه الذهني الإيجابي، والزواج القائم على الالتزام، والأبوة الواعية. والكتاب مجموعة من القصص والاقتباسات المختارة حول هذه الأسس، يُراد منها أن تكون "مقرراً مختصراً" يُقرأ ويُراجع ويُعاد إليه.</p>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">أولاً: التعريف بالكتاب وطريقة قراءته</h3>
+  <p class="body reveal">يعرض المؤلفان الكتاب كمرجع تعليمي مختصر يقوم على "قلم التمييز الأصفر"، أي أن القارئ يُبرز ما يستحق التذكر. وتبدأ المقدمة بفتى في الثامنة سُئل عن عاداته الدراسية، فقال إن هناك مواد عادية ومواد مهمة، وإنه يحاول تذكّر المهم فقط. والفكرة التي يبنيها الكتاب على هذه الحكاية أن الحياة نفسها تشبه هذا "الصف المنعقد دائماً": نحن نُختبر يومياً، ولا نحتاج إلى تعلّم كل شيء، بل إلى تمييز الجوهري وممارسته.</p>
+  <p class="body reveal">يتكون الكتاب من ستة فصول رئيسية، هي بالترتيب: <span class="hl">الإحسان</span>، و<span class="hl">الكرم</span>، و<span class="hl">المتع البسيطة</span>، و<span class="hl">التوجه الذهني</span>، و<span class="hl">الزواج</span>، و<span class="hl">الأبوة</span>. ويختم كل فصل بقسم بعنوان "واجبك" يقترح تطبيقات عملية صغيرة.</p>
+
+  <div class="box summary reveal">
+    <div class="box-title">خلاصة المقدمة <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <p>الكتاب ليس نظرية مجردة، بل تدريب يومي على الاختيار: أن تختار الإحسان في التفاصيل الصغيرة، والكرم بما تملك، وأن تلتفت إلى المتع البسيطة، وأن تختار توجهك الذهني، وأن تبني زواجك وأسرتك بالعناية المستمرة. وكل فصل يمثل مهارة من هذه المهارات.</p>
+    </div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">📻</div><div><div class="story-label">قصة تمهيدية (من فصل الإحسان)</div><h4>اختبار الراديو</h4></div></div>
+    <p>في صباح ممطر، كان سائق سيارة يستمع إلى برنامج أسئلة ثقافية، فلم يعرف أياً من الإجابات: من الحائز على جائزة نوبل؟ من الفائز بجائزة بوليتزر؟ ومن هي ملكة جمال أمريكا؟ فجاءه سؤال من المذيع من نوع آخر: <em>من قال لك إنه يحبك؟ ومن عانقك مؤخراً؟ ومن عاملته بإحسان؟</em> فتذكّر أطفاله وهم يقولون: "نحبك يا أبي"، فابتسم. والعبرة التي تتركها القصة أن دفء الحياة يصنعه الأصدقاء والجيران والأفعال البسيطة، لا المشاهير.</p>
+    <div class="lesson-line">العبرة: السؤال الأهم في الحياة ليس عن المعارف العامة، بل عن العلاقات التي نبنيها بالإحسان.</div>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- اللوحة 1: الإحسان -->
+<!-- ======================================================= -->
+<section class="panel content" id="p-kind" role="tabpanel">
+  <div class="chapter-head reveal">
+    <div class="symbol">🤝</div>
+    <small>الفصل الأول · الصفحات 6–41</small>
+    <h2>الإحسان</h2>
+    <p>أفعال صغيرة تتم تلقائياً، لكنها تصنع أثراً يتجاوز صاحبها.</p>
+  </div>
+
+  <div class="box core reveal">
+    <div class="box-title">الفكرة الجوهرية <span class="tag author">قول المؤلفين</span></div>
+    <div class="box-body">
+      <p>الإحسان لا يشترط أن يكون كبيراً أو مكلفاً؛ بل غالباً ما يكون لفتة صغيرة تنبع من الاهتمام بالآخر. وما يُعطى بإخلاص يعود على صاحبه بأكثر مما يتوقع، وأثره يتسع بطرق لا نراها.</p>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">أولاً: مفهوم الإحسان وأهميته</h3>
+  <p class="body reveal">يقدم الفصل الإحسان بوصفه العنصر الأول في الحياة الطيبة، ويوضح أنه لا يحتاج إلى مال كثير أو مناسبات كبيرة. ومن أبرز ما يعرضه الفصل أن الإنسان يجد في الإحسان سعادة داخلية تفوق ما يحققه الاستحواذ. وقد عرض الكتاب ستة عشر قولاً مأثوراً في الإحسان، منها ما يلي.</p>
+
+  <div class="quotes reveal">
+    <div class="qcard"><span class="qn">1</span><p>عامل كل شخص بالطريقة التي تحب أن يعاملك بها.</p><span class="qa">— إدوين ماركهام</span></div>
+    <div class="qcard"><span class="qn">2</span><p>أفضل أجزاء الحياة هي أفعال الطيبة والكرم الصغيرة المجهولة.</p><span class="qa">— ويليام وردزورث</span></div>
+    <div class="qcard"><span class="qn">3</span><p>ضع قطعة معدنية في عداد موقف لشخص لا تعرفه.</p><span class="qa">— جان بول ريختر</span></div>
+    <div class="qcard"><span class="qn">5</span><p>ثلاثة أشياء مهمة في الحياة: أن تكون محسناً، وأن تكون محسناً، وأن تكون محسناً.</p><span class="qa">— هنري جيمس</span></div>
+    <div class="qcard"><span class="qn">7</span><p>كن منفتحاً ومتاحاً؛ عامل كل شخص كأنك تتلقى زيارة من ضيف عزيز.</p><span class="qa">— كونفوشيوس</span></div>
+    <div class="qcard"><span class="qn">8</span><p>لا تستهن أبداً بقوة كلمة إحسان أو فعل كريم.</p><span class="qa">— فرانك كرين</span></div>
+    <div class="qcard"><span class="qn">12</span><p>لا تترك أبداً صديقاً يحزن وحده؛ فالصداقة تزيد السعادة وتخفف المعاناة.</p><span class="qa">— جوزيف أديسون</span></div>
+    <div class="qcard"><span class="qn">14</span><p>مارس التعاطف، وحاول أن ترى الأمور من وجهة نظر الآخرين، فكل شخص يخوض معركة.</p><span class="qa">— أفلاطون</span></div>
+    <div class="qcard"><span class="qn">15</span><p>أجمل صنيع تسديه لنفسك أن تصنع شيئاً جميلاً من أجل شخص آخر.</p><span class="qa">— جورج بيرنز</span></div>
+    <div class="qcard"><span class="qn">6</span><p>إذا رأيت أسرة تقف بجوار سيارتها المعطلة تحت المطر، فاحمل مظلات رخيصة في سيارتك لتقدمها لهم.</p><span class="qa">— سالي كوتش</span></div>
+    <div class="qcard"><span class="qn">10</span><p>عند مرورك بأسرة تشق طريقها في موقف صعب، أعطهم إشارة تشجيع برفع الإبهام.</p><span class="qa">— جويس هيفلر</span></div>
+    <div class="qcard"><span class="qn">11</span><p>عند سماع بوق سيارة إسعاف، ادعُ بالشفاء للشخص الراقد بداخلها.</p><span class="qa">— لورد ألفريد تينيسون</span></div>
+    <div class="qcard"><span class="qn">13</span><p>إذا جاءك أحد طالباً العون، فلا تقل "كان الله في عونك" ثم تتركه، بل اعتبر نفسك أداة يسّرها الله لمساعدته.</p><span class="qa">— قول حكيم</span></div>
+    <div class="qcard"><span class="qn">4</span><p>إن كنت تعرف فقيراً فابعث له ورقة نقدية دون أن تفصح عن اسمك.</p><span class="qa">— صاموئيل هولدنسون</span></div>
+    <div class="qcard"><span class="qn">9</span><p>ابحث عن الخير في الناس ولن تتحدث بسوء عن أحد.</p><span class="qa">— بنيامين فرانكلين</span></div>
+    <div class="qcard"><span class="qn">16</span><p>امسك بالصديق الحقيقي بكل ما أوتيت من قوة.</p><span class="qa">— مثل نيجيري</span></div>
+  </div>
+
+  <h3 class="sec reveal">ثانياً: القصص التي يعرضها الفصل</h3>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🔗</div><div><div class="story-label">قصة</div><h4>دائرة جزاء أفعال الإحسان</h4></div></div>
+    <p>فلاح اسكتلندي فقير ينقذ صبياً غرق في مستنقع طيني، فيعرض عليه والد الصبي (اللورد) مكافأة مالية، فيرفضها الفلاح، ويكتفي بأن يتعلّم ابنه أفضل تعليم ممكن. وابن الفلاح هو سير ألكسندر فلمنج مكتشف البنسلين. ولاحقاً أُصيب ابن اللورد بالالتهاب الرئوي فأنقذته الأدوية المستخلصة من البنسلين. <em>(يذكر بعض رواة القصة أن ابن اللورد هو ونستون تشرشل؛ وهذا التحديد ليس في نص الصفحات المقروءة بصرياً، وقد أوردته هنا على أنه رواية متداولة.)</em></p>
+    <div class="lesson-line">العبرة: الإحسان يعود إلى صاحبه، وربما بعد زمن طويل وبطريقة لا يتوقعها.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🎄</div><div><div class="story-label">قصة</div><h4>فعل الخير بدون انتظار المقابل</h4></div></div>
+    <p>يروي الكاتب ويليام جيه. ليدرر أنه في ديسمبر 1961 حُوّلت طائرة من نيويورك إلى لوس أنجلوس بسبب الضباب إلى مطار في أونتاريو، ثم وصلت إلى مطار لوس أنجلوس في السابعة وربع صباحاً، فوجد آلاف المسافرين المتأخرين بلا طعام، والفوضى تعم المكان. ظهر فجأة رجل قصير بدين ذو وجه مبتهج يرتدي قبعة حمراء ولحية بيضاء، يدفع عربة قهوة وكاكاو ساخن ويوزعها مجاناً، يمازح الأطفال ويهدّئ الغاضبين. وحين سُئل: لحساب أي شركة تعمل؟ قال: "إنني لا أعمل لحساب أحد، إنني أستمتع فحسب. في كل ديسمبر أقضي إجازتي أسبوعين في مساعدة المسافرين؛ إنها هدية العيد التي أهديها لنفسي." ثم سأل الكاتب نفسه: هل هناك من يفعل الخير دون انتظار أي مقابل؟ وأجاب: نعم، وقد رأيت شخصاً كهذا.</p>
+    <div class="lesson-line">العبرة: أعظم أنواع الإحسان ما يأتي من الفرح بالعطاء نفسه لا من انتظار الشكر.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🏨</div><div><div class="story-label">قصة</div><h4>صنيع معروف عشوائي</h4></div></div>
+    <p>في ليلة ممطرة من عام <strong>1891</strong> (وليس 1871 كما ورد في نموذج HTML السابق) امتلأ فندق فيلادلفيا عن آخره، فطلب زوجان عجوزان غرفة، فعرض عليهما الموظف الشاب جورج سي. بولدت غرفته الخاصة. وفي الصباح قال العجوز له: "أنت الرجل الذي ينبغي أن يكون مدير أفضل فنادق الولايات المتحدة، وربما أبني لك يوماً فندقاً تديره." وبعد سنتين دعاه إلى نيويورك وأراه مبنى والدورف أستوريا، وعيّنه أول مديرٍ له. وظل بولدت مخلصاً للفندق ثلاثاً وعشرين سنة حتى وفاته عام 1916.</p>
+    <div class="lesson-line">العبرة: الإحسان البسيط قد يفتح باباً لم يكن أحد يتوقعه، والجميل يُرد بأجمل منه.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🔔</div><div><div class="story-label">قصة</div><h4>دقّ الجرس بجانب صندوق التبرعات</h4></div></div>
+    <p>يصف الكتاب مواقف لمتطوعين يقفون بجانب صناديق التبرعات، ومنها موقف يحكي فيه الراوي أنه كان في عشية عيد باردة يدق جرس صندوق التبرعات، فدخل رجل عجوز مرتدياً ملابس متواضعة، ووضع في الصندوق عملات قليلة قائلاً: "ليس بإمكاني أن أمنع نفسي!"، وتعلم الراوي من هذا المشهد أن الكرم فرح يتجاوز الحسبة المادية، وأن التألق في عيني رجل عجوز عند العطاء هو جوهر الكرم نفسه.</p>
+    <div class="lesson-line">العبرة: قيمة العطاء في الدافع إليه لا في حجم ما يُعطى.</div>
+  </div>
+
+  <h3 class="sec reveal">ثالثاً: أمثلة وتطبيقات واردة في الفصل</h3>
+  <div class="box lesson reveal">
+    <div class="box-title">دروس مستفادة <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <ul class="plain">
+        <li>الإحسان ليس تبرعاً ضخماً؛ بل تفاصيل صغيرة كالبسمة والكلمة الطيبة.</li>
+        <li>الإحسان مع القريب والبعيد: الأهم أن يبدأ الإنسان، لا أن يكتمل الأمر كله.</li>
+        <li>الشكر ليس شرطاً لاستمرار الإحسان؛ فالإحسان الحقيقي لا يطلب مقابل.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="duty-box reveal">
+    <h3>واجبك: تطبيقات الإحسان</h3>
+    <p class="intro-d">اللطف والإحسان عنصر أساسي من عناصر الحياة الطيبة، وليس بالضرورة أن يكون كبيراً؛ إليك ما يقترحه الكتاب:</p>
+    <ul class="duty-list">
+      <li>إعطاء بقشيش سخي لنادلة المطعم.</li>
+      <li>مجاملة رقيقة لثلاثة أشخاص في يوم واحد.</li>
+      <li>مفاجأة شخص عزيز بهدية بسيطة غير غالية الثمن.</li>
+      <li>دعوة الشخص الواقف خلفك في الصف ليأخذ دورك.</li>
+      <li>عرض تصوير الصور للسياح الذين يلتقطون صوراً لبعضهم البعض.</li>
+      <li>مفاجأة جار جديد بوصفة لإعداد طبق يحبه.</li>
+    </ul>
+  </div>
+
+  <div class="review reveal">
+    <h4>أسئلة للمراجعة</h4>
+    <ol>
+      <li>ما الفرق بين الإحسان والعطاء المادي في فكرة الفصل؟</li>
+      <li>لماذا رفض الفلاح في قصة "دائرة جزاء أفعال الإحسان" المكافأة؟ وما العبرة؟</li>
+      <li>ما الذي يميز "فعل الخير بدون انتظار المقابل" عن التبرع المنظم؟</li>
+      <li>ما المقصود بقاعدة "بوابات الكلام الثلاث" (هل هي صادقة؟ هل هي ضرورية؟ هل هي طيبة؟)، وكيف تطبقها اليوم؟</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- اللوحة 2: الكرم -->
+<!-- ======================================================= -->
+<section class="panel content" id="p-gen" role="tabpanel">
+  <div class="chapter-head reveal">
+    <div class="symbol">🎁</div>
+    <small>الفصل الثاني · الصفحات 42–77</small>
+    <h2>الكرم</h2>
+    <p>العطاء من الوقت والمال والذات، وكيف يثري المعطي قبل المعطى له.</p>
+  </div>
+
+  <div class="box core reveal">
+    <div class="box-title">الفكرة الجوهرية <span class="tag author">قول المؤلفين</span></div>
+    <div class="box-body">
+      <p>الكرم لا يُفقر صاحبه؛ بل يثريه. والإنسان يجد السعادة حين يريدها للآخرين لا حين يلتمسها لنفسه. وعطاء الوقت والاهتمام بالناس لا يقل أهمية عن عطاء المال.</p>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">أولاً: مفهوم الكرم</h3>
+  <p class="body reveal">يطرح الفصل الكرم بوصفه أشمل من التبرع المالي؛ فهو يشمل الوقت والجهد والمعرفة والدم والأعضاء، بل والذات نفسها. وقد أورد الكتاب أكثر من عشرين قولاً في هذا المعنى، منها:</p>
+
+  <div class="quotes reveal">
+    <div class="qcard"><span class="qn">1</span><p>اختر مؤسسة خيرية في منطقتك وساندها بسخاء بوقتك وما تملك.</p><span class="qa">— ماري روز ماكجريدي</span></div>
+    <div class="qcard"><span class="qn">2</span><p>خصص بضع ساعات كل شهر لتوصيل الطعام للعجائز والمحتاجين؛ يزداد الإنسان نضجاً حين يشعر أن اهتمامه بالآخرين يفوق انشغاله بنفسه.</p><span class="qa">— جون ماكنوتون</span></div>
+    <div class="qcard"><span class="qn">3</span><p>لا تأوِ إلى فراشك ليلاً دون أن تكون قادراً على القول: "لقد جعلت شخصاً ما أكثر حكمة، أو أكثر سعادة، أو على الأقل أفضل حالاً هذا اليوم."</p><span class="qa">— تشارلز كينجزلي</span></div>
+    <div class="qcard"><span class="qn">4</span><p>الكرم لا يتسبب أبداً في فقر المعطي، إنه يثري حياة من يمارسونه.</p><span class="qa">— دوايت دي. أيزنهاور</span></div>
+    <div class="qcard"><span class="qn">5</span><p>ينبغي أن نعطي تماماً كما نحب أن نأخذ: بابتهاج، وبسرعة، وبلا تردد.</p><span class="qa">— سينيكا</span></div>
+    <div class="qcard"><span class="qn">7</span><p>وقّع بطاقة التبرع بالأعضاء واحملها معك؛ لا ينبغي أن نعطي مما نملك فحسب، بل يجب أن نعطي من أنفسنا.</p><span class="qa">— ديزيري جوزيف ميرسيير</span></div>
+    <div class="qcard"><span class="qn">9</span><p>تبرّع بلتر من دمك كل عام؛ أحياناً عندما أفكر في النتائج الهائلة المترتبة على أشياء بسيطة، أكاد أتصور أنه ليس هناك شيء صغير.</p><span class="qa">— بروس بارتون</span></div>
+    <div class="qcard"><span class="qn">10</span><p>إذا كنت لا تصنع المعروف ولا تعطي الصدقات، فإنك مصاب بأسوأ أنواع مرض القلوب.</p><span class="qa">— بوب هوب</span></div>
+    <div class="qcard"><span class="qn">12</span><p>شارك معرفتك؛ لو أنك كنت سبباً في إحياء شيء جميل في نفوس الناس، فإنك تكون قد قطعت خطوة نحو خلود ذكرك.</p><span class="qa">— نورمان كازينز</span></div>
+    <div class="qcard"><span class="qn">14</span><p>في المرة القادمة التي تطلب فيها طعاماً خارج المنزل، امنح النادل بقشيشاً سخياً؛ سيثير هذا دهشته ويدخل عليه السرور.</p><span class="qa">— شكسبير</span></div>
+    <div class="qcard"><span class="qn">15</span><p>"السؤال الأكثر إلحاحاً في الحياة هو: ما الذي تفعله من أجل الآخرين؟"</p><span class="qa">— مارتن لوثر كينج الابن</span></div>
+    <div class="qcard"><span class="qn">16</span><p>علّم أطفال الحي درساً عن القيم؛ فالمعلم يترك أثراً غير محدود، ولا يمكن أن يعرف إلى أي حد سيصل تأثيره.</p><span class="qa">— هنري آدامز</span></div>
+    <div class="qcard"><span class="qn">18</span><p>لا تنسَ أبداً أن قيمتنا تُقدَّر في الأساس بما نعطيه، لا بما نأخذه.</p><span class="qa">— قول حكيم</span></div>
+    <div class="qcard"><span class="qn">19</span><p>ادفع مصاريف ذهاب طفل فقير إلى معسكر صيفي؛ لم تعش يوماً مثالياً ما لم تكن قد فعلت شيئاً من أجل شخص لن يتمكن أبداً من سداد الدين لك.</p><span class="qa">— روث سميلتزر</span></div>
+    <div class="qcard"><span class="qn">21</span><p>أسعد الناس ليسوا أولئك الذين ينالون المزيد، إنما أولئك الذين يعطون المزيد.</p><span class="qa">— إتش. دبليو. سيلفستر</span></div>
+    <div class="qcard"><span class="qn">22</span><p>لا تغبط الناس على ثرواتهم، ولكن على الطرق الكريمة والإبداعية التي يستخدمون بها ثرواتهم.</p><span class="qa">— ألبرت آينشتاين</span></div>
+    <div class="qcard"><span class="qn">29</span><p>تبرّع بنسبة لا تقل عن خمسة بالمائة من دخلك لأعمال الخير؛ إن الله لا ينعم علينا بالراحة لكي نستريح، وإنما لكي نساعد الآخرين على الارتياح.</p><span class="qa">— جيه. إتش. لافيت</span></div>
+    <div class="qcard"><span class="qn">31</span><p>كن مثالاً لما تريد أن تراه ينتشر في العالم.</p><span class="qa">— ألبرت آينشتاين</span></div>
+    <div class="qcard"><span class="qn">32</span><p>احسب ثروتك بما سيتبقى لديك إذا فقدت كل مالك؛ ولو أن كل ما سيذكرني به الناس أنني كنت لاعب كرة سلة جيداً، فإنني أكون قد أهدرت بقية حياتي.</p><span class="qa">— إيزيا توماس</span></div>
+  </div>
+
+  <h3 class="sec reveal">ثانياً: القصص</h3>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🪙</div><div><div class="story-label">قصة</div><h4>فارق الـ57 بنساً</h4></div></div>
+    <p>فتاة صغيرة تُدعى هاتي في فيلادلفيا حزنت لأن قاعة درس الأحد صغيرة لا تتسع لرفاقها الفقراء، فقامت بأعمال منزلية بسيطة وجمعت بعض المال. وتوفيت هاتي بعد عامين، فوجد والداها تحت وسادتها محفظة قديمة بها 57 بنساً ورسالة بخط يدها: "هذا المال لتوسيع قاعة الدرس حتى يتمكن المزيد من الأطفال من الحضور." حمل المدرّس المحفظة إلى الدرس، وعُرضت أرض مميزة للبيع، فقال أحد الحاضرين: "سأبيعها مقابل البنسات السبعة والخمسين"، فانتشرت القصة وتوالت التبرعات، واليوم يتسع المبنى لـ3300 شخص. وكل ذلك بدأ بفتاة صغيرة أرادت المساعدة.</p>
+    <div class="lesson-line">العبرة: لا يُقاس الكرم بالمبلغ، بل بالرغبة الصادقة في أن يستفيد الآخرون.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🕯️</div><div><div class="story-label">قصة</div><h4>ليس هناك حب أعظم</h4></div></div>
+    <p>في قرية فيتنامية صغيرة سقطت قذائف هاون على دار أيتام تديرها مجموعة خيرية؛ فقُتل بعض العاملين، وجُرح عدد من الأطفال، منهم فتاة في الثامنة تقريباً تحتاج إلى نقل دم فوري. وصل طبيب أمريكي وممرضة، فتبين أن فصيلة دمهما لا تناسب الفتاة، ولم يكن لدى أغلب الأطفال الجرحى الفصيلة المطلوبة. فطلب الطبيب والممرضة من الأطفال التبرع، فرفع الفتى هينج يده، ورقد على فراش من القش، وبكى بصمت؛ ثم تهدّج صوته، فسألته الممرضة بالفيتنامية، فاستقر ثم قال: "لأنها صديقتي". وتبين أن هينج ظن أنه سيموت، وأن هذا كل دمه يُطلب لإنقاذ صديقته. والعبارة المختمة للقصة: "ليس هناك حب أعظم من هذا الحب: أن يهب الإنسان حياته من أجل صديق." <em>(المؤلف المذكور للقصة: جون دبليو. مانسور)</em></p>
+    <div class="lesson-line">العبرة: أعظم أشكال الكرم أن يبذل الإنسان ما يحتاجه هو نفسه لأجل من يحب.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🧭</div><div><div class="story-label">قصة</div><h4>وقت الحاجة</h4></div></div>
+    <p>في سنوات مضت كان فتيان يدرسان في جامعة ستانفورد، وقد نفدت مواردهما، فاقترحا جلب عازف البيانو الشهير إغناسي باديروسكي لحفل موسيقي لتغطية رسوم تعليمهما. طلب مدير أعماله 2000 دولار، فلما جُمعت التذاكر لم يتجاوز المبلغ 1600 دولار؛ فقدماه له مع كمبيالة بـ400 دولار، فمزقها إلى نصفين وقال: "خذا من هذا المبلغ رسوم التعليم، وليأخذ كل واحد منكما 10% مقابل جهده، وسأكون راضياً بالمبلغ المتبقي." وبعد سنين أصبح باديروسكي رئيس وزراء بولندا بعد الحرب العالمية الأولى، فطلب المعونة من هربرت هوفر (رئيس مكتب الإغاثة الأمريكي)، فأرسل آلاف الأطنان من الطعام. ولما جاء باديروسكي إلى باريس ليشكره، قال له هوفر: "لربما لا تذكر ذلك، لكنك ساعدتني ذات مرة عندما كنت طالباً بالجامعة."</p>
+    <div class="lesson-line">العبرة: الكرم يعود، وقد يعود بعد عقود وعلى هيئة لم تكن في الحسبان.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🚲</div><div><div class="story-label">قصة</div><h4>أتراها مصادفة؟ (إميلي والدراجة)</h4></div></div>
+    <p>تدخر الطفلة إميلي (تسع سنوات) مصروفها طوال العام لتشتري دراجة لتسلق الجبال. وفي موسم الأعياد، رأت متطوعاً يدق جرساً بجوار صندوق تبرعات، فسألت والدها: "هل يمكن أن نعطيه شيئاً؟" ثم قررت أن تتبرع بمدخراتها. ورأى الأب أن تاجر سيارات محلياً يجمع الدراجات المستعملة ويجددها ويعطيها للأطفال الفقراء، فتبرع الأب بدراجتين قديمتين، فأعطاه التاجر تذكرتين ليانصيب خيري، فربحت إحداهما دراجة جبلية جديدة للفتيات. وقالت الأم ضاحكة: "لست أنت الفائز، إميلي هي الفائزة." ويقول الراوي إنها ربما مصادفة، لكنه يحب الاعتقاد بأن الله شاء أن يكافئ فتاة صغيرة على تضحية تفوق سنها.</p>
+    <div class="lesson-line">العبرة: الكرم يعلّم الأسرة كلها، والطفل قد يعلّم الكبار.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🏠</div><div><div class="story-label">تمهيد وأمثلة</div><h4>المشاركة في بناء المساكن والأعمال التطوعية</h4></div></div>
+    <p>يستشهد الفصل بمثل أيرلندي ارتبط ببرنامج إيواء دولي: "إننا نحتمي في ظل بعضنا البعض"، ويدعو القارئ إلى المشاركة في بناء مساكن للفقراء وإشراك الأبناء في مواقف الكرم، لأن الاهتمام بالآخرين يحقق للإنسان وأسرته تقدماً في الحياة لا تحققه أي درجة علمية.</p>
+  </div>
+
+  <h3 class="sec reveal">ثالثاً: أفكار مختارة من الفصل</h3>
+  <div class="principles reveal">
+    <div class="principle"><div class="pi">🌱</div><h4>الكرم بالوقت</h4><p>ساعات قليلة شهرياً في خدمة الآخرين تغيّر الإنسان نفسه قبل غيره.</p></div>
+    <div class="principle"><div class="pi">💬</div><h4>الكرم بالكلمة</h4><p>الكلمة الطيبة والاهتمام والإنصات من أشكال الكرم الأكثر تأثيراً.</p></div>
+    <div class="principle"><div class="pi">🔁</div><h4>دائرة العطاء</h4><p>ما يُعطى للشخص الواقف بجوارك يعود إليك في النهاية (إدوين ماركهام).</p></div>
+    <div class="principle"><div class="pi">🙏</div><h4>العطاء بلا منّة</h4><p>"لا تذكّر أحداً بمعروف قدّمته له؛ اصنع المعروف ثم انسَ أمره" (شفايتزر).</p></div>
+  </div>
+
+  <div class="box practice reveal">
+    <div class="box-title">تطبيق عملي <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <p>اختر كل أسبوع فعلاً كريماً واحداً واكتب لنفسك: ما الذي أعطيته؟ وكيف شعرت؟ ومن استفاد؟ ثم راجع بعد شهر هل صار العطاء عادة.</p>
+    </div>
+  </div>
+
+  <div class="duty-box reveal">
+    <h3>واجبك: تطبيقات الكرم</h3>
+    <p class="intro-d">ما تعطيه دائماً يعود عليك ببهجة أكبر مما تأخذه؛ وعندما تطبقه عملياً يصبح الكرم أسلوب حياة. إليك أفكار الكتاب:</p>
+    <ul class="duty-list">
+      <li>اترك ربع دولار في مكان يستطيع أن يجده أحد الأطفال.</li>
+      <li>تخلَّ عن إحدى وجباتك، وامنح ما كنت ستنفقه عليها لأحد الفقراء في الشارع.</li>
+      <li>اعرض دفع رسوم إيقاف السيارة عندما تكون راكباً مع شخص آخر.</li>
+      <li>اشترِ ما يبيعه الأطفال في أفنية المنازل.</li>
+      <li>قدّم تبرعاً سخياً لأحد الأبحاث التي تجري على مرض السكري مثلاً.</li>
+    </ul>
+  </div>
+
+  <div class="review reveal">
+    <h4>أسئلة للمراجعة</h4>
+    <ol>
+      <li>لماذا يرى الكتاب أن الكرم "يُثري" المعطي؟</li>
+      <li>ما الفرق بين أن تعطي "عندما يُطلب منك" وأن تبادر؟ (كما في قول كوبي ياماداً)</li>
+      <li>ما العبرة من قصة "فارق الـ57 بنساً"؟</li>
+      <li>ما الذي تعلمه قصة "وقت الحاجة" عن علاقة العطاء بالجزاء؟</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- اللوحة 3: المتع البسيطة -->
+<!-- ======================================================= -->
+<section class="panel content" id="p-simple" role="tabpanel">
+  <div class="chapter-head reveal">
+    <div class="symbol">🌼</div>
+    <small>الفصل الثالث · الصفحات 78–114</small>
+    <h2>المتع البسيطة</h2>
+    <p>السعادة الحقيقية غالباً في الأشياء الصغيرة التي نمر عليها كل يوم.</p>
+  </div>
+
+  <div class="box core reveal">
+    <div class="box-title">الفكرة الجوهرية <span class="tag author">قول المؤلفين</span></div>
+    <div class="box-body">
+      <p>كثير من الناس يبحثون عن السعادة بعيداً، بينما تكمن في متعة بسيطة أمام أعينهم: زهرة، أو غروب، أو حديث مع طفل، أو كوب شاي. وتذكّر النعم الصغيرة يحمي الإنسان من الجحود والضجر.</p>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">أولاً: مدخل الفصل</h3>
+  <p class="body reveal">تقول آن مورو ليندبيرغ في كتابها الكلاسيكي "Gift from the Sea" ما معناه: ليست حياة البساطة هي التي يحذرنا منها الحكماء، وإنما حياة الدعة والتشتت. وتُذكّر الحياة كل واحد منا بأن يتوقف قليلاً ويتمتع بمتعه الصغيرة: شروق الشمس وغروبها، وحقول الأزهار، ورائحة الخبز الطازج، واحتضان الزهور، والاستغراق في ضوء القمر، وسماع كلمة "أحبك"، وهدهدة الطفل الرضيع، وارتداء الملابس القديمة المريحة. ويضيف الفصل أن كل إنسان يقدّر القريب والغالي على قلبه بطريقته الخاصة.</p>
+
+  <div class="quote reveal">
+    <p>"عاماً بعد عام، تزداد تعقيدات هذا العالم سريع التقلب إرباكاً وصعوبة، ولهذا فإننا نكون أكثر حاجة كل عام إلى البحث عن الهدوء والسكون والارتياح في الأمور البسيطة المبهجة."</p>
+    <small>— من مجلة Woman's Home Companion (ديسمبر 1935)</small>
+  </div>
+
+  <h3 class="sec reveal">ثانياً: القصص</h3>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🦢</div><div><div class="story-label">قصة</div><h4>سراب من الأوز</h4></div></div>
+    <p>يرى الراوي في أحد مشاهد غروب شيكاغو الرائعة، قرب متحف الفنون، سرباً ضخماً من الأوز يحلّق نحو الجنوب، والمتسوقون يسرعون في موسم الأعياد دون أن ينتبهوا. ويلاحظ سيدة مشردة تقف على بعد خطوات، تتابع السرب بعينين مبتسمتين؛ فيتبادل معها ابتسامة صامتة، ثم تقول بصوت خافت: "كم أنعم الله عليّ!"، فيستغرب الراوي كلماتها في ظروفها، ثم يدرك أن مشهد الأوز كان هدية لها، وأنه كان كل ما تحتاجه، ويقول: "كم أحسدها".</p>
+    <div class="lesson-line">العبرة: الغنى الحقيقي شعور بالامتنان، والنعمة قد تكون مشهداً مجانياً لا يكلف شيئاً.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">💰</div><div><div class="story-label">مثل</div><h4>البخيل</h4></div></div>
+    <p>(حكاية منسوبة إلى إيسوب) رجل يملك ذهباً مدفوناً في الأرض، يعود إليه كل يوم ليُحصيه قطعة قطعة دون أن ينفق منه شيئاً. لاحظه لص فسرق الكنز، فلما اكتشف الرجل خسارته غرق في الحزن. فقال له جاره: "لا تحزن إلى هذا الحد! ادفن بعض الحجارة في الحفرة وتخيل أنها ذهب؛ ستؤدي الغرض بنفس الكفاءة، لأنك لم تكن تنفق شيئاً من الذهب عندما كان موجوداً!"</p>
+    <div class="lesson-line">العبرة: المال الذي لا يُستمتع به ولا يُنفق لا يختلف كثيراً عن الحجارة.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">✉️</div><div><div class="story-label">رسالة من السجن</div><h4>حرمان شعوري</h4></div></div>
+    <p>نص أدبي شجي كتبته ديبورا إي. هيل وهي في السجن، تصف فيه شوقها إلى الحرية من خلال تفاصيل بسيطة: أن ترقص في فستان يدور ويرتفع حولها، وأن تشعر بملمس الحرير، وأن ترقد في فراش نظيف، وأن تشرب القهوة الساخنة في شرفتها، وأن تسمع نباح كلبها، وأن تتمشى حافية القدمين، وأن تشم رائحة الطعام، وأن تقف على باب حجرة ابنها النائم فتلمس وجهه وتمرر أصابعها في شعره، ثم تطوّقه بذراعيها حتى يضحك قائلاً: "كفى يا أمي!"، وتتمنى أن تكون حرة لتفعل ذلك مرة أخرى.</p>
+    <div class="lesson-line">العبرة: ما نعتبره عادياً هو عند من فقدوه أثمن ما في الحياة.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🎣</div><div><div class="story-label">قصة</div><h4>ما القدر الكافي؟</h4></div></div>
+    <p>(يرويها أنتوني دي ميلو) رجل أعمال شمالي غني يرى صياداً جنوبياً مستلقياً بجوار قاربه يدخن غليونه. قال له: "لماذا لا تخرج للصيد؟" أجاب: "لأنني اصطدت ما يكفي لهذا اليوم." قال: "لماذا لا تصطاد أكثر؟" قال: "وماذا أفعل بالمزيد؟" قال الرجل: "تكسب المزيد، وتشتري قارباً أكبر، وتتوسع، ثم تصبح ثرياً وتتقاعد، عندها تستمتع بالحياة حقاً." فقال الصياد: "وما الذي تظنني أفعله الآن؟"</p>
+    <div class="lesson-line">العبرة: الاكتفاء وعيٌ بالحاضر، والسعي وراء "المزيد" قد يؤجل السعادة إلى أجل لا يأتي.</div>
+  </div>
+
+  <h3 class="sec reveal">ثالثاً: ما بين الاقتباسات</h3>
+  <div class="quotes reveal">
+    <div class="qcard"><span class="qn">1</span><p>ازرع الزهور في كل ربيع.</p><span class="qa">— إيريس موردوخ</span></div>
+    <div class="qcard"><span class="qn">2</span><p>العنصر الذي لا غنى عنه في جميع الأطعمة الجيدة التي تُطهى في المنزل هو حب من تُطهى لهم.</p><span class="qa">— صوفيا لورين</span></div>
+    <div class="qcard"><span class="qn">3</span><p>فكّر أفكاراً عظيمة، ولكن استمتع بالمتع الصغيرة؛ كثير من الذين يذهبون بعيداً بحثاً عن السعادة يتركونها خلفهم في أقرب الأماكن.</p><span class="qa">— ديفيد جريسون</span></div>
+    <div class="qcard"><span class="qn">4</span><p>ارعَ كلباً واهتم به؛ فامتلاك كلب وفيّ يجعلك إنساناً ثرياً مهما قلّت ممتلكاتك.</p><span class="qa">— لويس سابين</span></div>
+    <div class="qcard"><span class="qn">6</span><p>قف وراقب فلاحاً يحرث حقله؛ أن تشاهد الذرة وهي تنمو، أن تأخذ نفساً عميقاً وأنت تعمل، أن تقرأ وتفكر وتحب وتدعو الله: هي الأشياء التي تجعل الإنسان سعيداً.</p><span class="qa">— جون راسكين</span></div>
+    <div class="qcard"><span class="qn">7</span><p>تعلّم العزف على آلة موسيقية؛ فالموسيقى تثبّت القوة في الأوصال والأفكار في العقل.</p><span class="qa">— جورج إليوت</span></div>
+    <div class="qcard"><span class="qn">9</span><p>احتفظ بدفتر يومياتك؛ إذا كانت حياتك تستحق أن تُعاش فهي تستحق أن تُسجَّل.</p><span class="qa">— ماريلين جراي</span></div>
+    <div class="qcard"><span class="qn">13</span><p>لا تتجاهل المتع الصغيرة أثناء بحثك عن المتع الكبيرة: طقطقة النار، وغروب الشمس، وحضن طفل، وقبلة خلف الأذن.</p><span class="qa">— جون أنتوني</span></div>
+    <div class="qcard"><span class="qn">16</span><p>لا تجعل ممتلكاتك تمتلكك؛ كلما زاد ما تملكه زاد ما يجب عليك الحرص عليه.</p><span class="qa">— أليس دورمان</span></div>
+    <div class="qcard"><span class="qn">20</span><p>ما بين الحين والآخر، شاهد حلقة من أحد برامج الأطفال؛ إننا لا نكون أطفالاً سوى لوقت محدود، لكننا نستطيع الاحتفاظ بالطفولة بداخلنا إلى الأبد.</p><span class="qa">— بروك توللي</span></div>
+    <div class="qcard"><span class="qn">22</span><p>ارقد على ظهرك وانظر للنجوم؛ ابتهج بالحياة لأنها تمنحك فرصة أن تحب وتلهو وتنظر نحو النجوم.</p><span class="qa">— هنري فان دايك</span></div>
+    <div class="qcard"><span class="qn">24</span><p>اجمع كومة من أوراق الشجر كل خريف واقفز فيها مع من تحب؛ فأبسط الأشياء هي التي تعطي أعظم سعادة عند تذكرها.</p><span class="qa">— بوب هوب</span></div>
+    <div class="qcard"><span class="qn">26</span><p>اقضِ بعض الوقت في شم عبير الزهور؛ فنحن جميعاً نميل إلى تأجيل العيش، نحلم بحديقة سحرية في الأفق بدلاً من الاستمتاع بالأزهار على عتبات نوافذنا.</p><span class="qa">— ديل كارنيجي</span></div>
+    <div class="qcard"><span class="qn">28</span><p>استمتع بدش ساخن؛ فالأفعال العادية التي نقوم بها كل يوم في المنزل أكثر أهمية للروح مما توحي به بساطتها.</p><span class="qa">— توماس مور</span></div>
+    <div class="qcard"><span class="qn">30</span><p>ابدأ كل يوم بسماع موسيقاك المفضلة؛ الموسيقى حب يبحث عن كلمات.</p><span class="qa">— سيدني لانير</span></div>
+    <div class="qcard"><span class="qn">32</span><p>ليكن هناك دائماً شيء جميل في مجال رؤيتك، حتى لو كان زهرة ربيع في إناء زجاجي؛ فجمال العالم من حولنا يعتمد على ما نقدمه نحن للعالم.</p><span class="qa">— رالف والدو إيمرسون</span></div>
+    <div class="qcard"><span class="qn">34</span><p>أستيقظ كل صباح وأقول: يا إلهي، تكفيني النعم التي وهبتني إياها؛ فقط أرجو أن تديمها عليّ.</p><span class="qa">— كيتي هارت</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"الأحمق يبحث عن السعادة بعيداً، والحكيم يزرعها تحت قدميه."</p><span class="qa">— جيمس أوبنهايم</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"أغنى الناس هو من يرضى بالقليل."</p><span class="qa">— سقراط</span></div>
+  </div>
+
+  <h3 class="sec reveal">رابعاً: أفكار وخلاصات</h3>
+  <div class="box core reveal">
+    <div class="box-title">الفكرة الجوهرية للفصل <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <p>الفصل لا يدعو إلى الزهد، بل إلى إعادة ترتيب الانتباه: أن يرى الإنسان ما بين يديه، وأن يفرّق بين الامتلاك والتمتع، وأن يجعل النعم اليومية جزءاً من وعيه.</p>
+    </div>
+  </div>
+
+  <div class="duty-box reveal">
+    <h3>واجبك: المتع البسيطة</h3>
+    <p class="intro-d">بينما تدفع وترتطم بالجداول الزمنية والمواعيد النهائية، من السهل أن تنسى أن الرضا غالباً يُوجد حيث أنت وبما تملكه الآن. إليك ستة أنشطة بسيطة:</p>
+    <ul class="duty-list">
+      <li>ضع رسالة حب في علبة غداء طفلك.</li>
+      <li>لوّح للأطفال في حفلات مدارسهم.</li>
+      <li>اشترِ كتاباً لوالدتك تعتقد أنها ستستمتع به.</li>
+      <li>استمع إلى أغنية مُعزوفة بالقيثارة فقط واستمتع بها.</li>
+      <li>حلِّ الشوفان بشراب القيقب.</li>
+      <li>دفِّئ ملابسك في المجفف لبضع دقائق قبل ارتدائها.</li>
+    </ul>
+  </div>
+
+  <div class="review reveal">
+    <h4>أسئلة للمراجعة</h4>
+    <ol>
+      <li>ما الفرق بين "المتعة الكبيرة" و"الاستمتاع الكبير بالمتع الصغيرة" (جين ويبستر)؟</li>
+      <li>لماذا تبدو قصة "ما القدر الكافي؟" مرتبطة بفكرة التأجيل؟</li>
+      <li>ما الذي كشفه مشهد الأوز للراوي في "سراب من الأوز"؟</li>
+      <li>كيف تطبق فكرة "كتابة اليوميات" و"تذكّر النعم" في حياتك؟</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- اللوحة 4: التوجه الذهني -->
+<!-- ======================================================= -->
+<section class="panel content" id="p-att" role="tabpanel">
+  <div class="chapter-head reveal">
+    <div class="symbol">🧭</div>
+    <small>الفصل الرابع · الصفحات 115–145</small>
+    <h2>التوجه الذهني</h2>
+    <p>الموقف الذي نختاره يحدد ما نراه في الحياة ونتيجته.</p>
+  </div>
+
+  <div class="box core reveal">
+    <div class="box-title">الفكرة الجوهرية <span class="tag author">قول المؤلفين</span></div>
+    <div class="box-body">
+      <p>التوجه الذهني أهم من الماضي والتعليم والمال والنجاحات والظروف، وهو قرار يومي نملكه. فالتوجه الإيجابي يفتح طرقاً، والسلبي يغلقها، والحياة تتشكل بما نختار أن نراه فيها.</p>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">أولاً: مقدمة الفصل (تشارلز سوينادول)</h3>
+  <p class="body reveal">يرى الكاتب أن أهم قرار يتخذه الإنسان يومياً هو اختيار التوجه الذهني الذي يتبناه؛ فهو يتقدم بالإنسان أو يعرقله، وهو وحده يشعل وقود الحماس أو يقتل الأمل. وعندما يكون التوجه سليماً "لا تكون عقبة أصعب من أن أتجاوزها، ولا حلم أصعب من أن أحققه، ولا تحدٍّ أعظم من أن أواجهه".</p>
+
+  <div class="quote reveal">
+    <p>"هناك جانب إيجابي وجانب سلبي لكل شيء، وفي كل لحظة أقرر لأي جانب أنظر."</p>
+    <small>— وليام جيمس</small>
+  </div>
+
+  <h3 class="sec reveal">ثانياً: القصص</h3>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🐱</div><div><div class="story-label">مثل وقصة</div><h4>إنه خيارنا</h4></div></div>
+    <p>يحاصر كلب قطة في زاوية، فتنفش القطة ظهرها وتضاعف حجمها وتصدر هسهسة كالثعبان وتخدش الهواء بمخالبها؛ فيقرر الكلب فجأة أن الحكمة تقتضي الذهاب لمطاردة السناجب في المتنزه. يقول الكاتب: ليس بإمكان قطة أن تتفوق على كلب دوبرمان وزنه خمسة وسبعون رطلاً، لكن توجهها الذهني جعلها تبدو قادرة. ونحن نقابل "كلاباً نابحة" كل يوم، والتوجهات الذهنية التي نتبناها تتفوق على الحقائق والمواقف، فنستطيع أن نقرر أن نكون أكبر من ظروفنا.</p>
+    <div class="lesson-line">العبرة: الموقف الذي نتخذه أمام الصعوبة قد يغيّر موازين المواجهة كلها.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🚪</div><div><div class="story-label">قصة</div><h4>ماذا ترى؟</h4></div></div>
+    <p>مسافر يقترب من مدينة كبيرة محاطة بالأسوار، فيجد عند بابها رجلاً عجوزاً جالساً تحت شجرة، فيسأله: "كيف حال الناس في هذه المدينة؟" فيقول له: "كيف كان حال الناس في المكان الذي جئت منه؟" فيجيب: "كانوا حقراء وبغضاء في الغالب." فيقول العجوز: "ستجدهم هنا على نفس الشاكلة." ثم يمر مسافر آخر فيسأل السؤال نفسه، فيعيد العجوز سؤاله، فيجيب: "كانوا لطفاء وكرماء ومحبين." فيقول: "ستجدهم هنا على نفس الشاكلة."</p>
+    <div class="lesson-line">العبرة: التوجه الذهني يحدد ما نجده، فنحن نرى الناس وفق ما نحمله في داخلنا.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🌅</div><div><div class="story-label">مقطع تأملي</div><h4>التوجه الذهني الإيجابي (عقيدة المتفائل)</h4></div></div>
+    <p>يعرض الفصل "عقيدة المتفائل" لكريستيان دي. لارسون، وفيها: أن تكون أقوى من أن يعكّر شيء راحة بالك، وأن تتحدث عن الصحة والسعادة والرخاء مع من تلتقيهم، وأن تجعل أصدقاءك يشعرون أن لهم شيئاً مميزاً، وأن تنظر إلى الجانب المشرق من كل شيء، وأن تفكر في الأفضل وتعمل له وتتوقعه، وأن تتحمس لنجاح الآخرين كحماسك لنجاحك، وأن تنسى أخطاء الماضي، وأن تبتسم في وجه كل مخلوق، وأن تكون أكبر من أن تقلق، وأنبل من أن تغضب، وأقوى من أن تخاف، وأسعد من أن تسمح بوجود المتاعب.</p>
+  </div>
+
+  <h3 class="sec reveal">ثالثاً: حِكم التوجه الذهني</h3>
+  <div class="quotes reveal">
+    <div class="qcard"><span class="qn">1</span><p>تذكّر أنك قد تفقد الكثير من الأشياء الطيبة في الحياة بتبنّي توجه ذهني سيئ؛ فالحياة هي ما نصنعه بأنفسنا.</p><span class="qa">— آنا ماري روبرتسون (جرانما موزيس)</span></div>
+    <div class="qcard"><span class="qn">3</span><p>اصفح بسرعة؛ فقد تعلمت من كلبي وقطتي درساً عظيماً: أن أنسى كثيراً.</p><span class="qa">— سوزان كارلسون</span></div>
+    <div class="qcard"><span class="qn">4</span><p>اقضِ حياتك في الارتقاء بالناس لأعلى، لا في التقليل من شأنهم؛ فالإساءة إلى الناس عادة بغيضة أياً كان وضعك.</p><span class="qa">— مجهول</span></div>
+    <div class="qcard"><span class="qn">5</span><p>حقق أقصى استفادة من أفضل الأشياء، وقلّل الضرر من أسوأها؛ وتتبّع السعادة باختيار الأوقات التي تتذكرها دائماً.</p><span class="qa">— مجهول</span></div>
+    <div class="qcard"><span class="qn">6</span><p>تذكّر الموارد الثلاثة المؤثرة المتاحة لك دائماً: الحب، والدعاء، والصفح. وفي الليل أسلم أمري كله إلى الله؛ فهو الذي لا ينام.</p><span class="qa">— كاري ويستنجسون</span></div>
+    <div class="qcard"><span class="qn">7</span><p>تذكّر أن السعادة تنتج عن إيثار الآخرين على نفسك؛ فللماذا لا تشعر بالسعادة؟ لأن تسعاً وتسعين بالمائة مما تفعله وتقوله وتفكر فيه من أجل نفسك.</p><span class="qa">— وو واي وو</span></div>
+    <div class="qcard"><span class="qn">8</span><p>كن مبتهجاً حتى عندما لا تشعر بأنك تريد ذلك؛ ففي بعض الأوقات لن تكون هناك أغنية في قلبك، فغنِّ على أي حال.</p><span class="qa">— إيموري أوستن</span></div>
+    <div class="qcard"><span class="qn">9</span><p>تذكّر أن دقيقة واحدة من الغضب تحرمك من ستين ثانية من السعادة.</p><span class="qa">— روث إي. رينكل</span></div>
+    <div class="qcard"><span class="qn">10</span><p>عندما تصل إلى عملك صباحاً، اجعل أول ما تقوله يُبهج يوم الجميع؛ فالسعادة معدية، فكن ناقلاً للعدوى.</p><span class="qa">— روبرت أوربين</span></div>
+    <div class="qcard"><span class="qn">11</span><p>لا تنتحب؛ وإن كنت مصاباً بالصداع أو أي بلاء فاحفظ هدوءك ولا تفسد اليوم.</p><span class="qa">— رالف والدو إيمرسون</span></div>
+    <div class="qcard"><span class="qn">12</span><p>لا بأس أن تشعر بالأسى لنفسك، لكن لا تجعله يدوم أكثر من خمس دقائق؛ فالأفكار التي يركز عليها العقل تزداد اتساعاً ورسوخاً.</p><span class="qa">— نورمان فينسنت بيل</span></div>
+    <div class="qcard"><span class="qn">13</span><p>كن سعيداً بما تملك بينما تسعى لامتلاك ما تريد؛ فقد وهبني الله الكثير حتى إنه ليس لدي وقت للحزن على ما حرمني منه.</p><span class="qa">— هيلين كيلر</span></div>
+    <div class="qcard"><span class="qn">14</span><p>لا تتعامل مع الأصدقاء الأوفياء، أو الصحة الجيدة، أو الزواج الصالح، على أنها أمور مسلَّم بها.</p><span class="qa">— كوبي ياماداً</span></div>
+    <div class="qcard"><span class="qn">25</span><p>لا تحمل حقداً؛ بينما تتعذب أنت بحقدك، يستمتع من تحقد عليه بوقته.</p><span class="qa">— بادي هاكيت</span></div>
+    <div class="qcard"><span class="qn">26</span><p>كن مستعداً للصفح عن أخطاء الآخرين بنفس السهولة التي تنسى بها أخطاءك.</p><span class="qa">— إكناث إيزواران</span></div>
+    <div class="qcard"><span class="qn">27</span><p>لا تستخف أبداً بتأثير الضحك؛ وإذا كان عليك أن تختار سمة واحدة تقطع بها الحياة، فاختر حس الدعابة.</p><span class="qa">— جنيفر جيمس</span></div>
+    <div class="qcard"><span class="qn">29</span><p>كلما كنت أكثر رضاً عن نفسك، قلّت الأشياء المادية التي تحتاج إليها؛ فالغنى ليس في كثرة الأغراض، بل في الرضا وهدوء البال.</p><span class="qa">— حكيم</span></div>
+    <div class="qcard"><span class="qn">31</span><p>لا تقلل أبداً من قدرة الروح البشرية؛ فالعالم مليء بالمعاناة، لكنه مليء كذلك بالقدرة على التغلب عليها.</p><span class="qa">— هيلين كيلر</span></div>
+    <div class="qcard"><span class="qn">32</span><p>شارك الفضل؛ فليس هناك إنسان عصامي صنع نفسه وحده، فأنت لا تحقق أهدافك إلا بمعاونة الآخرين.</p><span class="qa">— جورج شين</span></div>
+    <div class="qcard"><span class="qn">33</span><p>تعلّم أن تضحك على نفسك؛ فسعيد من تعلّم أن يضحك من نفسه.</p><span class="qa">— جون باول</span></div>
+    <div class="qcard"><span class="qn">35</span><p>تحمّل مسؤولية كل مجال من مجالات حياتك؛ كفّ عن توجيه اللوم للآخرين، فلابد أن نصنع التغيير بأنفسنا.</p><span class="qa">— كاثرين هيبورن</span></div>
+    <div class="qcard"><span class="qn">36</span><p>قيّم نفسك بمعاييرك الخاصة، لا بمعايير غيرك؛ حاول أن تكون أفضل الناس من أجل نفسك لا من أجل الناس.</p><span class="qa">— ماركوس جارفي</span></div>
+    <div class="qcard"><span class="qn">37</span><p>الحياة عبارة عن 10% أحداث تقع لي، و90% استجابة مني لتلك الأحداث.</p><span class="qa">— ينسب الكتاب القول إلى المدرب لو هولتز</span></div>
+    <div class="qcard"><span class="qn">39</span><p>تعلّم أن تشعر بالارتياح في وجود المشكلات؛ فهنا يكمن النمو الشخصي والفرص.</p><span class="qa">— جين نيكولاس جرول</span></div>
+    <div class="qcard"><span class="qn">40</span><p>ما تراه يعكس تفكيرك، وتفكيرك يعكس اختيارك لما تريد أن تراه.</p><span class="qa">— من كتاب A Course in Miracles</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"رجل بدون حس دعابة يشبه عربة بدون زنبركات للعجلات؛ إنه يهتز بعنف عند الاصطدام بأصغر حصاة على الطريق."</p><span class="qa">— هنري وارد بيتشر</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"عيش الحياة ليس خياراً مطروحاً؛ فلابد أن تعيش الحياة. الخيار الحقيقي هو كيف تعيشها."</p><span class="qa">— هنري وارد بيتشر</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"الجزء الأعظم من سعادتنا أو شقائنا يعتمد على التوجه الذهني وليس على الظروف."</p><span class="qa">— مارثا واشنطن</span></div>
+  </div>
+
+  <h3 class="sec reveal">رابعاً: دروس الفصل</h3>
+  <div class="box lesson reveal">
+    <div class="box-title">دروس مستفادة <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <ul class="plain">
+        <li>التوجه الذهني الإيجابي لا يُلغي الصعوبات، لكنه يغيّر طريقة مواجهتها.</li>
+        <li>الغضب والتذمّر يسرقان الوقت والطاقة، والمدة القصيرة منهما كافية للتعلم منهما.</li>
+        <li>المسؤولية الشخصية هي نقطة البداية؛ فلا يمكن تغيير الحياة بتوجيه اللوم للآخرين.</li>
+        <li>الأمل والتفاؤل يُبنيان بالعمل؛ فالقلق وحده لا يغيّر شيئاً.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="box terms reveal">
+    <div class="box-title">مصطلحات مهمة <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <p><strong>التوجه الذهني (Attitude):</strong> مجموع الاتجاهات والمواقف الداخلية التي يتبناها الإنسان تجاه نفسه والآخرين والظروف، وهو ما يحدد استجابته لا الحدث وحده.</p>
+    </div>
+  </div>
+
+  <div class="duty-box reveal">
+    <h3>واجبك: التوجه الذهني</h3>
+    <p class="intro-d">نحن جميعاً نعرف أهمية التوجه الإيجابي، لكن بعض الأيام يصعب فيها أن نجد الطاقة للحفاظ عليه. إليك بعض الاقتراحات:</p>
+    <ul class="duty-list">
+      <li>شجّع وجامل شخصاً لا يتوقع منك ذلك.</li>
+      <li>قل شيئاً إيجابياً في وقت مبكر جداً من صباح الغد.</li>
+      <li>ابتسم وأنت ترد على الهاتف، فسيلاحظ المتصل ذلك في صوتك.</li>
+      <li>حسّن توجهك الذهني بتحسين وضعية جسدك.</li>
+      <li>اجعل وصولك إلى مواعيدك مبكراً خمس دقائق.</li>
+      <li>في المرة القادمة التي تقول فيها "لن يفلح الأمر أبداً"، قل بدلاً من ذلك: "من يعلم؟ ربما يفلح."</li>
+    </ul>
+  </div>
+
+  <div class="review reveal">
+    <h4>أسئلة للمراجعة</h4>
+    <ol>
+      <li>لماذا يقول الكاتب إن التوجه الذهني أهم من الماضي والمال والظروف؟</li>
+      <li>ما الذي تكشفه قصة "ماذا ترى؟" عن علاقة الإنسان بالعالم من حوله؟</li>
+      <li>ما الفرق بين قول الكتاب: "الحياة عبارة عن 10% أحداث و90% استجابة"، وبين الحديث عن الحظ؟</li>
+      <li>كيف تطبق قاعدة "لا تنَم غاضباً" (مجهول)، وما علاقتها بالتوجه الذهني؟</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- اللوحة 5: الزواج -->
+<!-- ======================================================= -->
+<section class="panel content" id="p-mar" role="tabpanel">
+  <div class="chapter-head reveal">
+    <div class="symbol">💍</div>
+    <small>الفصل الخامس · الصفحات 146–190</small>
+    <h2>الزواج</h2>
+    <p>عهد يُجدَّد بالحب والاهتمام، ويصمد بالتنازل والصفح.</p>
+  </div>
+
+  <div class="box core reveal">
+    <div class="box-title">الفكرة الجوهرية <span class="tag author">قول المؤلفين</span></div>
+    <div class="box-body">
+      <p>الزواج ليس لحظة قولٍ بل التزام يومي. الحب لا ينمو وحده، بل يُرعى ويُجدَّد. والزوجان ينجحان حين يحترم كل منهما الآخر، ويقدّم العطاء على الطلب، ويعتذر ويصفح، ويحافظ على الدفء والخصوصية معاً.</p>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">أولاً: مدخل الفصل — "الوعد"</h3>
+  <p class="body reveal">يرى الفصل أن عهد الزواج ليس مجرد كلمات تُقال في لحظة، بل التزام بالحب مهما تغيّرت الظروف؛ فيصبح الاثنان واحداً، وتصبح "أنا" "نحن". ويركّز الكاتب على حرف العطف "و" في عبارة "في الصحة والمرض، وفي الغنى والفقر": فهذا الحرف، على بساطته، يربط مرتفعات الحياة ومنخفضاتها، ويعني الصمود والتمسك في الأوقات الصعبة التي تختفي فيها إيجابيات الحياة. وكل الأمور تستقيم إذا كان الزوجان يحبان ويرعيان بعضهما ويحافظان على التزامهما.</p>
+
+  <div class="quote reveal">
+    <p>"لا أحد أبداً، ولا حتى الشعراء، تمكّن من قياس ما يستطيع القلب حمله من حب."</p>
+    <small>— زيلدا فيتزجيرالد</small>
+  </div>
+
+  <h3 class="sec reveal">ثانياً: قصص الفصل</h3>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🏰</div><div><div class="story-label">قصة</div><h4>زوجات وينزبيرج</h4></div></div>
+    <p>في عام 1141 حاصر جيش عدو قلعة وينزبيرج الألمانية، وكانت تحوي كنوزاً هائلة، وتعهد القائد بقتل الرجال داخلها، مع السماح للنساء والأطفال بالخروج بأمان. لكن النساء اشترطن أن يُسمح لكل واحدة منهن بأن تحمل في ذراعيها ما تستطيع من ممتلكات. وعندما علم الغزاة أن النساء لن يستطعن حمل سوى القليل، وافقوا. وعندما فُتحت الأبواب، فوجئ الجيش بأن كل امرأة كانت تحمل زوجها، وقد بكى المحاصرون تأثراً. فقد عرفت زوجات وينزبيرج الثروة الحقيقية.</p>
+    <div class="lesson-line">العبرة: أغلى ما نملكه هو من نحب، والمحبة تصنع الكنز الحقيقي.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🎁</div><div><div class="story-label">قصة قصيرة</div><h4>هدية الحكماء (ديلا وجيم)</h4></div></div>
+    <p>يوم العيد، لم يكن في يد ديلا سوى 1.87 دولار، بعد أن ادخرت بنساً بنساً شهوراً طويلة لتشتري هدية لزوجها جيم. وكان لدى الزوجين كنزان: ساعة جيم الذهبية التي ورثها عن أبيه، وشعر ديلا الطويل الحريري الذي تحسدها عليه كل امرأة. فذهبت ديلا إلى محل لبيع الشعر وباعت شعرها بعشرين دولاراً، واشترت به سلسلة بلاتينية لساعة جيم. وفي المساء دخل جيم ورأى شعرها المقصوص، فتفاجأ ثم قال إن شعرها لا يقلل حبه لها. وأخرج هدية: أمشاط الشعر التي كانت ديلا تتمناها، لأنه باع ساعته ليشتريها. ففكّ كل منهما الآخر سرّ هديته، ثم قال جيم: "دعينا نحتفظ بهديتينا لبعض الوقت؛ فهما أجمل من أن نستخدمهما الآن."</p>
+    <p>وفي الخاتمة يقول الراوي إن أولئك الزوجين الشابين الحمقين ضحّيا بأغلى كنزيهما من أجل بعضهما، ثم يذكّر بأن الحكماء هم من يهبون ويتلقّون الهدايا بحكمة، فيكون حبهم هو الحكمة نفسها.</p>
+    <div class="lesson-line">العبرة: القيمة في الحب الذي يدفع للعطاء، لا في الهدية نفسها. <span class="tag infer">استنتاج من الملخّص</span></div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🔥</div><div><div class="story-label">خطبة زفاف</div><h4>بركة زفاف قبيلة الأباتشي</h4></div></div>
+    <p>"الآن لن يؤذيكما المطر؛ بعد الآن كل منكما مأوى للآخر. الآن لن تشعرا بالبرد؛ كل منكما دافئ للآخر. الآن لن تشعرا بالوحدة؛ كل منكما رفيق للآخر. الآن أنتما جسدان، لكن حياة واحدة تجمعكما. اذهبا الآن إلى بيتكما لتبدءا حياتكما الجديدة معاً."</p>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">📜</div><div><div class="story-label">وصية</div><h4>وصية زوجية من عام 1886</h4></div></div>
+    <p>تقول الوصية: اجعل حبك أقوى من كرهك وغضبك. تعلّم حكمة التنازل قليلاً، لأن الانحناء أفضل من الانكسار. وتذكّر أن الصداقة الحقيقية أساس أي علاقة دائمة. وقد رجا كاتبها أن تُورَّث الوصية للأبناء والأحفاد، لأنها تظل ثابتة مهما تغيرت الأمور.</p>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🌙</div><div><div class="story-label">قصة</div><h4>لا تتأمل يا صديقي... اتخذ قراراً!</h4></div></div>
+    <p>بينما كان الراوي ينتظر صديقه في مطار بورتلاند بولاية أوريغون، رأى رجلاً يخرج من الممر يحمل حقيبتين خفيفتين، ويقف بجوار ابنه الصغير (نحو السادسة) وابنته الرضيعة، ثم يعانق زوجته عناقاً طويلاً. وسمعه يقول: "لقد أصبحت شاباً فعلاً!" فسأله الراوي عن مدة غيابه، فقال: "منذ يومين كاملين!" (وقد بدت لهما الفترة سنين). ثم قال للراوي: "لا تتأمل يا صديقي. اتخذ قراراً!"، واستدار هو وأسرته وانطلقوا معاً.</p>
+    <div class="lesson-line">العبرة: الحياة الزوجية والعائلية تُبنى بقرارات الحب الصغيرة الآن، لا بتأجيلها.</div>
+  </div>
+
+  <h3 class="sec reveal">ثالثاً: حِكم الزواج</h3>
+  <div class="quotes reveal">
+    <div class="qcard"><span class="qn">1</span><p>اختر شريكة حياتك بعناية؛ هذا الاختيار وحده يجلب تسعين بالمائة من سعادتك أو شقائك.</p><span class="qa">— جورج إليوت</span></div>
+    <div class="qcard"><span class="qn">2</span><p>لا تتزوج إلا من تحب.</p><span class="qa">— ويليام شكسبير</span></div>
+    <div class="qcard"><span class="qn">3</span><p>ابحث كل يوم عن وسيلة بسيطة لتحسين علاقتك الزوجية.</p><span class="qa">— شكسبير</span></div>
+    <div class="qcard"><span class="qn">4</span><p>كن رومانسياً؛ فمن أكبر أوهام عصرنا أن الحب ينمو بذاته، بل لابد من تعزيزه ورعايته وتجديده باستمرار.</p><span class="qa">— ديفيد آر. ميس</span></div>
+    <div class="qcard"><span class="qn">7</span><p>كن أفضل صديق لزوجتك: روحان تراودهما نفس الفكرة، وقلبان يدقان كقلب واحد.</p><span class="qa">— فون مونخ بيلنجهاوزن</span></div>
+    <div class="qcard"><span class="qn">8</span><p>كن أول من يصفح؛ فالشخص الحكيم يسارع إلى الصفح لأنه يعرف القيمة الكاملة للوقت.</p><span class="qa">— رامبلر</span></div>
+    <div class="qcard"><span class="qn">9</span><p>تذكّر أن المرأة لا تسأم أبداً من سماع: "أحبك"، و"أقدّرك"، و"كم أنا محظوظ لأني وجدتك".</p><span class="qa">— لورد بايرون</span></div>
+    <div class="qcard"><span class="qn">10</span><p>ضعي ملاحظة حب في حقائب زوجك قبل أن يذهب في رحلة عمل؛ فالخطابات تؤلف بين الأرواح أكثر من القبلات.</p><span class="qa">— جون دون</span></div>
+    <div class="qcard"><span class="qn">12</span><p>ابتكر إشارة خفية لا يعرفها أحد سوى زوجتك، تخبرها بها أنك تحبها في أي مكان مزدحم.</p><span class="qa">— إيدورا ويلتي</span></div>
+    <div class="qcard"><span class="qn">13</span><p>لا تضيّع أبداً فرصة تستطيع فيها إخبار شريك حياتك أنك تحبه؛ فلا داعي للصمت، فسيكون هناك الكثير منه بعد الموت.</p><span class="qa">— جورج إليوت</span></div>
+    <div class="qcard"><span class="qn">14</span><p>اجعل أطفالك يرونك تفعل أشياء من أجل زوجتك تجعلهم يعرفون إلى أي مدى تحبها وتقدّرها.</p><span class="qa">— توم مولين</span></div>
+    <div class="qcard"><span class="qn">15</span><p>احترما احتياجات أحدكما للخصوصية؛ فالصحبة الدائمة لا بأس بها، لكن فقط بالنسبة للتوائم الملتصقة.</p><span class="qa">— فيكتوريا بيلنجز</span></div>
+    <div class="qcard"><span class="qn">16</span><p>الزواج الناجح يعتمد على شيئين: أن تجد الشخص المناسب، وأن تكون أنت الشخص المناسب. وسعادتنا تعتمد على منح الحب لا على تلقّيه.</p><span class="qa">— آلان كوهين</span></div>
+    <div class="qcard"><span class="qn">17</span><p>ادخر أمسية واحدة كل أسبوع تقضيها مع زوجتك فقط؛ فالقاعدة: قطع الخشب قريبة بما يكفي لتظل دافئة، وبعيدة بما يكفي لتتنفس الهواء.</p><span class="qa">— مارني ريد كرويل</span></div>
+    <div class="qcard"><span class="qn">18</span><p>مهما بلغت شدة غضبك من شريك حياتك، لا تناما منفصلين أبداً؛ لا تدع الشمس تغيب وأنت لا تزال غاضباً.</p><span class="qa">— مجهول</span></div>
+    <div class="qcard"><span class="qn">20</span><p>تذكّر أن أفضل زواج هو الذي يكون فيه حب الزوجين لبعضهما أكبر من احتياجهما لبعضهما؛ فالحب ليس أن يحدّق كل منهما في الآخر، بل أن ينظرا معاً نحو الخارج في الاتجاه نفسه.</p><span class="qa">— أنطوني دي سانت إكزوبري</span></div>
+    <div class="qcard"><span class="qn">21</span><p>تزوّج بإنسان تحب التحدث معه؛ فزواج العقول أعظم من زواج الأجساد.</p><span class="qa">— ديزيديريوس إيرازموس</span></div>
+    <div class="qcard"><span class="qn">23</span><p>الزواج يشبه الصندوق الفارغ؛ يظل فارغاً حتى تضع فيه أكثر مما تأخذ منه.</p><span class="qa">— سيمون دي بوفوار</span></div>
+    <div class="qcard"><span class="qn">24</span><p>"كونا ودودين مع أحدكما الآخر": تلك هي القاعدة الذهبية في الزواج وسر دوام الحب.</p><span class="qa">— رودولف راي</span></div>
+    <div class="qcard"><span class="qn">26</span><p>الحب الحقيقي أن تكون سعادة الطرف الآخر أهم من سعادتك؛ ونخطئ حين نسعى لنيل الحب بدلاً من منحه.</p><span class="qa">— شارلوت يونغ</span></div>
+    <div class="qcard"><span class="qn">27</span><p>أسّس بيتاً ساكناً هادئاً وحافظ عليه؛ فالمنزل الهادئ مكان مقدس.</p><span class="qa">— بل كين</span></div>
+    <div class="qcard"><span class="qn">28</span><p>عندما تختلف مع زوجتك، اعتذر لها بغض النظر عن المخطئ منكما: "أعتذر لأني ضايقتك، هلا سامحتني؟"</p><span class="qa">— كوبي ياماداً</span></div>
+    <div class="qcard"><span class="qn">29</span><p>لا تهتم بمن على صواب، وإنما اهتم بما هو الصواب.</p><span class="qa">— إف. ألكساندر ماجون</span></div>
+    <div class="qcard"><span class="qn">30</span><p>عندما تدرك أنك ارتكبت خطأً، اتخذ خطوات فورية لتصحيحه؛ فلحظة الفراق قد تصبح شهراً أو عاماً.</p><span class="qa">— جين جيرودوكس</span></div>
+    <div class="qcard"><span class="qn">32</span><p>لا تستخدم الكلمات بإهمال؛ فالكلمة إذا خرجت لا تُستعاد، ومنع نفسك من الكلمات الغاضبة أسهل من معالجة القلب الذي تجرحه.</p><span class="qa">— مجهول</span></div>
+    <div class="qcard"><span class="qn">33</span><p>اقضِ بعض الوقت بمفردك، واتركا بعض فجوات الخصوصية تتخلل توحدكما.</p><span class="qa">— جبران خليل جبران</span></div>
+    <div class="qcard"><span class="qn">34</span><p>الفرق بين أن تتذكر الجرح أو تنساه بالصفح، كالفرق بين النوم على وسادة مليئة بالأشواك أو على بتلات الزهور.</p><span class="qa">— لورين فيشر</span></div>
+    <div class="qcard"><span class="qn">36</span><p>أرسل لزوجتك الزهور؛ فكّر في سبب ذلك فيما بعد، فشذى الزهور يبقى في يد من يعطيها.</p><span class="qa">— هادا بيجار</span></div>
+    <div class="qcard"><span class="qn">38</span><p>نشّط علاقتك الزوجية بكلمات التتقدير؛ فحين تُثني على طعام العشاء الذي أعدّته زوجتك، تصبح الأمسية كلها أكثر بهجة.</p><span class="qa">— جون لوثر</span></div>
+    <div class="qcard"><span class="qn">41</span><p>الحب صبور، الحب كريم؛ لا يحسد، ولا يتكبر، ولا يحتفظ بسجل للأخطاء.</p><span class="qa">— مجهول</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"المرأة التي لا تشعر بالرضا تطلب كل وسائل الترف، ولكن المرأة التي تحب رجلاً بحق ترضى بالنوم على لوح خشبي."</p><span class="qa">— د. هـ. لورانس</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"الزواج الناجح يتطلب الوقوع في الحب مرات عديدة، ولكن دائماً مع نفس الشخص."</p><span class="qa">— مينون مكلوجلين</span></div>
+  </div>
+
+  <h3 class="sec reveal">رابعاً: خلاصة الفصل</h3>
+  <div class="box summary reveal">
+    <div class="box-title">خلاصة الفصل <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <p>يتعامل الفصل مع الزواج بوصفه مشروعاً مستمراً يحتاج إلى التخطيط الصغير اليومي: الكلمة الطيبة، والمفاجأة، والخصوصية، والصفح السريع، والقرار بعدم ترك الخلاف يبيت. والوعد الذي يُقطع في ليلة الزفاف يتجدد كل يوم بالفعل لا بالقول.</p>
+    </div>
+  </div>
+
+  <div class="box practice reveal">
+    <div class="box-title">تطبيق عملي <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <p>ضع لنفسك "موعداً أسبوعياً" مع شريك حياتك لا يدخله غيره، واكتب ثلاثة أشياء تقدّرها فيه، وقلها له بصوت مسموع.</p>
+    </div>
+  </div>
+
+  <div class="duty-box reveal">
+    <h3>واجبك: الزواج</h3>
+    <p class="intro-d">الزواج الجيد أشبه بنار المخيم: يذوي إذا تُرك بلا عناية، والعناية ليست شيئاً يُفعل حين تشعر بالرغبة فيه. افعل شيئاً صغيراً كل يوم:</p>
+    <ul class="duty-list">
+      <li>جامل شريكة حياتك أمام أقاربها.</li>
+      <li>سلّما على بعضكما عند الباب بقبلة وعناق.</li>
+      <li>في ذكرى زواجكما القادمة، اشترِ علبة إضافية من حلوى الملبس على شكل قلوب صغيرة مكتوب عليها رسائل قصيرة.</li>
+      <li>استخدم صورة مفضلة لشريكة حياتك علامةَ كتاب.</li>
+      <li>تذكّر أهم الكلمات في أي علاقة زوجية: "أحبك. كم أنت جميلة. سامحيني."</li>
+      <li>ضع الليلة رسالة حب تحت وسادة زوجك.</li>
+    </ul>
+  </div>
+
+  <div class="review reveal">
+    <h4>أسئلة للمراجعة</h4>
+    <ol>
+      <li>ما الذي يكشفه حرف "و" في عبارة العهد الزوجي بحسب الفصل؟</li>
+      <li>لماذا تختلف قصة "هدية الحكماء" عن مجرد قصة عن هدية؟</li>
+      <li>ما الفرق بين "الحب ينمو بذاته" و"الحب يحتاج إلى رعاية" كما يعرضها الفصل؟</li>
+      <li>ما الخطوة الأولى التي تدعو إليها قصة "لا تتأمل يا صديقي... اتخذ قراراً!"؟</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- اللوحة 6: الأبوة -->
+<!-- ======================================================= -->
+<section class="panel content" id="p-fath" role="tabpanel">
+  <div class="chapter-head reveal">
+    <div class="symbol">👨‍👩‍👧</div>
+    <small>الفصل السادس · الصفحات 191–228</small>
+    <h2>الأبوة</h2>
+    <p>التربية بالقدوة والاهتمام والوقت، لا بالمال والتوجيه وحده.</p>
+  </div>
+
+  <div class="box core reveal">
+    <div class="box-title">الفكرة الجوهرية <span class="tag author">قول المؤلفين</span></div>
+    <div class="box-body">
+      <p>الأبوة واجب مقدس، والأطفال يتعلمون بما نفعله أكثر مما نقوله. والقدوة الحسنة والثناء الصادق والوقت المشترك والاحترام المتبادل هي أهم ما يورّثه الأب والأم لأبنائهما، وقد يكون أعظم دليل على ذلك أن يحمل الأبناء في قلوبهم ما تعلّموه ويصنعوا به قراراتهم بعد عقود.</p>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">أولاً: مدخل الفصل والتقدير</h3>
+  <p class="body reveal">يفتتح الفصل بقول للدكتور أنتوني بي. ويتهام: "الحب بالنسبة للأطفال يعني قضاء الوقت معهم." ثم تبدأ القصة الأولى في حفل تخرج ثانوي: يشكر كل طالب منح على والديه؛ ("من أجل حبهما"، "لتواجدهما الدائم إلى جواري"، "من أجل القدوة الحسنة"). وحين جاء دور الطالبة التي أُختيرت لخطبة الوداع، أمسكت الميكروفون ونظرت إلى الحضور، ثم سألت: "أمي وأبي، أين أنتما؟" وكررت السؤال بعد أن لم تجدهما بين الوجوه. فوقف اثنان من الجمهور، فصفّق القاعة بحرارة.</p>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🎓</div><div><div class="story-label">قصة</div><h4>التقدير</h4></div></div>
+    <p>يعلّق المؤلف على المشهد بأن الأبوة "واجب مقدس" لا يمكن التهوين من شأنه، وأن الالتزام العميق من الأب أو الأم تجاه أبنائهم قد يكون منصة الإطلاق التي تدفع الأبناء نحو آفاق جديدة، وأن النمو الذي يحدث في أعماق أرواح الأبناء بفضل الرعاية والتواجد "سيزدهر أمام أعيننا بينما ننظر إليه بكل تقدير وإعجاب."</p>
+    <div class="lesson-line">العبرة: الأبناء يقدّرون الآباء والأمهات عادة بعد أن يكبروا، والتقدير الحقيقي يُبنى في سنين الطفولة.</div>
+  </div>
+
+  <h3 class="sec reveal">ثانياً: حِكم الأبوة</h3>
+  <div class="quotes reveal">
+    <div class="qcard"><span class="qn">1</span><p>تذكّر أن شخصية طفلك مثل الحساء الجيد؛ كلاهما يُصنع في البيت. فإذا أردنا أن يكون أطفالنا كرماء ولطفاء وصادقين، فلابد من تعليمهم ذلك لا تمنيه فحسب.</p><span class="qa">— جيمس دوبسون</span></div>
+    <div class="qcard"><span class="qn">2</span><p>لا تخلط بين الثروة والنجاح؛ فليس هناك نجاح يضاهي نجاح رجل أو امرأة يشعران بأنهما أديا واجبهما، وكبر أولادهما وأحفادهما وأدعوا لهما بالرحمة.</p><span class="qa">— تيودور روزفلت</span></div>
+    <div class="qcard"><span class="qn">3</span><p>كن منتبهاً للفرص التي تسنح لتقديم الثناء والتقدير لأولادك؛ فالطفل يتغذى على اللبن والثناء.</p><span class="qa">— ماري لامب</span></div>
+    <div class="qcard"><span class="qn">4</span><p>رتّب أولوياتك؛ فلم يقل أحد على فراش الموت: "ليتني قضيت وقتاً أطول في العمل". فالأشياء المهمة تحدث في مطابخ البيوت لا في قاعات اجتماعات الشركات.</p><span class="qa">— جاري آلين سنيدر</span></div>
+    <div class="qcard"><span class="qn">5</span><p>لا تقلق لعدم قدرتك على منح أبنائك الأفضل من كل شيء؛ امنحهم أفضل ما تستطيع، فقد كنا أغنياء كأسرة.</p><span class="qa">— فلورنس جريفيث جوينر</span></div>
+    <div class="qcard"><span class="qn">6</span><p>اعتنِ جيداً بمن تحبهم؛ فلا يعنيني كثيراً تقارير "الأرباح والخسائر"، الأهم "الناس والحب".</p><span class="qa">— ماري كاي آش</span></div>
+    <div class="qcard"><span class="qn">7</span><p>تذكّر أن أي وقت تقضيه مع أطفالك ليس وقتاً ضائعاً أبداً؛ فأفضل لحظات حياتك هي تلك التي تقضيها مع أسرتك.</p><span class="qa">— كين بلانشارد</span></div>
+    <div class="qcard"><span class="qn">8</span><p>أظهر لأفراد أسرتك كل يوم إلى أي مدى تحبهم، من خلال كلماتك ولمساتك واهتمامك؛ فالمال لا يشتري أي احتياج من احتياجات الروح.</p><span class="qa">— هنري ديفيد ثورو</span></div>
+    <div class="qcard"><span class="qn">10</span><p>علّم أبناءك الإيمان بالله؛ فالأبناء هبة من الله للآباء، وعليهم أن يهدوهم السبل المؤدية إليه.</p><span class="qa">— ديتريتش بونهوفر</span></div>
+    <div class="qcard"><span class="qn">11</span><p>أخبر أبناءك إلى أي مدى تراهم رائعين وأنك تثق بهم؛ فالانتماء والشعور بالقيمة غذاء للروح كما الطعام للجسد.</p><span class="qa">— آني أورتلاند</span></div>
+    <div class="qcard"><span class="qn">12</span><p>لا تسمح لأفراد عائلتك بالانشغال إلى حد لا يتيح لكم الجلوس معاً لتناول وجبة واحدة على الأقل يومياً.</p><span class="qa">— مادلين لينجل</span></div>
+    <div class="qcard"><span class="qn">13</span><p>اعمل جاهداً على أن تغرس داخل أطفالك صورة ذات جودة؛ فهذا أهم ما تفعله لضمان نجاحهم.</p><span class="qa">— بابلو بيكاسو</span></div>
+    <div class="qcard"><span class="qn">14</span><p>خذ إجازات عائلية سواء كنت تطيق مصاريفها أم لا؛ فذكرياتها لا تُقدَّر بثمن.</p><span class="qa">— ريتشارد إكسلي</span></div>
+    <div class="qcard"><span class="qn">15</span><p>لكي يصبح أطفالك كباراً يُعتمد عليهم، اقضِ معهم ضعف الوقت الذي تقضيه الآن، وأنفق عليهم نصف المال؛ فلن يتذكروك بما جلبته لهم بل بشعورهم بحسن رعايتك.</p><span class="qa">— جيل سويت</span></div>
+    <div class="qcard"><span class="qn">16</span><p>اقرأ لأطفالك، وغنِّ معهم، وأنصت إليهم؛ فأعمق العلاقات تنمو غالباً خلال أبسط الأنشطة.</p><span class="qa">— جاري سمولي</span></div>
+    <div class="qcard"><span class="qn">17</span><p>اجعل أطفالك يعرفون أنك مهما حدث ستكون متواجداً لدعمهم؛ فالمنزل مملكة في وسط العالم، وقلعة حصينة في مواجهة صعوبات الحياة.</p><span class="qa">— ديتريتش بونهوفر</span></div>
+    <div class="qcard"><span class="qn">18</span><p>اعتذر على الفور عندما تفقد أعصابك، خاصة مع الأطفال؛ فالإنسان الحكيم والشجاع فقط هو من يجرؤ على الاعتراف بأنه كان مخطئاً.</p><span class="qa">— بنيامين فرانكلين</span></div>
+    <div class="qcard"><span class="qn">19</span><p>اطلب من أطفالك القيام بنصيبهم من الأعمال المنزلية؛ فما تفعله من أجلهم لن يجعلهم أفراداً ناجحين، بل ما علّمتهم أن يفعلوه بأنفسهم.</p><span class="qa">— آن لاندرز</span></div>
+    <div class="qcard"><span class="qn">20</span><p>حتى إذا كنت من الأثرياء، اجعل أبناءك يكسبون بعض المال بجهدهم ويدفعون جزءاً من نفقات تعليمهم؛ ولا تجعلهم عاجزين بجعل حياتهم أسهل مما ينبغي.</p><span class="qa">— روبرت أيه. هينلين</span></div>
+    <div class="qcard"><span class="qn">21</span><p>ضع حدوداً لوقت ومضمون مشاهدة أطفالك للتلفزيون؛ فالأطفال يجب أن يُربَّوا بعناية، لا أن يتركوا لينموا كالأعشاب الضارة.</p><span class="qa">— آرت باك</span></div>
+    <div class="qcard"><span class="qn">22</span><p>لا تنسَ أن كونك والداً رائعاً هو أعظم ما يمكنك أن تعطيه لأبنائك.</p><span class="qa">— جورج واشنطن</span></div>
+    <div class="qcard"><span class="qn">23</span><p>لا تتصرف بشكل غير مسؤول أبداً أمام أفراد الأسرة؛ فالأطفال لا يخفقون أبداً في محاكاة تصرفات من هم أكبر منهم.</p><span class="qa">— جيمس بالدوين</span></div>
+    <div class="qcard"><span class="qn">24</span><p>قيّم نجاحك بدرجة استمتاعك بالهدوء والسكينة والصحة الجيدة والحب؛ فحين أرى وجوه أطفالي ملتصقة بزجاج النافذة في انتظار عودتي، أعلم أنني شخص ناجح.</p><span class="qa">— بول فولكنر</span></div>
+    <div class="qcard"><span class="qn">25</span><p>عش حياتك بحيث يفكر فيك أولادك بمجرد أن يفكروا في النزاهة والرعاية والاستقامة والأمانة؛ فأول وأعظم هدية نهبها لأبنائنا أن نكون قدوة حسنة لهم.</p><span class="qa">— سير تشارلز موريل</span></div>
+    <div class="qcard"><span class="qn">26</span><p>قدّم الثناء حتى على التحسينات الصغيرة؛ فليس هناك شيء اسمه تحسن لا قيمة له.</p><span class="qa">— توم بيترز</span></div>
+    <div class="qcard"><span class="qn">27</span><p>لا تستخدم أبداً عبارة: "افعل ما أقوله لك، وليس كما أفعل أنا"؛ فعندما توافق أفعالك أقوالك، ينصت الناس لك.</p><span class="qa">— مثل ألماني</span></div>
+    <div class="qcard"><span class="qn">28</span><p>هناك وسيلة واحدة لتنشئة طفلك على الطريق الصحيح: أن تسير أنت نفسك فيه.</p><span class="qa">— أبراهام لنكولن</span></div>
+    <div class="qcard"><span class="qn">29</span><p>كن أفضل معلم ومدرب لطفلك؛ فأب واحد يساوي أكثر من مائة معلم مدرسي.</p><span class="qa">— جورج هربرت</span></div>
+    <div class="qcard"><span class="qn">30</span><p>تذكّر أن القدوة الحسنة هي أفضل موعظة؛ فقد تعلّم جون ويسلي عن الدين من أمه أكثر مما تعلمه من جميع رجال الدين في إنجلترا.</p><span class="qa">— جون ويسلي</span></div>
+    <div class="qcard"><span class="qn">31</span><p>امتدح جهود أبنائك كما تمتدح نجاحاتهم؛ فالناس يحتاجون إلى الثناء حين يحاولون ويفشلون أكثر من احتياجهم إليه حين يحاولون وينجحون.</p><span class="qa">— بوب مواد</span></div>
+    <div class="qcard"><span class="qn">32</span><p>هذّب ولكن بيد رقيقة؛ فالقلوب مثل الزهور تنفتح لقطرات الندى، وتُغلق أمام سيول الأمطار العنيفة.</p><span class="qa">— جورج ماثيو آدامز</span></div>
+    <div class="qcard"><span class="qn">33</span><p>اشكر الله على نعمه قبل كل وجبة تتناولها؛ فليس في أي أمة من هو أعظم من أم تعلّم أولادها الصلاة والدعاء.</p><span class="qa">— مجهول</span></div>
+    <div class="qcard"><span class="qn">34</span><p>قدّم الثناء والمديح لأطفالك ضعف الوقت الذي تنتقدهم فيه؛ فمن يُجذبون إلى الفضيلة بالثناء أكثر ممن يبتعدون عنها بالنقد والتوبيخ.</p><span class="qa">— روبرت سورتيس</span></div>
+    <div class="qcard"><span class="qn">35</span><p>تجنب السخرية في المحادثات مع الأطفال؛ فالستر التي يمزقها الطفل تُصلح سريعاً، أما الكلمات العقابية القاسية فتسحق قلبه.</p><span class="qa">— هنري وادسوورث لونجفيلو</span></div>
+    <div class="qcard"><span class="qn">36</span><p>مهما تقدّم بك العمر، احتضن أمك وقبّلها في كل مرة تقدم لها التحية؛ فأبناؤك هم دائماً صغارك، حتى إذا اشتعلت رؤوسهم شيباً.</p><span class="qa">— جانيت لي</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"لقد قلتها ألف مرة من قبل، وسأقولها مرة أخرى: ليس هناك عمل أهم من أن يكون المرء والداً صالحاً. مطلقاً."</p><span class="qa">— أوبرا وينفري</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"شخصيتك الحقيقية تتحدث بصوت مرتفع لدرجة أنني لا أسمع ما تقوله."</p><span class="qa">— رالف والدو إيمرسون</span></div>
+    <div class="qcard wide"><span class="qn">—</span><p>"الحب بالنسبة للأطفال يعني قضاء الوقت معهم."</p><span class="qa">— د. أنتوني بي. ويتهام</span></div>
+  </div>
+
+  <h3 class="sec reveal">ثالثاً: قصص الأبوة الكبرى</h3>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🧑‍🎓</div><div><div class="story-label">رسالة وقصة</div><h4>احترام الأجداد</h4></div></div>
+    <p>تخرّج جدّنا لأمّنا في جامعة هارفارد، وبمناسبة سجل لمّ شمل الدفعة الخمسين أُرسل استبيان من الجامعة يسأل عن الألقاب والإنجازات والجوائز التي تلقّاها الخريجون. وقد غضبت الكاتبة (باتريشيا ليفين) من صيغة الاستبيان، لأنها توحي بأن من لم يحقق هدفاً سامياً فهو فاشل. وكتبت إلى أمين سر الدفعة تقول إن والدها هارولد بوستر "رجل رائع بحق، هدفه تحقيق السعادة الدائمة لأسرته"، وإنه حقق ذلك بنسبة نجاح بلغت 110%، ولم يكن يذكر "مرة واحدة لم يكن فيها متواجداً عند الحاجة". وإذا كانت هناك جوائز بأسماء "أعظم أب" و"أروع جد" و"أوفى صديق" فقد كان سيحصدها جميعاً. ورد أمين سر الدفعة (جون إم. لوكوود) بأنه يجد الخطاب الأكثر دقة ووصفاً لإنسان نادر، وأنه يتمنى الشفاء للأب المذكور.</p>
+    <div class="lesson-line">العبرة: النجاح الحقيقي للأب هو ما يتركه في أسرته من حب وحضور لا ما يحمله من ألقاب.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🏀</div><div><div class="story-label">قصة</div><h4>الوقوف بشموخ</h4></div></div>
+    <p>يروي ستيف فاريز (Steve Farrier) أنه حين كان طالباً في السنة الثانية بالمدرسة العليا انتقلت أسرته إلى مدينة ومدرسة جديدتين، وأسرع طرق الصداقة الانخراط في لعبة رياضية. لكنه كان حصل على تقدير "مقبول" في تقريره الأخير بسبب سلوكه السيئ عند تسليم الأوراق، وكان أبوه قد وضع قاعدة للأبناء الثلاثة: أي تقدير أقل من "جيد" يمنع من المشاركة في الألعاب الرياضية. وكان الأب نفسه لاعب كرة سلة وكرة قدم بارعاً، لكنه كان أكثر اهتماماً ببناء شخصية ابنه من تطوير رمياته. وفي حصة التدريب البدني، سأل المدرب (وكان ضخماً متعالياً) عن سبب عدم انضمامه للفريق، ثم قال إن القواعد تسمح له باللعب إذا كان له تقدير "مقبول" واحد، فرد الفتى بأن لوالده "قواعد تأهل خاصة به". وطلب المدرب رقم والده للاتصال به، فكان يعرف الفتى رد أبيه.</p>
+    <p>وفي المساء أخبره الأب أن المدرب اتصل، وأنه رفض طلبه، ثم ذكّره بأهمية أن يكون مسؤولاً داخل الفصل. وفي الصباح جاءه المدرب في غرفة الملابس يقول: "إنني لا أحترم والدك كثيراً"، فرد الفتى: "أيها المدرب، إنني أحترم والدي أشد الاحترام، وأريدك أن تعلم أنني لن ألعب كرة السلة تحت قيادتك أبداً." ولم يفعل؛ فقد حسّن درجاته، لكنه رفض اللعب لفريق لا يحترم والده. وكانت تلك نهاية حياته كلاعب كرة سلة في المدرسة العليا. ويختم الراوي: "كان المدرب يرغب في الفوز بمباريات فريقه، أما أبي فقد كان يرغب في بناء شخصية ابنه."</p>
+    <div class="lesson-line">العبرة: الأب الذي يبني الشخصية يرى أبعد من النتيجة الآنية، والابن الذي يحترم أباه يختار المبدأ على المكسب.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">🐟</div><div><div class="story-label">قصة</div><h4>صيد العمر</h4></div></div>
+    <p>يروي الكاتب جيمس بي. لينفستي (James P. Linfesti) أن فتى في الحادية عشرة كان مع أبيه في كوخ الأسرة بجزيرة وسط بحيرة نيو هامبشاير، في الليلة السابقة لبدء موسم صيد سمك القاروس. اصطاد الفتى سمكة ضخمة من القاروس، أكبر ما رآه في حياته، وكان الأب يراقب بإعجاب. وفي العاشرة مساءً، والموسم يبدأ بعد ساعتين، نظر الأب إلى السمكة ثم إلى ابنه. قال: "سيكون عليك أن تعيدها إلى الماء يا بني." فبكى الفتى: "أبي!" فقال الأب: "ستكون هناك أسماك أخرى." قال الفتى: "ولكنها لن تكون بحجم هذه." نظر حول البحيرة فلم يجد أحداً، ثم نظر إلى والده، وعرف أن القرار غير قابل للتفاوض، فحرر السمكة ببطء وأنزلها إلى الماء.</p>
+    <p>مضى على ذلك أربعة وعشرون عاماً؛ وصار الفتى مهندساً معمارياً ناجحاً في نيويورك، ولا يزال كوخ والده قائماً هناك، وهو يصطحب أبناءه إلى المكان نفسه. ولم يصطد منذ ذلك الحين سمكة بضخامة تلك، لكنه ما يزال يرى تلك السمكة أمام عينيه "مراراً وتكراراً" في كل مرة يواجه فيها مسألة أخلاقية. ويعلّق المؤلف: "الأخلاقيات أمور بسيطة تتعلق بالصواب والخطأ، لكن تطبيقها عملياً هو الأمر الصعب"؛ ولو تعلمنا في صغرنا أن نعيد السمكة إلى الماء، لصار قرار فعل الصواب "حياً نقياً واضحاً في الذاكرة". فهي "قصة عن فعل الصواب، ومن ثم اكتساب القوة والصلابة إلى الأبد".</p>
+    <div class="lesson-line">العبرة: الصواب الذي يُفعل حين لا يراه أحد يصبح ذاكرة تشكّل صاحبه مدى الحياة.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">📚</div><div><div class="story-label">قصة</div><h4>اقرأ واحدة الليلة</h4></div></div>
+    <p>يذكر الكاتب أن أبناءه كبروا واستقلوا، وأن حجرة اللعب بالدور السفلي صارت متاحة له للكتابة بهدوء. لكن في صباح سبت طلبت منه الطفلة الصغيرة من أفراد العائلة أن يجلس معها، وقالت: "اقرأ لي يا جدي." فأخذ الكتاب وقرأ لها، ثم تذكّر قصيدة مكتوبة بخط اليد معلّقة على جدار غرفة نومهما كتبتها إحدى بناته منذ سنوات، وتنتهي بهذين البيتين: "إنني أبداً لن أكون ثرية كملكة، لكن عزائي أن لديّ أماً تقرأ لي." (والقصيدة للشاعر ريتشارد سبيت بحسب ما ورد في الصفحة). وكان المعنى أن القراءة للأطفال وقت لا يُنسى، ولا يعوضه شيء.</p>
+    <div class="lesson-line">العبرة: الوقت الذي تقضيه مع أطفالك يسكن ذاكرتهم أكثر من الأشياء التي تقدمها لهم.</div>
+  </div>
+
+  <div class="story reveal">
+    <div class="story-head"><div class="story-icon">⏰</div><div><div class="story-label">قصة</div><h4>365 ساعة</h4></div></div>
+    <p>يحكي أحد الأبناء أن أعظم هدية تلقاها في حياته كانت في أحد الأعياد، حين قال له أبوه: "ولدي العزيز، هذا العام سأمنحك 365 ساعة من وقتي؛ ساعة كل يوم بعد العشاء." ولم يوفِ أبوه بوعده فحسب، بل جدّده كل عام بعد ذلك. ويقول الراوي: "إن ما أنا عليه هو نتاج وقت أبي."</p>
+    <div class="lesson-line">العبرة: الوقت المنتظم الذي يُقدَّم بالوعد والوفاء أغلى هدية.</div>
+  </div>
+
+  <h3 class="sec reveal">رابعاً: الخلاصة الداخلية للفصل</h3>
+  <div class="box lesson reveal">
+    <div class="box-title">دروس مستفادة <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <ul class="plain">
+        <li>القدوة أقوى من النصيحة: فالأطفال يحاكون تصرفات آبائهم قبل أن يسمعوا توجيهاتهم.</li>
+        <li>الثناء على المحاولة لا على النتيجة وحدها يبني الثقة والمثابرة.</li>
+        <li>الأمور الكبرى تُبنى بالوقت الصغير المتواصل، لا بالأيام الاستثنائية.</li>
+        <li>التواضع في الاعتراف بالخطأ يعلّم الأطفال الشجاعة الأخلاقية.</li>
+        <li>لا يُقاس نجاح الأب بالمكاسب الخارجية، بل بالشخصية التي يورّثها.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="duty-box reveal">
+    <h3>واجبك: الأبوة</h3>
+    <p class="intro-d">أن تكون أباً صالحاً ليس بالأمر الهين، ولا يعني أبداً عدم ارتكاب أي خطأ، لكن ينبغي أن تستمر في المحاولة. إليك بعض الاقتراحات:</p>
+    <ul class="duty-list">
+      <li>تجنّب استخدام عبارة "عندما كنت في مثل سنك" أثناء محاولة توضيح وجهة نظرك لأبنائك.</li>
+      <li>اطلب من طفلك أن يقرأ لك قصته المفضلة.</li>
+      <li>احمل صور أطفالك في محفظتك أو كيس نقودك، ولا تخجل من إخراجها أمام الناس.</li>
+      <li>عندما يقول أحد الأطفال إنه يشعر بالملل، اصطحبه إلى أقرب متحف أو مكتبة.</li>
+      <li>احتفظ بأي أعمال فنية يصنعها طفلك في المدرسة ويعود بها إلى البيت.</li>
+      <li>تذكّر أن أفضل وسيلة لتنظيف حجرة طفل تكون أحياناً أن تغلق الباب عليه فحسب.</li>
+    </ul>
+  </div>
+
+  <div class="review reveal">
+    <h4>أسئلة للمراجعة</h4>
+    <ol>
+      <li>لماذا رفض الفتى في قصة "الوقوف بشموخ" اللعب تحت قيادة المدرب؟ وما الذي كان يعنيه أبوه؟</li>
+      <li>ما الذي تكشفه قصة "صيد العمر" عن العلاقة بين الأخلاق والمواقف الخفية؟</li>
+      <li>ما الفرق بين الثناء على الجهد والثناء على النتيجة، كما في قول بوب مواد؟</li>
+      <li>كيف تطبق قاعدة "اقضِ معهم ضعف الوقت وأنفق نصف المال" (جيل سويت)؟</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- اللوحة 7: المبادئ والأسئلة -->
+<!-- ======================================================= -->
+<section class="panel content" id="p-princ" role="tabpanel">
+  <div class="chapter-head reveal">
+    <div class="symbol">🗝️</div>
+    <small>المراجعة الشاملة</small>
+    <h2>المبادئ الكبرى والأسئلة</h2>
+    <p>المبادئ التي تتكرر عبر الفصول، والتطبيقات، ومراجعة المحتوى.</p>
+  </div>
+
+  <h3 class="sec reveal">أولاً: المبادئ الكبرى التي تتكرر في الكتاب</h3>
+  <div class="principles reveal">
+    <div class="principle"><div class="pi">🤲</div><h4>العطاء أساس السعادة</h4><p>يتكرر في الإحسان والكرم والزواج والأبوة أن السعادة تنمو حين نعطي لا حين نطلب (قول المؤلفين).</p></div>
+    <div class="principle"><div class="pi">👁️</div><h4>الانتباه إلى النعمة الصغيرة</h4><p>المتع البسيطة والتوجه الذهني الإيجابي وجهان لعملة واحدة: أن يرى الإنسان ما بين يديه (قول المؤلفين).</p></div>
+    <div class="principle"><div class="pi">🪞</div><h4>القدوة قبل النصيحة</h4><p>يتكرر في الأبوة والزواج أن الفعل المتسق مع القول هو ما يُحدث الأثر (قول المؤلفين).</p></div>
+    <div class="principle"><div class="pi">🕊️</div><h4>الصفح والاعتذار</h4><p>في الزواج والتوجه الذهني: الصفح السريع والاعتذار الفوري طريق إلى الاستمرار (قول المؤلفين).</p></div>
+    <div class="principle"><div class="pi">⏳</div><h4>الوقت هو الهدية</h4><p>تتكرر في المتع البسيطة والأبوة فكرة أن الوقت المقدم للآخرين أغلى من المال (استنتاج من الملخّص يستند إلى نصوص الكتاب).</p></div>
+    <div class="principle"><div class="pi">🌿</div><h4>الرعاية اليومية</h4><p>الحب والعلاقات تحتاج إلى عناية مستمرة لا تنتظر المناسبات (استنتاج من الملخّص يستند إلى قصص الزواج والأبوة).</p></div>
+  </div>
+
+  <h3 class="sec reveal">ثانياً: روابط بين الفصول</h3>
+  <table class="cov reveal">
+    <thead><tr><th>الفكرة</th><th>الفصول المرتبطة</th><th>وجه الاتفاق</th><th>وجه التمايز</th></tr></thead>
+    <tbody>
+      <tr><td>الكرم والعطاء</td><td>الإحسان، الكرم، الزواج</td><td>العطاء بلا انتظار مقابل</td><td>الإحسان في اللفتة الصغيرة، والكرم في الجهد والمال والذات</td></tr>
+      <tr><td>الاكتفاء والامتنان</td><td>المتع البسيطة، التوجه الذهني</td><td>تقدير ما نملك بالفعل</td><td>المتع البسيطة تتعلق بالحواس والوقت، والتوجه الذهني بالموقف الداخلي</td></tr>
+      <tr><td>القدوة والتربية</td><td>الأبوة، الزواج، الإحسان</td><td>ما نفعله يؤثر في من حولنا</td><td>في الأبوة تتعلق بالأبناء، وفي الزواج بالشريك</td></tr>
+      <tr><td>الصفح والاحترام</td><td>التوجه الذهني، الزواج، الأبوة</td><td>التسامح يبني العلاقات</td><td>يركّز الزواج على الاعتذار المباشر، ويركز التوجه الذهني على التحرر من الحقد</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="sec reveal">ثالثاً: تحويل الأفكار إلى خطوات عملية</h3>
+  <div class="box practice reveal">
+    <div class="box-title">تطبيق عملي متكامل <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <ul class="plain">
+        <li>كل يوم: قل كلمة طيبة لشخص، وأعطِ شيئاً ولو صغيراً (الإحسان والكرم).</li>
+        <li>كل أسبوع: خصص وقتاً لمتعة بسيطة تستمتع بها، وأمسية واحدة مع شريك حياتك أو أسرتك.</li>
+        <li>كل صباح: اختر توجهك الذهني قبل أن تفتح الهاتف؛ وقل شيئاً إيجابياً أول الصباح.</li>
+        <li>عند الخلاف: اعتذر أولاً إن كنت مخطئاً، واحرص على أن لا يبيت الخلاف.</li>
+        <li>مع الأبناء: امدح الجهد، وقضِ وقتاً منتظماً معهم، وكن قدوة في ما تقوله.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">رابعاً: قائمة بما ينبغي تذكره</h3>
+  <div class="box core reveal">
+    <div class="box-title">أهم النقاط للتذكر <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <ul class="plain">
+        <li>الإحسان لا يشترط كبر الحجم، والإحسان الحقيقي لا يطلب مقابل.</li>
+        <li>الكرم يُثري المعطي، والسعادة في إرادتها للآخرين.</li>
+        <li>المتع البسيطة تملأ الحياة إن انتبهنا لها، ومنها كتابة اليوميات والموسيقى والضحك.</li>
+        <li>التوجه الذهني يحدد ما نراه، وهو قرار يومي نملكه.</li>
+        <li>الزواج عهد يُجدَّد: الاحترام، والكلمة الطيبة، والصفح، والخصوصية، والاعتذار.</li>
+        <li>الأبوة بالقدوة والوقت والثناء الصادق، والأبناء يتذكرون الوقت الذي قضيته معهم.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">خامساً: أسئلة لاسترجاع المحتوى</h3>
+  <div class="review reveal">
+    <h4>أسئلة عامة</h4>
+    <ol>
+      <li>ما الفصول الستة للكتاب بترتيبها؟</li>
+      <li>ما الفكرة التي تكررت في أكثر من فصل؟ وما دليلها؟</li>
+      <li>ما الذي يعنيه قول الكتاب: "الحب بالنسبة للأطفال يعني قضاء الوقت معهم"؟</li>
+      <li>ما الفرق بين مبادئ الكتاب (قول المؤلفين) واستنتاجات الملخّص؟ أعطِ مثالاً لكل منهما.</li>
+      <li>لماذا تُعد قصة "صيد العمر" ختاماً مناسباً لفكرة الأخلاق والقدوة؟</li>
+    </ol>
+  </div>
+
+  <h3 class="sec reveal">سادساً: التحقق من الشمول (المراجعة النهائية)</h3>
+  <table class="cov reveal">
+    <thead><tr><th>الجزء</th><th>الصفحات</th><th>مغطّى في الملخص</th></tr></thead>
+    <tbody>
+      <tr><td>الغلاف والمقدمة</td><td>1–5</td><td>نعم (اللوحة الأولى)</td></tr>
+      <tr><td>فصل الإحسان</td><td>6–41</td><td>نعم: الفكرة، الحكم، القصص، الواجب، الأسئلة</td></tr>
+      <tr><td>فصل الكرم</td><td>42–77</td><td>نعم: الفكرة، الحكم، القصص، الواجب، الأسئلة</td></tr>
+      <tr><td>فصل المتع البسيطة</td><td>78–114</td><td>نعم: المدخل، الحكم، القصص، الواجب، الأسئلة</td></tr>
+      <tr><td>فصل التوجه الذهني</td><td>115–145</td><td>نعم: المقدمة، الحكم، القصص، الواجب، الأسئلة</td></tr>
+      <tr><td>فصل الزواج</td><td>146–190</td><td>نعم: الوعد، الحكم، القصص، الواجب، الأسئلة</td></tr>
+      <tr><td>فصل الأبوة</td><td>191–228</td><td>نعم: التقدير، الحكم، القصص الكبرى، الواجب، الأسئلة</td></tr>
+      <tr><td>صفحة التقديم الأخيرة</td><td>229</td><td>نعم (ضمن الخلاصة النهائية)</td></tr>
+    </tbody>
+  </table>
+  <div class="note-src reveal" style="margin-top:18px">
+    <strong>تنبيه:</strong> الاقتباسات المكتوبة هنا منقولة بالمعنى أو مختصرة في بعض المواضع، وقد وضعت النص بين علامتي اقتباس حيث كان نصاً مقتطعاً. عند الاستشهاد الرسمي يُرجع إلى الطبعة المطبوعة.
+  </div>
+</section>
+
+<!-- ======================================================= -->
+<!-- اللوحة 8: الخلاصة النهائية (إضافة للملخص التفصيلي) -->
+<!-- ======================================================= -->
+<section class="panel content" id="p-final" role="tabpanel">
+  <div class="chapter-head reveal">
+    <div class="symbol">✨</div>
+    <small>إضافة إلى الملخص التفصيلي</small>
+    <h2>الخلاصة النهائية</h2>
+    <p>ليست بديلاً عن الفصول السابقة، بل تركيز لها.</p>
+  </div>
+
+  <div class="box core reveal">
+    <div class="box-title">الفكرة الكبرى للكتاب <span class="tag author">قول المؤلفين</span></div>
+    <div class="box-body">
+      <p>الحياة الطيبة تُبنى من عادات بسيطة متكررة: أن نحسن إلى الناس، وأن نعطي بكرم، وأن نتذوق ما بين أيدينا، وأن نختار توجهاً إيجابياً، وأن نبني علاقة زوجية بالوعد والرعاية، وأن نربي أبناءنا بالقدوة والوقت.</p>
+    </div>
+  </div>
+
+  <div class="box summary reveal">
+    <div class="box-title">ما الذي يميز هذا الكتاب؟ <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <p>يقدم الكتاب الحكمة في صورة قصص واقتباسات قصيرة، ويختمها بتطبيقات يومية، فيجمع بين التأمل والعمل. ويبدو أن سر تأثيره في بساطة الأسلوب وقرب المواقف من الحياة اليومية.</p>
+    </div>
+  </div>
+
+  <h3 class="sec reveal">أهم خمس نقاط</h3>
+  <div class="principles reveal">
+    <div class="principle"><div class="pi">1️⃣</div><h4>الإحسان بالأفعال الصغيرة</h4><p>لا تنتظر المناسبات الكبرى؛ ابدأ بالكلمة الطيبة والابتسامة.</p></div>
+    <div class="principle"><div class="pi">2️⃣</div><h4>الكرم بالوقت والمال والذات</h4><p>العطاء يُثري صاحبه، والسعادة تُعطى ولا تُسلب.</p></div>
+    <div class="principle"><div class="pi">3️⃣</div><h4>المتع البسيطة</h4><p>السعادة قريبة منا؛ في شروق، وكتاب، وكوب شاي، وحضن طفل.</p></div>
+    <div class="principle"><div class="pi">4️⃣</div><h4>التوجه الذهني</h4><p>نختار موقفنا، وهو ما يحدد ما نراه في الناس والظروف.</p></div>
+    <div class="principle"><div class="pi">5️⃣</div><h4>الزواج والأبوة</h4><p>عهدٌ يُجدَّد كل يوم، وأبناء يتعلمون بما نفعله أكثر مما نقوله.</p></div>
+  </div>
+
+  <div class="box lesson reveal">
+    <div class="box-title">ما الذي يحتاج القارئ إلى تذكّره؟ <span class="tag infer">استنتاج من الملخّص</span></div>
+    <div class="box-body">
+      <p>الكتاب لا يدّعي أن الحياة الطيبة سهلة، بل يقترح أن نبدأ من الأصغر: موقف واحد في اليوم يُختار بوعي، وتطبيق واحد من "واجبك" في كل أسبوع، وعودة يومية إلى القلب الذي يحتاج إلى حب وشكر وصفح.</p>
+    </div>
+  </div>
+
+  <div class="duty-box reveal">
+    <h3>خطة قراءة وتطبيق (أسبوعان)</h3>
+    <ul class="duty-list">
+      <li>الأسبوع الأول: طبّق من كل فصل فعلاً واحداً من "واجبك" يومياً لمدة سبعة أيام.</li>
+      <li>الأسبوع الثاني: اختر فصلاً واحداً أعجبك، وأعد قراءة اقتباساته، واكتب عنه صفحة تعكس تجربتك.</li>
+      <li>في نهاية الأسبوعين: راجع أسئلة المراجعة في كل فصل، وأجب عنها بلسانك.</li>
+    </ul>
+  </div>
+
+  <div class="footer reveal" style="margin-top:40px">
+    <p>أُعدّ هذا الملخص من قراءة صفحات الكتاب الـ229 بصرياً. الاستنتاجات الواردة في الصناديق المعلّمة بـ«استنتاج من الملخّص» ليست من نص المؤلفين.</p>
+  </div>
+</section>
+
+<footer class="footer">مميز بالأصفر — ملخص تفصيلي بالعربية</footer>
+
+</div>
+
+<a href="#top" class="top" id="topBtn" aria-label="العودة إلى الأعلى">↑</a>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab-btn');
+  var panels = document.querySelectorAll('.panel');
+  var progress = document.getElementById('progressBar');
+  var topBtn = document.getElementById('topBtn');
+  var tabsBar = document.getElementById('tabs');
+
+  function offsetForPanels(){
+    return (tabsBar ? tabsBar.offsetHeight : 0) + 12;
+  }
+
+  function setActive(id){
+    tabs.forEach(function(t){
+      var on = t.getAttribute('data-panel') === id;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+  }
+
+  function currentPanel(){
+    var line = offsetForPanels() + 4;
+    var current = panels[0] ? panels[0].id : '';
+    panels.forEach(function(p){
+      if(p.getBoundingClientRect().top <= line){ current = p.id; }
+    });
+    return current;
+  }
+
+  function goTo(id, smooth){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var y = el.getBoundingClientRect().top + window.pageYOffset - offsetForPanels();
+    window.scrollTo({top: Math.max(0, y), behavior: smooth ? 'smooth' : 'auto'});
+    setActive(id);
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var id = t.getAttribute('data-panel');
+      try{ history.replaceState(null, '', '#' + id); }catch(e){}
+      goTo(id, true);
+    });
+  });
+
+  // فتح القسم المذكور في الرابط عند التحميل
+  var initial = (location.hash || '').replace('#','');
+  if(initial && document.getElementById(initial) && document.getElementById(initial).classList.contains('panel')){
+    goTo(initial, false);
+  } else {
+    setActive(panels[0] ? panels[0].id : '');
+  }
+
+  // ظهور تدريجي
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, {threshold: 0.08});
+    document.querySelectorAll('.reveal').forEach(function(el){
+      if(!el.classList.contains('visible')) io.observe(el);
+    });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  // شريط التقدم وزر العودة للأعلى وتحديد التبويب النشط أثناء التمرير
+  var lastActive = '';
+  function onScroll(){
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    if(progress) progress.style.width = pct.toFixed(2) + '%';
+    if(topBtn){
+      if(h.scrollTop > 400) topBtn.classList.add('show'); else topBtn.classList.remove('show');
+    }
+    var cur = currentPanel();
+    if(cur && cur !== lastActive){ lastActive = cur; setActive(cur); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+})();
+</script>
+
+<!-- ====== ميزة العلامة المرجعية (Bookmark) ====== -->
+<script>
+(function(){
+    var BOOKMARK_KEY = 'yellow_highlight_bookmark_v1';
+    var bookmarked = null;
+    try { bookmarked = localStorage.getItem(BOOKMARK_KEY); } catch(e){}
+
+    var tabEls = document.querySelectorAll('.tab-btn');
+
+    function refreshBookmarkUI(){
+        tabEls.forEach(function(t){
+            var target = t.getAttribute('data-panel');
+            var on = bookmarked && target === bookmarked;
+            t.classList.toggle('bookmarked', !!on);
+            if(on){
+                t.setAttribute('title','هذه علامة توقفك. اضغط مرة أخرى لإزالة العلامة 🏷');
+            } else {
+                t.removeAttribute('title');
+            }
+        });
+    }
+
+    function saveBookmark(id){
+        bookmarked = id;
+        try {
+            if(id){ localStorage.setItem(BOOKMARK_KEY, id); }
+            else { localStorage.removeItem(BOOKMARK_KEY); }
+        } catch(e){}
+        refreshBookmarkUI();
+    }
+
+    refreshBookmarkUI();
+
+    tabEls.forEach(function(t){
+        t.addEventListener('click', function(){
+            var target = t.getAttribute('data-panel');
+            if(!target) return;
+            if(bookmarked === target){
+                saveBookmark(null);   // إزالة العلامة
+            } else {
+                saveBookmark(target); // وضع العلامة هنا
+            }
+        });
+    });
+
+    if(bookmarked){
+        var bTab = document.querySelector('.tab-btn[data-panel="'+bookmarked+'"]');
+        if(bTab){
+            try { bTab.scrollIntoView({inline:'center', block:'nearest'}); } catch(e){}
+        }
+    }
+})();
+</script>
+
+</body>
+</html>

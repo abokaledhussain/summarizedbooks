@@ -1,0 +1,994 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رحلة إلى قلب مطمئن</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fdfbf7; --ink:#2c2523; --dark:#241a10; --brown:#3d2e1e;
+  --yellow:#ebd800; --gold:#c29b38; --green:#2d6a4f; --red:#a83232; --border:#e2d9c8;
+  --muted:#7a6e62;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Cairo",Tahoma,sans-serif;font-size:17px;line-height:1.7;background-color:#fdfbf7}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px}
+
+/* ---------- cover ---------- */
+.cover{background:linear-gradient(160deg,#241a10 0%,#3d2e1e 60%,#2c2014 100%);color:#fff;margin:16px auto 0;max-width:900px;border-radius:22px;padding:56px 24px 48px;text-align:center;position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;inset:12px;border:1px solid var(--gold);border-radius:14px;pointer-events:none}
+.cover .badge{display:inline-block;background:var(--yellow);color:var(--dark);font-weight:800;font-size:14px;padding:4px 16px;border-radius:999px;margin-bottom:18px}
+.cover h1{font-family:"Scheherazade New",serif;font-size:76px;line-height:1.3;color:var(--yellow);margin:0 0 6px;font-weight:700}
+.cover .sub{font-family:"Amiri",serif;font-size:24px;color:#f5ecd7;margin:0 0 26px}
+.cover .authors{font-size:17px;color:#f5ecd7}
+.cover .authors b{color:var(--yellow)}
+.cover .en{font-size:14px;color:#cdbf9f;margin-top:4px;direction:ltr}
+.cover .status{margin:26px auto 0;max-width:620px;font-size:14px;color:#e9dcc0;background:rgba(255,255,255,.06);border:1px solid rgba(194,155,56,.5);border-radius:12px;padding:10px 14px}
+
+/* ---------- sticky tabs & progress ---------- */
+.progress{position:fixed;top:0;right:0;height:4px;width:0;background:linear-gradient(90deg,var(--gold),var(--yellow));z-index:60}
+.tabs{position:sticky;top:0;z-index:50;background:rgba(253,251,247,.97);backdrop-filter:blur(6px);border-bottom:1px solid var(--border);margin-top:20px}
+.tabs-inner{max-width:900px;margin:0 auto;padding:10px 16px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.tabs-inner::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;font-family:"Cairo",sans-serif;font-weight:700;font-size:15px;color:var(--brown);background:#fff;border:1px solid var(--border);border-radius:10px;padding:8px 14px;cursor:pointer;white-space:nowrap}
+.tab.active{background:linear-gradient(135deg,#241a10,#3d2e1e);color:#fff;border:1.5px solid var(--yellow)}
+
+/* ---------- chapters ---------- */
+main{max-width:900px;margin:0 auto;padding:0 16px 40px}
+.chapter{padding-top:34px;scroll-margin-top:70px}
+.ch-head{text-align:center;padding:18px 12px 22px;border-bottom:2px solid var(--gold);margin-bottom:22px}
+.ch-icon{font-size:54px;line-height:1.2}
+.ch-no{display:inline-block;color:var(--gold);font-weight:800;font-size:14px;letter-spacing:.5px;margin-bottom:4px}
+.ch-head h2{font-family:"Scheherazade New",serif;font-size:50px;line-height:1.3;color:var(--dark);margin:4px 0}
+.ch-desc{color:var(--muted);font-size:16px;margin:0}
+h3{font-family:"Cairo",sans-serif;font-size:21px;color:var(--brown);margin:30px 0 10px;padding-right:12px;border-right:4px solid var(--gold)}
+p{font-family:"Amiri",serif;font-size:21px;line-height:2;margin:10px 0}
+.tag{display:inline-block;font-family:"Cairo",sans-serif;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;margin-left:6px;vertical-align:middle}
+.t-a{background:#efe3c4;color:#5a4220}
+.t-i{background:#e4ece6;color:#2d6a4f}
+.qv{font-family:"Amiri",serif;font-size:22px;line-height:2.1;color:var(--dark);background:#fff;border:1px solid var(--border);border-radius:14px;padding:14px 18px;margin:16px 0;text-align:center}
+.ref{font-family:"Cairo",sans-serif;font-size:13px;color:var(--muted);margin-top:4px}
+.warn{font-size:14px;color:var(--red);background:#fbeeee;border-radius:10px;padding:8px 12px;margin:12px 0}
+
+/* ---------- boxes ---------- */
+.box{border-radius:14px;padding:16px 20px;margin:20px 0;font-family:"Cairo",sans-serif;font-size:16px;line-height:1.9;break-inside:avoid}
+.box h4{margin:0 0 6px;font-size:17px;font-weight:800}
+.box p{font-size:17px;line-height:1.9;margin:6px 0;font-family:"Cairo",sans-serif}
+.box-key{background:#fff8c7;border-right:5px solid var(--gold)}
+.box-sum{background:#e8f4ec;border-right:5px solid var(--green)}
+.box-lesson{background:#fbf6e9;border:1px solid var(--border)}
+.box-term{background:#fbe9ee;border-right:5px solid #c0708a}
+.box ul{margin:6px 0;padding-right:20px}
+
+.quote{background:linear-gradient(135deg,#241a10,#3d2e1e);color:#fff;border-radius:16px;padding:22px 26px;margin:24px 0;text-align:center;break-inside:avoid}
+.quote blockquote{margin:0;font-family:"Amiri",serif;font-style:italic;font-size:22px;line-height:2}
+.quote cite{display:block;margin-top:8px;font-style:normal;color:var(--yellow);font-family:"Cairo",sans-serif;font-size:14px;font-weight:700}
+
+/* stories */
+.story{display:flex;gap:14px;align-items:flex-start;background:linear-gradient(135deg,#fdf6e3,#f6efe0);border:1px solid var(--border);border-radius:16px;padding:18px 20px;margin:18px 0;break-inside:avoid}
+.story-ico{flex:0 0 52px;height:52px;border-radius:50%;background:var(--brown);color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px}
+.story h4{margin:0 0 6px;font-family:"Cairo",sans-serif;font-size:18px;color:var(--dark)}
+.story p{font-size:19px;margin:6px 0}
+.moral{border-top:1px dashed var(--gold);margin-top:10px;padding-top:8px;font-family:"Cairo",sans-serif;font-size:15px;color:#5a4220}
+
+/* wisdom */
+.wis-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.wis{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;break-inside:avoid}
+.wis-num{color:var(--gold);font-weight:800;font-family:"Cairo",sans-serif;font-size:15px}
+.wis-txt{font-family:"Amiri",serif;font-size:20px;line-height:2;margin:6px 0;color:var(--dark)}
+.wis-src{color:var(--green);font-family:"Cairo",sans-serif;font-size:13px;font-weight:700}
+
+/* keys list */
+.keys{display:grid;gap:14px;margin:18px 0}
+.key{background:#fff;border:1px solid var(--border);border-right:5px solid var(--gold);border-radius:14px;padding:16px 20px;break-inside:avoid}
+.key h4{margin:0 0 4px;font-family:"Cairo",sans-serif;font-size:18px;color:var(--dark)}
+.key .k-ay{font-family:"Amiri",serif;font-size:19px;color:var(--brown);margin:4px 0}
+
+/* table */
+.tbl-wrap{overflow-x:auto;margin:18px 0}
+table{width:100%;border-collapse:collapse;font-family:"Cairo",sans-serif;font-size:15px;background:#fff}
+th,td{border:1px solid var(--border);padding:10px 12px;text-align:right;vertical-align:top}
+thead th{background:#f3ede0;color:var(--dark);font-weight:800}
+
+.status-line{font-size:14px;color:var(--muted);text-align:center;margin:28px 0 0;font-family:"Cairo",sans-serif}
+
+/* back to top */
+.totop{position:fixed;bottom:22px;left:18px;width:50px;height:50px;border-radius:50%;border:2px solid var(--yellow);background:linear-gradient(135deg,#241a10,#3d2e1e);color:var(--yellow);font-size:22px;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(36,26,16,.3);z-index:55}
+.totop.show{display:flex}
+
+/* ---------- phone ---------- */
+@media (max-width:600px){
+  body{font-size:16px}
+  .cover{margin:0;border-radius:0;padding:44px 16px 36px}
+  .cover h1{font-size:56px}
+  .cover .sub{font-size:20px}
+  .tabs-inner{padding:10px 16px}
+  .ch-head h2{font-size:40px}
+  .ch-icon{font-size:44px}
+  p{font-size:19px}
+  .wis-grid{grid-template-columns:1fr}
+  .story{flex-direction:column;gap:10px}
+  .quote blockquote{font-size:19px}
+}
+
+/* ---------- print ---------- */
+@media print{
+  @page{size:A4;margin:14mm}
+  .progress,.tabs,.totop,.cover .status{display:none!important}
+  body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .cover{margin:0;border-radius:0;break-after:page}
+  .chapter{break-before:page;padding-top:0}
+  .box,.quote,.story,.wis,.key,table,tr,figure{break-inside:avoid;page-break-inside:avoid}
+  h3,h4{break-after:avoid}
+}
+
+/* ---------- reduced motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+
+
+  /* الغلاف النصي */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hero-banner {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding: 0;
+    border: none;
+    background: #110c08;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-cover-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 80vh;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+  /* واجبك */
+  .box-duty{background:linear-gradient(135deg,#3d2e1e,#241a10);color:#fff;border:none;border-radius:14px;padding:22px 24px;margin:18px 0}
+  .box-duty h4{color:#ebd800;font-size:1.25rem;margin:0 0 10px}
+  .box-duty ul.checks{list-style:none;padding:0;margin:0}
+  .box-duty ul.checks li{padding:6px 0;line-height:1.9}
+  .box-duty ul.checks li::before{content:"✔";color:#ebd800;margin-left:8px;font-weight:700}
+/* ====== ميزة العلامة المرجعية (Bookmark) ====== */
+.tab{position:relative}
+.tab.bookmarked{
+  background:linear-gradient(135deg,#fffde8 0%,#fdfbf7 100%);
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px var(--gold),0 4px 14px rgba(184,131,20,.30);
+  padding-left:34px;
+  color:var(--dark);  /* لون داكن واضح في حالة عدم التحديد */
+}
+.tab.bookmarked.active{
+  background:linear-gradient(135deg,#241a10,#3d2e1e);
+  border:1.5px solid var(--yellow);
+  box-shadow:0 0 0 2px var(--yellow),0 4px 16px rgba(235,216,0,.40);
+  color:#ffffff;  /* لون أبيض واضح في حالة التحديد */
+}
+.tab.bookmarked::after{
+  content:"🏷";
+  position:absolute;
+  top:50%;
+  left:8px;
+  transform:translateY(-50%);
+  font-size:14px;
+  line-height:1;
+  pointer-events:none;
+  animation:bookmarkPop .42s cubic-bezier(.34,1.56,.64,1);
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.15));
+}
+@keyframes bookmarkPop{
+  0%{transform:translateY(-50%) scale(0) rotate(-30deg);opacity:0}
+  60%{transform:translateY(-50%) scale(1.4) rotate(10deg);opacity:1}
+  100%{transform:translateY(-50%) scale(1) rotate(0);opacity:1}
+}
+@media print{.tab.bookmarked::after{display:none}}
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<!-- Hero Cover / Header -->
+<header class="hero-banner">
+    <img src="../files/03/a1.jpg" alt="غلاف كتاب أغنى رجل في بابل" class="hero-cover-img">
+</header>
+<div class="progress" id="progress"></div>
+
+<nav class="tabs" aria-label="أقسام الملخص">
+  <div class="tabs-inner" id="tabs">
+    <button class="tab active" data-target="intro">المقدمة</button>
+    <button class="tab" data-target="ch1">بداية الرحلة</button>
+    <button class="tab" data-target="ch2">عندما تقترب من الله</button>
+    <button class="tab" data-target="ch3">الصلاة</button>
+    <button class="tab" data-target="ch4">مع القرآن</button>
+    <button class="tab" data-target="ch5">الذكر والدعاء</button>
+    <button class="tab" data-target="ch6">التصالح مع النفس</button>
+    <button class="tab" data-target="ch7">القلق والخوف</button>
+    <button class="tab" data-target="ch8">الرضا والصبر</button>
+    <button class="tab" data-target="ch9">العلاقات</button>
+    <button class="tab" data-target="ch10">عادات الطمأنينة</button>
+    <button class="tab" data-target="ch11">عندما تضعف</button>
+    <button class="tab" data-target="ch12">قلب في عالم مضطرب</button>
+    <button class="tab" data-target="closing">الخاتمة</button>
+    <button class="tab" data-target="duty">واجبك</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ======================= المقدمة ======================= -->
+<section class="chapter" id="intro">
+  <div class="ch-head">
+    <div class="ch-icon">📖</div>
+    <span class="ch-no">مقدمة الكتاب</span>
+    <h2>لماذا هذه الرحلة؟</h2>
+    <p class="ch-desc">دليل بسيط يذكّر القلب المتعب بالطريق إلى الطمأنينة، ويُقرأ بهدوء لا بعجلة.</p>
+  </div>
+
+  <div class="qv">﴿أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ﴾<div class="ref">[الرعد: 28]</div></div>
+
+  <h3>لماذا كُتب الكتاب؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يعيش كثيرون في ضجيج وضغوط، ويشعرون بالتعب النفسي والقلق رغم توفر أسباب الراحة المادية، والقلب لا يجد سكينته الحقيقية إلا بالقرب من الله. لذلك وُضع هذا الكتاب دليلًا عمليًا يذكّر بالطريق إلى الطمأنينة، ويستمد أفكاره من القرآن والسنة.</p>
+
+  <h3>لمن كُتب؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كُتب لكل من يستيقظ مثقلًا بالتفكير، ولمن تحيّر أمام قرارات الحياة، ولمن مر بتجربة قاسية، ولمن فقد عزيزًا أو تأخر عليه ما يتمناه، ولمن يعيش حياة مستقرة ويريد قربًا أكبر من الله. وهو للشباب الباحثين عن معنى، وللآباء والأمهات، ولكل من يريد أن يبدأ صفحة جديدة مهما كانت أخطاؤه.</p>
+
+  <h3>كيف تقرأه؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> لا يُقرأ الكتاب بسرعة ثم يُطوى، بل يُعاش معه: اقرأ بهدوء، وتوقف عند الفكرة التي تلامس مشاعرك، واحتفظ بدفتر صغير تدوّن فيه الخواطر والدروس، وخصص وقتًا يوميًا ولو عشر دقائق. فالتغيير الحقيقي يبدأ بخطوات صغيرة مستمرة.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الكتاب دعوة إلى قراءة متأنية تتحول إلى تطبيق يومي، فالطمأنينة رحلة وليست وجهة تُبلغ في يوم.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>لا تشترط الكمال لتبدأ الرحلة، يكفي صدق الرغبة وخطوة صغيرة.</li>
+      <li>اقرأ بقلب حاضر، فالفكرة الواحدة قد تغيّر نظرتك إلى الحياة.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل الأول ======================= -->
+<section class="chapter" id="ch1">
+  <div class="ch-head">
+    <div class="ch-icon">💗</div>
+    <span class="ch-no">الفصل الأول</span>
+    <h2>بداية الرحلة إلى القلب</h2>
+    <p class="ch-desc">القلب موضع الإيمان ومنبع المشاعر، وإصلاحه أول خطوة نحو الطمأنينة.</p>
+  </div>
+
+  <h3>القلب هو الأصل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> ينشغل الإنسان بإصلاح أموره الخارجية، بينما تكون حاجته الحقيقية إصلاح ما بداخله. فالقلب موضع الإيمان ومركز القرارات، وإذا صلح صلحت أمور كثيرة من حوله، وإذا اضطرب انعكس ذلك على نظرته للحياة كلها.</p>
+
+  <h3>ما القلب المطمئن؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> القلب المطمئن ليس قلبًا لم يعرف الحزن، فالأنبياء ذاقوا الخوف والتعب، لكن قلوبهم كانت متصلة بالله فلم تهزمهم المحن. وهو القلب الذي يجد ملجأه في الله كلما ضاقت به الدنيا، فلا يغرق في الهموم بل يرفع يديه إلى السماء، ولا يستسلم لليأس إذا تعثر بل يعود إلى ربه.</p>
+
+  <h3>لماذا نشعر بالضيق رغم النعم؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الإنسان روح وقلب كما هو جسد، والجسد إذا شبع والقلب جائع بقي شعور بالفراغ مهما كثرت النعم. وكثيرًا ما نلاحق المزيد معتقدين أن السعادة في المحطة التالية، فإذا وصلنا وجدنا القلب ما زال يبحث. وقد يكون الضيق رسالة رحيمة تدعونا إلى مراجعة الطريق.</p>
+
+  <h3>بين الراحة والطمأنينة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الراحة غالبًا مرتبطة بالظروف، تزيد بتحسنها وتزول بتغيرها. أما الطمأنينة فحالة يعيشها القلب حتى حين لا تكون الظروف مثالية، وهي هبة من الله لعباده الذين عرفوه ووثقوا برحمته. ولهذا كان النبي ﷺ يفزع إلى الصلاة كلما اشتدت عليه الأمور.</p>
+
+  <h3>أول خطوة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> ابدأ بالاعتراف بما في قلبك من تعب وخوف وحيرة وحاجة إلى الله، فالبدايات الصادقة لا تولد من الكمال بل من الصدق. ثم ارفع قلبك إلى الله وقل: «يا رب، أريد أن أقترب منك، فخذ بيدي إليك». ولا تحتقر البدايات الصغيرة، فالبذرة تصبح شجرة، والخطوة الواحدة تفتح طريقًا طويلًا.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> لا تُصلح حياتك من الخارج قبل أن تصلح ما بداخلك، فالطمأنينة تبدأ من قلب يعرف ربه ويثق بحكمته.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> الراحة تسكن الجسد، والطمأنينة تسكن القلب، ومصدرها القرب من الله.</p>
+    <p><b>تطبيق عملي:</b> اسأل نفسك الليلة: متى كانت آخر مرة شعرت فيها بسكينة حقيقية؟ ثم اكتب إجابتك في دفترك.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>النعم وحدها لا تصنع الطمأنينة، بل معرفة المنعم وشكره.</li>
+      <li>ليست كل راحة طمأنينة، ولا كل طمأنينة راحة.</li>
+      <li>التغيير يبدأ بقرار: أن تبدأ.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل الثاني ======================= -->
+<section class="chapter" id="ch2">
+  <div class="ch-head">
+    <div class="ch-icon">🤲</div>
+    <span class="ch-no">الفصل الثاني</span>
+    <h2>عندما تقترب من الله</h2>
+    <p class="ch-desc">القرب من الله أقرب طريق إلى الطمأنينة، والعودة إليه باب لا يُغلق.</p>
+  </div>
+
+  <h3>العودة التي تغيّر كل شيء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> قد تطول الغفلة أو تتراكم الذنوب حتى يظن صاحبها أن العودة صعبة، لكن الله لا يغلق بابه أمام من يريد الرجوع. والتوبة ليست نهاية الطريق بل بدايته، والعودة لا تحتاج إلى ظروف مثالية، بل تبدأ بلحظة صدق.</p>
+  <div class="qv">﴿قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنفُسِهِمْ لَا تَقْنَطُوا مِن رَّحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا﴾<div class="ref">[الزمر: 53]</div></div>
+
+  <h3>الله أقرب مما تتخيل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> قد يبتسم الإنسان أمام الناس وفي قلبه هموم لا يعرفها أحد، لكن الله يعلم ما في قلبك قبل أن تنطق، ويسمع دعاءك، ويرى دمعتك. وإذا شعرت بالوحدة فتذكر أنك لست وحدك أبدًا.</p>
+  <div class="qv">﴿وَإِذَا سَأَلَكَ عِبَادِي عَنِّي فَإِنِّي قَرِيبٌ ۖ أُجِيبُ دَعْوَةَ الدَّاعِ إِذَا دَعَانِ﴾<div class="ref">[البقرة: 186]</div></div>
+
+  <h3>حسن الظن بالله</h3>
+  <p><span class="tag t-a">قول المؤلف</span> حسن الظن بالله لا يعني أن الحياة ستكون سهلة، بل أن تثق بأن الله لا يقدّر شيئًا عبثًا، وأن وراء كل أمر حكمة ورحمة. وكم من أمر حزنت عليه ثم تبين أن الله صرف عنك به شرًا كبيرًا.</p>
+  <div class="qv">﴿وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ ۖ وَاللَّهُ يَعْلَمُ وَأَنتُمْ لَا تَعْلَمُونَ﴾<div class="ref">[البقرة: 216]</div></div>
+  <p><span class="tag t-a">قول المؤلف</span> وقد جاء في الحديث القدسي: «أنا عند ظن عبدي بي». فاجعل قلبك متعلقًا بالله، فحتى إن تأخر الفرج فهو آتٍ في الوقت الذي يختاره الله.</p>
+
+  <h3>التعثر ليس نهاية الطريق</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الإنسان لا يخلو من التعثر، وقد يكون التعثر بداية طريق أكثر نضجًا. والشيطان لا يفرح بالذنب بقدر ما يفرح باليأس بعده، فيوهم صاحبه أن باب العودة أُغلق. لكن رحمة الله أوسع من كل ذنب، والله يحب التوابين.</p>
+  <div class="qv">﴿إِنَّ اللَّهَ يُحِبُّ التَّوَّابِينَ وَيُحِبُّ الْمُتَطَهِّرِينَ﴾<div class="ref">[البقرة: 222]</div></div>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> القرب من الله يفتح باب الرجاء دائمًا، فليس المهم كم مرة ابتعدت، بل كم مرة عدت.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> عند الشدة ارفع قلبك إلى الله، وأحسن الظن به، ولا تيأس من العودة.</p>
+    <p><b>تطبيق عملي:</b> حدّث الله في دعائك اليوم عن كل ما لا تستطيع أن تشكوه لأحد.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الإسراف على النفس لا يحول دون المغفرة، والقنوط هو المحذور.</li>
+      <li>من أحسن الظن بالله وجد الخير حيث لا يحتسب.</li>
+      <li>إذا تعثرت فابدأ من جديد ولو بخطوة صغيرة.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل الثالث ======================= -->
+<section class="chapter" id="ch3">
+  <div class="ch-head">
+    <div class="ch-icon">🕌</div>
+    <span class="ch-no">الفصل الثالث</span>
+    <h2>الصلاة… راحة لا يعرفها إلا من ذاقها</h2>
+    <p class="ch-desc">الصلاة هدية ربانية وباب مفتوح للسكينة، والخشوع روحها، والمحافظة عليها تحفظ القلب.</p>
+  </div>
+
+  <h3>لماذا نحتاج الصلاة؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كما يحتاج الجسد إلى الطعام والماء، يحتاج القلب إلى ما يغذيه ويمنحه الطمأنينة، والصلاة هي هذا الغذاء. وقد جعل الله الصلاة خمس مرات في اليوم، لأن القلب يحتاج إلى هذا الاتصال المستمر، فكلما أثقلتنا الدنيا خففت عنا، وكلما شغلتنا أعادتنا إلى ما هو أهم.</p>
+  <p><span class="tag t-a">قول المؤلف</span> وقد قال النبي ﷺ: «وجعلت قرة عيني في الصلاة»، فلم تكن الصلاة عنده واجبًا ثقيلًا، بل مصدر راحة وقرب من الله.</p>
+
+  <h3>الصلاة في أوقات الضيق</h3>
+  <p><span class="tag t-a">قول المؤلف</span> عندما تضيق الدنيا، تذكّر أن الله أقرب إليك من كل شيء، والصلاة وسيلة هذا القرب. فالصلاة لا تغير الظروف دائمًا في لحظتها، لكنها تغير الإنسان من الداخل فتمنحه الصبر والثبات واليقين. وفي السجود يكون العبد أقرب ما يكون إلى ربه، فيبث إليه ما يؤلمه دون تكلف.</p>
+  <div class="story">
+    <div class="story-ico">🙏</div>
+    <div>
+      <h4>من الصلاة إلى السكينة</h4>
+      <p><span class="tag t-a">قول المؤلف</span> كم من شخص دخل صلاته وهو يحمل همًّا كبيرًا، ثم خرج منها أكثر هدوءًا، لا لأن المشكلة انتهت، بل لأنه شعر أن الله معه.</p>
+      <div class="moral"><b>العبرة:</b> الصلاة لا تحل كل مشكلة، لكنها تبدّل الخوف أمنًا والقلق سكينة.</div>
+    </div>
+  </div>
+
+  <h3>رحلة إلى الخشوع</h3>
+  <p><span class="tag t-a">قول المؤلف</span> قد يؤدي الإنسان الصلاة بأركانها دون أن يشعر بأثرها، لأن قلبه غائب. والخشوع باب مفتوح لكل من يسعى إليه، يبدأ بإدراك من نقف أمامه، وبفهم معاني ما نقرأ ونردد، وبالاستعداد لها قبل دخولها، وبكثرة الذكر خارج الصلاة.</p>
+  <p><span class="tag t-a">قول المؤلف</span> الخشوع درجات وليس حالة ثابتة، فإن شرد الذهن فليعد المصلي قلبه إلى الله، فهذه المجاهدة نفسها أجر. ومن علامات الخشوع أن يخرج الإنسان من صلاته أفضل مما دخلها.</p>
+
+  <h3>كيف نحافظ على الصلاة؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> المحافظة على الصلاة تبدأ من النظر إليها: فإن رأيناها عبئًا تكاسلنا، وإن رأيناها هدية اشتقنا إليها. ومن الوسائل العملية: أداؤها في وقتها، وربطها بمحبة الله لا بالعادة فقط، واختيار الصحبة الصالحة، والدعاء بالثبات: «يا مقلب القلوب ثبّت قلبي على دينك»، وعدم الاستسلام بعد التقصير.</p>
+  <div class="qv">﴿إِنَّ الصَّلَاةَ تَنْهَىٰ عَنِ الْفَحْشَاءِ وَالْمُنكَرِ﴾<div class="ref">[العنكبوت: 45]</div></div>
+  <p><span class="tag t-a">قول المؤلف</span> الصلاة الصادقة تعلّم الصدق في الكلام، والإخلاص في العمل، والرحمة في التعامل، فتصبح مدرسة يومية تربي القلب وتقوّم السلوك.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الصلاة ليست شكلًا فحسب، بل رحلة يومية تستمد منها القلوب الطمأنينة والقوة والهداية.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> الصلاة في وقتها بخشوع تمنح القلب سكينة، وتحفظ من الفحشاء والمنكر.</p>
+    <p><b>تطبيق عملي:</b> إذا ضاقت بك الأيام، فاجعل الصلاة أول طريق تسلكه لا آخره، وقف بين يدي الله بقلب حاضر.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>من ذاق حلاوة الخشوع مرة ظل يبحث عنها في كل صلاة.</li>
+      <li>لا تؤجل العودة إلى الصلاة، فركعة صادقة قد تكون بداية تغيير كبير.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل الرابع ======================= -->
+<section class="chapter" id="ch4">
+  <div class="ch-head">
+    <div class="ch-icon">📗</div>
+    <span class="ch-no">الفصل الرابع</span>
+    <h2>مع القرآن</h2>
+    <p class="ch-desc">القرآن حديث الله إلى عباده، ونور للقلب يخاطب الإنسان في كل أحواله.</p>
+  </div>
+
+  <div class="qv">﴿وَنُنَزِّلُ مِنَ الْقُرْآنِ مَا هُوَ شِفَاءٌ وَرَحْمَةٌ لِّلْمُؤْمِنِينَ﴾<div class="ref">[الإسراء: 82]</div></div>
+
+  <h3>القرآن ورسائل الطمأنينة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> القرآن كلام رب البشر العليم بما في الصدور، يخاطب الإنسان حين يكون قويًا أو ضعيفًا، سعيدًا أو حزينًا. وفيه قصص الأنبياء الذين عرفوا الابتلاء وعرفوا الفرج بعده، ويكفي أن يتأمل القارئ قول موسى عليه السلام حين أدركه فرعون: ﴿كَلَّا إِنَّ مَعِيَ رَبِّي سَيَهْدِينِ﴾ [الشعراء: 62].</p>
+
+  <h3>كيف تبدأ وردك اليومي؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كثيرون يبدؤون بحماس كبير ثم ينقطعون، والنفس تحتاج إلى التدرج. والقاعدة النبوية: «أحب الأعمال إلى الله أدومها وإن قل». فابدأ بخمس دقائق أو بصفحة أو بآيات قليلة، وخصص وقتًا ثابتًا، واجعل المصحف قريبًا منك، واربط القراءة بعادة يومية تقوم بها أصلًا.</p>
+
+  <h3>التدبر ببساطة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> التدبر ليس حكرًا على العلماء، بل أن تتوقف عند الآية وتسأل: ماذا يريد الله مني؟ فإذا مررت بآية عن الصبر، سألت كيف أطبقه في ظروفي، وإذا قرأت عن الشكر تأملت النعم التي اعتدت وجودها، وإذا قرأت عن التوبة راجعت قلبك. وقد تكون آية واحدة سببًا في تغيير نظرتك إلى الحياة.</p>
+  <div class="qv">﴿أَفَلَا يَتَدَبَّرُونَ الْقُرْآنَ﴾<div class="ref">[النساء: 82]</div></div>
+
+  <h3>آيات تضيء الطريق</h3>
+  <p><span class="tag t-a">قول المؤلف</span> عند انسداد الأبواب تذكّر قوله تعالى: ﴿وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا ۝ وَيَرْزُقْهُ مِنْ حَيْثُ لَا يَحْتَسِبُ﴾ [الطلاق: 2–3]. وعند الخوف من المستقبل: ﴿لَا تَحْزَنْ إِنَّ اللَّهَ مَعَنَا﴾ [التوبة: 40]. وعند الشعور بالتقصير: ﴿قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا﴾ [الزمر: 53]. واقترح الكتاب أن يحتفظ القارئ بقائمة من الآيات التي تلامس قلبه يقرؤها عند الضعف.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> القرآن ليس كتابًا يُوضع على الرف، بل نور للقلب يتجدد معناه كلما عدت إليه بتدبر.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> اجعل لك وردًا يوميًا ثابتًا، واقرأ بقلب متدبر لا بعين عابرة.</p>
+    <p><b>تطبيق عملي:</b> احتفظ بدفتر صغير تكتب فيه الآية التي أثرت فيك اليوم، وكيف تطبقها.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>ليس المقصود إنهاء الختمات فقط، بل أن تعيش مع القرآن.</li>
+      <li>قياس علاقتك بالقرآن أثره في قلبك: هل صرت أكثر صبرًا ويقينًا ورحمة؟</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل الخامس ======================= -->
+<section class="chapter" id="ch5">
+  <div class="ch-head">
+    <div class="ch-icon">📿</div>
+    <span class="ch-no">الفصل الخامس</span>
+    <h2>قوة الذكر والدعاء</h2>
+    <p class="ch-desc">الذكر حياة للقلب، والاستغفار بداية الفرج، والدعاء سلاح المؤمن.</p>
+  </div>
+
+  <h3>لماذا يهدأ القلب بالذكر؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> إذا ابتعد القلب عن ذكر الله شعر بالجفاف والضيق، حتى مع وجود النعم. ويغيّر الذكر نظرتنا للأمور: فالحمد يذكّرنا بالنعم، والتسبيح يعرّفنا بكمال حكمة الله، والتكبير يصغّر كل مشكلة أمام عظمة الله. والذكر لا يحتاج مكانًا ولا وقتًا محددًا.</p>
+  <div class="qv">﴿أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ﴾<div class="ref">[الرعد: 28]</div></div>
+
+  <h3>الاستغفار بداية الفرج</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الاستغفار ليس كلمة تُقال باللسان فقط، بل شعور صادق بالحاجة إلى رحمة الله، واعتراف بالضعف. وقد ربط الله بينه وبين الخير والبركة، كما قال نوح عليه السلام لقومه: ﴿اسْتَغْفِرُوا رَبَّكُمْ إِنَّهُ كَانَ غَفَّارًا * يُرْسِلِ السَّمَاءَ عَلَيْكُم مِّدْرَارًا﴾ [نوح: 10–11].</p>
+  <p><span class="tag t-a">قول المؤلف</span> لا يشترط الاستغفار شروطًا معقدة، فيمكن أن تستغفر بعد الصلاة، أو أثناء السير، أو قبل النوم، أو عند الضيق، أو بعد الخطأ. وجرّب أن تجعل لك وردًا يوميًا منه، ولو مائة مرة.</p>
+
+  <h3>الدعاء سلاح المؤمن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الدعاء عبادة تُظهر افتقار الإنسان إلى ربه، والله يدعونا بنفسه: ﴿وَقَالَ رَبُّكُمُ ادْعُونِي أَسْتَجِبْ لَكُمْ﴾ [غافر: 60]. وإجابته قد تكون بما طلبت، أو بتأخيره لحكمة، أو بما هو خير منه، ولا يضيع الدعاء أبدًا. ولا يحتاج الدعاء إلى ألفاظ معقدة، فكلمات بسيطة من قلب صادق أقرب إلى القبول.</p>
+  <p><span class="tag t-a">قول المؤلف</span> ويوصي الكتاب بأن يكون الدعاء جزءًا من اليوم لا في الشدائد وحدها، فيدعو المرء في الرخاء كما يدعو في الضيق، ويشكر على النعم كما يسأل من فضل الله.</p>
+
+  <h3>برنامج يومي للسكينة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> عند الاستيقاظ: احمد الله على نعمة الحياة قبل أن تنشغل بالدنيا. بعد الفجر: اجلس دقائق واقرأ ما تيسر وأكثر من التسبيح والتحميد. أثناء العمل: اجعل لسانك رطبًا بالذكر. عند الضيق: استغفر وصلِّ ركعتين وادعُ بما في قلبك. قبل النوم: راجع يومك واشكر الله وادعُ بما تتمنى.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الذكر يهدّئ القلب، والاستغفار يفتح أبواب الرحمة، والدعاء يربط الإنسان بربه في كل حال.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> السكينة تُبنى ذكرًا بعد ذكر، ودعاءً بعد دعاء.</p>
+    <p><b>تطبيق عملي:</b> اختر ذكرًا واحدًا تقوله صباحًا ومساءً، واستغفر في كل مرة تضيق فيها بك الأمور.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>دقائق قليلة مع الله كل يوم قد تغيّر حياتك مع الوقت.</li>
+      <li>كلمة «أستغفر الله» قد تكون بداية تحول كبير.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل السادس ======================= -->
+<section class="chapter" id="ch6">
+  <div class="ch-head">
+    <div class="ch-icon">🪞</div>
+    <span class="ch-no">الفصل السادس</span>
+    <h2>التصالح مع النفس</h2>
+    <p class="ch-desc">القسوة على النفس لا تصلحها، والرحمة بها تمنحها القدرة على التغيير.</p>
+  </div>
+
+  <h3>معارك لا يراها أحد</h3>
+  <p><span class="tag t-a">قول المؤلف</span> قد يبدو الإنسان هادئًا من الخارج، لكنه يحمل في داخله ذكريات تؤلمه وأخطاء يندم عليها وكلمات قاسية يكررها على نفسه. والتصالح مع النفس ليس أن تتجاهل أخطاءك، بل أن تقبل حقيقتك البشرية، فتعترف بالخطأ وتنهض منه.</p>
+
+  <h3>لماذا نقسو على أنفسنا؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> قد تنشأ القسوة من تربية ترى الخطأ عيبًا لا يُغتفر، أو من مقارنة دائمة بالآخرين، أو من جراح قديمة أفقدت صاحبها ثقته بنفسه. ومع الوقت يتحول ذلك إلى صوت داخلي يردد: «لن أنجح» و«لا أستحق الأفضل». والقسوة لا تصلح القلب بل قد تكسره.</p>
+
+  <h3>بين المحاسبة وجلد الذات</h3>
+  <p><span class="tag t-a">قول المؤلف</span> محاسبة النفس عبادة، هدفها الإصلاح والنمو، أما جلد الذات فيحوّل الخطأ إلى سجن. فالأول يقول: أخطأت، وسأتعلم من خطئي. والثاني يقول: أخطأت، إذن أنا شخص سيئ. وإذا كانت النتيجة يأسًا وعجزًا فاعلم أنك انتقلت من المحاسبة إلى الجلد.</p>
+
+  <h3>التعامل مع الأخطاء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الخطأ جزء من الطبيعة البشرية، والمهم كيف نتعامل معه: نعترف به دون تبرير، ونستغفر الله، ونستخلص الدرس، ونصلح ما نستطيع، ثم نسامح أنفسنا ونبدأ من جديد. ولا تربط قيمتك بأخطائك، فأخطاؤك تصف ما فعلت، لكنها لا تصف من أنت.</p>
+  <p><span class="tag t-a">قول المؤلف</span> لو أن طفلًا يتعلم المشي توقف بعد كل سقوطه لما تعلّم، فلماذا نتوقف نحن عن التقدم بسبب تعثر؟</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> التصالح مع النفس يعني أن تحاسبها بصدق وترحمها في الوقت نفسه، فلا قسوة تصلح ولا تهاون ينفع.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> اغفر لنفسك ما مضى، وخذ بيدها نحو مستقبل جديد.</p>
+    <p><b>تطبيق عملي:</b> حين تخطئ، اكتب جملة تصف الخطأ دون إهانة لنفسك، ثم خطوة واحدة لإصلاحه.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>«أخطأت اليوم، وسأكون أفضل غدًا» طريق الإصلاح، و«لن أتغير أبدًا» طريق اليأس.</li>
+      <li>قيمتك لا تُقاس بعدد أخطائك، بل بقدرتك على العودة كلما ابتعدت.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل السابع ======================= -->
+<section class="chapter" id="ch7">
+  <div class="ch-head">
+    <div class="ch-icon">🌫️</div>
+    <span class="ch-no">الفصل السابع</span>
+    <h2>مواجهة القلق والخوف</h2>
+    <p class="ch-desc">القلق شعور طبيعي، لكنه لا يجب أن يصبح سجنًا، ويهدأ بالتوكل والذكر وأخذ الأسباب.</p>
+  </div>
+
+  <h3>الخوف من المجهول</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كثيرًا ما نخاف مما لا نعرفه، ونرسم في عقولنا احتمالات لا تنتهي، حتى يصبح الخوف من شيء لم يقع أشد من الواقع نفسه. لكن المجهول معلوم عند الله، الذي يدبر الأمور بحكمة ورحمة. فعش يومك، وخذ بالأسباب، واترك الغد لله.</p>
+  <div class="qv">﴿وَعَسَىٰ أَن تَكْرَهُوا شَيْئًا وَهُوَ خَيْرٌ لَّكُمْ﴾<div class="ref">[البقرة: 216]</div></div>
+
+  <h3>التفكير الزائد</h3>
+  <p><span class="tag t-a">قول المؤلف</span> التفكير نعمة، لكنه إذا فقد توازنه صار عبئًا. وكثيرًا ما نعاني من أفكارنا أكثر مما نعاني من الواقع، نصنع معارك وهمية ونحزن على أحداث لم تقع. ولهذا ينصح الكتاب بأن نسأل أنفسنا عند الزحام: هل هذا حقيقة أم احتمال؟ وهل أملك خطوة عملية؟ وهل يفيدني الاستمرار في التفكير؟</p>
+  <div class="qv">﴿فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ﴾<div class="ref">[آل عمران: 159]</div></div>
+  <p><span class="tag t-a">قول المؤلف</span> في الآية منهج متكامل: تفكير ثم قرار ثم توكل. أما إعادة التفكير في القرار نفسه عشرات المرات فلا تزيد الإنسان إلا حيرة. والعقل خادم ممتاز لكنه سيد سيئ.</p>
+
+  <h3>التوكل الحقيقي</h3>
+  <p><span class="tag t-a">قول المؤلف</span> التوكل ليس ترك الأسباب، فالنبي ﷺ كان أكثر الناس توكلًا وكان يأخذ بالأسباب كلها. هو أن تأخذ بالأسباب بجوارحك، وتثق بالله بقلبك، فالطالب يذاكر ويتوكل، والمريض يتعالج ويتوكل. ومن ثمار التوكل أن يتحول السؤال من «ماذا سأفعل إذا حدث كذا؟» إلى «كيف أرضي الله في هذا الموقف؟».</p>
+  <div class="qv">﴿وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ﴾<div class="ref">[الطلاق: 3]</div></div>
+
+  <h3>خطوات عملية للهدوء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يقترح الكتاب سبعة أمور: العودة إلى اللحظة الحالية، وكثرة الذكر، وعدم حمل كل شيء وحدك والحديث مع من تثق به، وكتابة ما يشغل البال لرؤية حجمه الحقيقي، والاهتمام بالنوم والحركة والماء، والإكثار من الدعاء، وتذكر النعم اليومية.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الخوف يهدأ حين نثق بمن يعلم الغيب، والتفكير يخف حين نركّز على ما نستطيع فعله الآن.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> الطمأنينة ليست في معرفة ما سيحدث، بل في الثقة بمدبر المستقبل.</p>
+    <p><b>تطبيق عملي:</b> عند اشتداد القلق، اكتب المخاوف في ورقة، وحدد خطوة واحدة تستطيع تنفيذها اليوم.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>أكثر ما نخافه لا يحدث، والله يختار الخير حتى وإن تأخر فهمه.</li>
+      <li>ليس الهدوء أن تتوقف الأفكار، بل أن تقودها أنت لا أن تقودك.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل الثامن ======================= -->
+<section class="chapter" id="ch8">
+  <div class="ch-head">
+    <div class="ch-icon">🌷</div>
+    <span class="ch-no">الفصل الثامن</span>
+    <h2>الرضا الذي يحرر القلب</h2>
+    <p class="ch-desc">الرضا بقضاء الله يحرر القلب من التعلق بما فات ومن الاعتراض على الأقدار، والصبر الجميل يمنح القوة للاستمرار.</p>
+  </div>
+
+  <h3>معنى الرضا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الرضا أن يطمئن القلب إلى أن ما اختاره الله له خير مما كان سيختاره لنفسه. وهو لا يمنع الحلم ولا يوقف السعي، بل يدعو إلى العمل وأخذ الأسباب، ثم ترك النتائج لله. فإذا جاء ما تتمناه شكرت، وإذا تأخر علمت أن الله اختار لك الأصلح.</p>
+
+  <h3>الرضا لا يعني أن لا تحزن</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الحزن شعور إنساني طبيعي، والفرق بين الحزن والرضا أن الحزن لا يتحول إلى اعتراض على قدر الله ولا إلى يأس من رحمته. وإذا أردت أن تعرف مقدار الرضا في قلبك، فانظر إلى حالك حين يتأخر ما تحب أو يقع ما تكره.</p>
+
+  <h3>الصبر الجميل</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الصبر الجميل هو الصبر الذي لا يصاحبه اعتراض على الله ولا يقطع صاحبه حبل الرجاء. وليس معناه إخفاء المشاعر، بل أن تلجأ إلى الله بكل ما في قلبك. والنتائج العظيمة تحتاج وقتًا، وكما تحتاج البذرة إلى زمن لتثمر، فإن الفرج قد يتأخر لكنه لا يضيع.</p>
+
+  <h3>حكمة الابتلاء</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الابتلاء ليس دائمًا عقوبة، بل قد يكون رحمة خفية أو تربية أو رفعة في الدرجات أو حماية من شر لا نراه. وكم من باب أُغلق في وجه إنسان فحزن، ثم تبين بعد سنوات أن فتحه كان سيؤذيه. والمؤمن يتعلم ألا يحكم على الأمور من لحظتها الأولى.</p>
+
+  <h3>كيف ترى النور وسط العتمة؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> رؤية النور تبدأ بتغيير زاوية النظر: انظر إلى ما بقي لديك من نعم بدل ما فقدت، وتأمل ما تحقق بدل ما تأخر، وثق بأن الله الذي رعاك بالأمس لن يتركك اليوم. فالبذرة تُدفن في ظلمة الأرض قبل أن تثمر، والفجر يأتي بعد أشد ساعات الليل ظلمة.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الرضا لا يغيّر الماضي لكنه يغيّر نظرتنا إليه، ويخفف وطأة الألم ويمنح القلب قوة على الاحتمال.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> الرضا يحرر القلب من الصراع مع الأقدار، والصبر يمنحه القوة للمواصلة.</p>
+    <p><b>تطبيق عملي:</b> عند تأخر أمر تحبه، قل: «اللهم اختر لي ما فيه الخير»، واعمل بما تستطيع.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الرضا ليس استسلامًا، بل سكون القلب مع بذل الأسباب.</li>
+      <li>وراء كل أمر حكمة، وبعد كل عسر يسر.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل التاسع ======================= -->
+<section class="chapter" id="ch9">
+  <div class="ch-head">
+    <div class="ch-icon">🤝</div>
+    <span class="ch-no">الفصل التاسع</span>
+    <h2>العلاقات التي تصنع السلام</h2>
+    <p class="ch-desc">الناس يؤثرون فينا، فاختر من يقربك من الله، وضع حدودًا لما يؤذيك، وتعلّم التسامح.</p>
+  </div>
+
+  <h3>أثر الناس في حياتنا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يتأثر الإنسان بمن يعاشره دون أن يشعر، فجليس المتفائل يبعث فيك الأمل، وصاحب المقرّب من الله يذكّرك بالطاعة. وقد قال النبي ﷺ: «المرء على دين خليله، فلينظر أحدكم من يخالل».</p>
+  <p><span class="tag t-a">قول المؤلف</span> راجع علاقاتك بين حين وآخر، واسأل نفسك: من يدفعني إلى الأفضل؟ ومن أشعر بالراحة بعد لقائه؟ ومن يذكّرني بالله؟ ومن أخرج من صحبته مثقلًا بالطاقة السلبية؟</p>
+
+  <h3>الصحبة الصالحة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الصديق الصالح ليس كاملًا، لكنه يصحح لك بلطف، ويشجعك إذا ضعفت، ويذكّرك بالله إذا نسيت، ويفرح لنجاحك كما يفرح لنجاحه. وقد شبّه النبي ﷺ الجليس الصالح بحامل المسك، فإما أن يعطيك من طيبه، وإما أن تجد منه رائحة طيبة. وكن أنت الصديق الصالح، فالعلاقات الطيبة تبدأ منك.</p>
+
+  <h3>العلاقات المؤذية</h3>
+  <p><span class="tag t-a">قول المؤلف</span> بعض العلاقات تتسلل إلى حياتنا بهدوء، فتجرح بالكلمات أو تستهين بالأحلام أو تستغل المشاعر. والرحمة بالناس لا تعني السماح لهم بإيذائك، ولا حسن الخلق يعني التنازل عن كرامتك. وأحيانًا يكون الحل في الحوار، وأحيانًا في وضع حدود، وأحيانًا في الابتعاد بأدب. ويمكنك أن تدعو لمن آذاك بالخير، وأن تحمي قلبك في الوقت نفسه.</p>
+
+  <h3>قوة التسامح</h3>
+  <p><span class="tag t-a">قول المؤلف</span> التسامح لا يعني أن ما حدث كان صحيحًا، بل يعني ألا تجعل الألم يسيطر على بقية حياتك. وقد قال الله تعالى: ﴿فَمَنْ عَفَا وَأَصْلَحَ فَأَجْرُهُ عَلَى اللَّهِ﴾ [الشورى: 40]. والتسامح قد يحتاج وقتًا لشفاء الجرح، ولا يشترط عودة العلاقة كما كانت.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> اختيار العلاقات جزء من حماية القلب، والتسامح يحرر القلب قبل أن يحرر غيره.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> ليست كل علاقة تستحق الاستمرار، وبعض الحدود ضرورة وليست قسوة.</p>
+    <p><b>تطبيق عملي:</b> اكتب أسماء ثلاثة أشخاص يقربونك من الله، وادعُ لهم، وفكّر في علاقة تستنزفك لتضع لها حدًا لطيفًا.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>صديق واحد صالح خير من عشرات العلاقات السطحية.</li>
+      <li>الابتعاد بأدب عن الأذى حق مشروع، والدعاء للمؤذي لا يتعارض معه.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل العاشر ======================= -->
+<section class="chapter" id="ch10">
+  <div class="ch-head">
+    <div class="ch-icon">🌱</div>
+    <span class="ch-no">الفصل العاشر</span>
+    <h2>عادات تصنع الطمأنينة</h2>
+    <p class="ch-desc">الطمأنينة تُبنى بعادات صغيرة مستمرة، تبدأ بترتيب القلب قبل ترتيب الحياة.</p>
+  </div>
+
+  <h3>ترتيب القلب قبل ترتيب الحياة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> قد نقضي سنوات في ترتيب تفاصيل حياتنا ويبقى الاضطراب في الداخل، لأن أصل المشكلة في القلب الذي ينظر إلى الحياة. فابدأ بمراجعة ما يسكن قلبك: خوف من المستقبل، أو ندم على الماضي، أو مقارنة بالآخرين، أو تعلق زائد بالدنيا. وخصص وقتًا يوميًا للخلوة مع الله، ونظّف قلبك من الحقد والحسد والغضب المتراكم.</p>
+
+  <h3>الامتنان اليومي</h3>
+  <p><span class="tag t-a">قول المؤلف</span> كثيرًا ما نركّز على ما ينقصنا، ونغفل عن نعم نعيش فيها كل يوم كالصحة والأمان والأسرة. والامتنان لا يعني أن حياتك خالية من المشكلات، بل أن ترى الخير رغم التحديات. ومن الوسائل العملية أن تكتب كل يوم ثلاث نعم تشعر بالامتنان لوجودها.</p>
+  <div class="qv">﴿وَإِن تَعُدُّوا نِعْمَةَ اللَّهِ لَا تُحْصُوهَا﴾<div class="ref">[النحل: 18]</div></div>
+
+  <h3>الراحة والنوم</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الراحة ليست ترفًا، والنوم ليس وقتًا ضائعًا، بل نعمة جعلها الله لتجديد الجسد وتهدئة العقل. وكثير من القلق يزداد بسبب الإرهاق. ومن عادات النوم الهادئ: تجنب السهر بلا حاجة، وتقليل الهاتف قبل النوم، وقراءة شيء نافع، والمحافظة على أذكار النوم، وتفويض الهموم إلى الله قبل أن تغمض عينيك.</p>
+  <div class="qv">﴿وَجَعَلْنَا نَوْمَكُمْ سُبَاتًا﴾<div class="ref">[النبأ: 9]</div></div>
+
+  <h3>روتين يمنحك السلام</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الروتين البسيط المتوازن يمنح الأيام استقرارًا: تبدأ يومك بنية الخير وذكر الله، وتقرأ شيئًا من القرآن، وتتحرك قليلًا، وتخصص وقتًا لمن تحب، وتقلل من متابعة ما يزيد القلق. والحياة المتوازنة، بين عبادة وعمل وراحة وأسرة، أقرب إلى السكينة من الحياة المزدحمة بكل شيء.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> كل عادة تقرّبك من الله وتمنح قلبك الهدوء خطوة على طريق السكينة، والطمأنينة بناء يومي.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> رتّب قلبك أولًا، ودرّب نفسك على الامتنان، وأعط جسدك حقه من الراحة.</p>
+    <p><b>تطبيق عملي:</b> اكتب الليلة ثلاث نعم، واجعل آخر ما تفعله قبل النوم ذكرًا لا هاتفًا.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الصالحون كانوا يصلحون قلوبهم قبل ظروفهم.</li>
+      <li>الطمأنينة ليست غياب المشكلات، بل قلب متصل بالله قادر على عبورها.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل الحادي عشر ======================= -->
+<section class="chapter" id="ch11">
+  <div class="ch-head">
+    <div class="ch-icon">🌾</div>
+    <span class="ch-no">الفصل الحادي عشر</span>
+    <h2>عندما تضعف</h2>
+    <p class="ch-desc">الفتور والتعثر جزء من الطبيعة البشرية، والثبات الحقيقي أن تعود كلما ضعفت.</p>
+  </div>
+
+  <h3>الضعف ليس نهاية الطريق</h3>
+  <p><span class="tag t-a">قول المؤلف</span> قد تأتي أيام يثقل فيها القلب ويفقد الإنسان حماسه، فيظن أن ضعفه علامة على الفشل. لكن الضعف طبيعة بشرية، والمهم ألا يتحول اليأس من النهوض إلى عادة. وربما كان أصعب ما في الخطأ الشعور بالعجز بعده، لا الخطأ نفسه.</p>
+  <div class="qv">﴿وَلَا تَيْأَسُوا مِن رَّوْحِ اللَّهِ﴾<div class="ref">[يوسف: 87]</div></div>
+
+  <h3>الفتور الإيماني</h3>
+  <p><span class="tag t-a">قول المؤلف</span> القلب ليس ثابتًا على حال واحدة، ولذلك سُمّي قلبًا لكثرة تقلبه. والحكمة في الفتور ألا تترك الطاعة كلها، بل تتمسك بما تستطيع: صفحة بدل جزء، وركعتان بدل قيام كامل، واستغفار قليل بدل ذكر طويل. والمهم ألا ينقطع الحبل بينك وبين الله. وإذا لم يكن الإيمان قلبًا ثابتًا فإن الضعف نفسه قد يعلّم التواضع.</p>
+
+  <h3>العودة بعد الانقطاع</h3>
+  <p><span class="tag t-a">قول المؤلف</span> يدور صراع داخل النفس بين صوت يدعو إلى الرجوع وصوت يذكّر بالأخطاء. لكن رحمة الله أكبر، وكم من إنسان ابتعد سنوات ثم عاد فوجد الله ينتظره. لا تنتظر يومًا مثاليًا، ولا أن تصبح أفضل، ولا أن تختفي مشكلاتك، فالبدايات العظيمة تبدأ بخطوات صغيرة: صلاة في وقتها، أو صفحة من القرآن، أو دعوة صادقة.</p>
+
+  <h3>لا تكن مثاليًا</h3>
+  <p><span class="tag t-a">قول المؤلف</span> السعي للكمال المطلق قد يتحول إلى عبء، فيترك بعض الناس الخير كله لأنهم لم يستطيعوا تنفيذه بصورة مثالية. والحكمة أن تستمر رغم النقص، فالتقدم البسيط المستمر أعظم من الحماس المؤقت. قارن نفسك بنفسك بالأمس، لا بالآخرين.</p>
+
+  <h3>خطوات الثبات</h3>
+  <p><span class="tag t-a">قول المؤلف</span> ضع لنفسك حدًا أدنى لا تتركه مهما كانت الظروف: صلاة في وقتها، وصفحة من القرآن، وأذكار الصباح والمساء، واستغفار يومي. واحم قلبك من مصادر الاستنزاف كالمقارنات والضجيج المستمر، وأكثر من دعاء: «يا مقلب القلوب ثبّت قلبي على دينك»، وتذكّر لماذا بدأت.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الفتور ليس نهاية الإيمان، والتعثر ليس نهاية القصة، فالمهم أن تعود إلى الله وتحاول من جديد.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> لا تطلب من نفسك الكمال، بل الصدق والاستمرار.</p>
+    <p><b>تطبيق عملي:</b> حين تفتر، اختر حدًا أدنى صغيرًا، والتزم به لمدة أسبوع.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>الله ينظر إلى اتجاهك لا إلى سرعتك.</li>
+      <li>من أحس بقلبه الضعيف فهو ما زال فيه خير، فالقلب الميت لا يشعر ببعده.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الفصل الثاني عشر ======================= -->
+<section class="chapter" id="ch12">
+  <div class="ch-head">
+    <div class="ch-icon">🌍</div>
+    <span class="ch-no">الفصل الثاني عشر</span>
+    <h2>قلب مطمئن في عالم مضطرب</h2>
+    <p class="ch-desc">في زمن الضجيج والمقارنات، تُحفظ الطمأنينة بحماية القلب والتحرر من المقارنة وفهم النجاح بمعناه الحقيقي.</p>
+  </div>
+
+  <h3>كيف تعيش بسلام؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> السلام لا يُشترى ولا يأتي مع إنجاز واحد، بل ينمو في القلب حين يتصالح الإنسان مع نفسه ويثق بربه ويتوقف عن جعل سعادته معلقة بكل ما يحدث حوله. فلا تؤجل راحتك إلى أن تتحسن الظروف، واشكر ما تملكه اليوم، وامنح نفسك حق الراحة دون شعور بالذنب.</p>
+
+  <h3>التحرر من المقارنات</h3>
+  <p><span class="tag t-a">قول المؤلف</span> المقارنة غالبًا غير عادلة، لأننا نقارن تفاصيل حياتنا بلحظات مختارة من حياة الآخرين، ولا نرى التعب الذي سبق النجاح. وليس المطلوب أن تكون مثل أحد، بل أن تكون أفضل نسخة من نفسك. اسأل: «هل أصبحت اليوم أفضل مما كنت عليه بالأمس؟» فهذه المقارنة وحدها تستحق الاهتمام.</p>
+  <p><span class="tag t-a">قول المؤلف</span> الرزق ليس مالًا فقط، فقد يُرزق إنسان مالًا ويُحرم راحة البال، وقد يجمع الله لك نعمًا لا تراها لأنك منشغل بنعم غيرك.</p>
+
+  <h3>النجاح بمعناه الحقيقي</h3>
+  <p><span class="tag t-a">قول المؤلف</span> النجاح الحقيقي أن تعيش حياة ترضي الله أولًا، ثم ترضي ضميرك، وأن تنام وقلبك مطمئن لأنك بذلت ما تستطيع. وقد قال تعالى: ﴿قَدْ أَفْلَحَ الْمُؤْمِنُونَ﴾ [المؤمنون: 1]، فالفلاح يبدأ من الداخل. وقد تبذل جهدًا ولا ترى النتيجة التي تريدها، لكنك تكون ناجحًا عند الله إذا أخلصت وأحسنت.</p>
+
+  <h3>حماية القلب من ضجيج الحياة</h3>
+  <p><span class="tag t-a">قول المؤلف</span> نعيش وسط ضجيج الأخبار ووسائل التواصل والآراء المتعارضة، ويتعب القلب كما يتعب الجسد. فاحمِ قلبك بأن تنتبه لما تسمح له بالدخول إلى روحك، وأن تبتعد أحيانًا عما يؤذيك، وأن تخصص وقتًا يوميًا للقرآن والذكر والدعاء، وأن تختار الصحبة التي تعينك على الخير.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الجوهرية</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> الطمأنينة في عالم مضطرب تحفظها الثقة بالله، والتحرر من المقارنات، وفهم النجاح بمعناه الصحيح.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ خلاصة الفصل وتطبيق عملي</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> <b>الخلاصة:</b> اقترب من الله تجد قلبك، وعش بسلام مع نفسك، وتحرر من المقارنات.</p>
+    <p><b>تطبيق عملي:</b> حدد وقتًا يوميًا بلا هاتف، واجعله للذكر أو القرآن أو الدعاء.</p>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 دروس مستفادة</h4>
+    <ul>
+      <li>لكل إنسان طريقه ورزقه وقصته التي كتبها الله له.</li>
+      <li>أجمل الأيام قد تكون تلك التي لم تأتِ بعد.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= الخاتمة ======================= -->
+<section class="chapter" id="closing">
+  <div class="ch-head">
+    <div class="ch-icon">🏁</div>
+    <span class="ch-no">الخاتمة</span>
+    <h2>نهاية الرحلة وبداية الطريق</h2>
+    <p class="ch-desc">الطمأنينة رحلة عمر كاملة، تبدأ حين تعرف وجهتك وتستمر بالعودة إلى الله.</p>
+  </div>
+
+  <h3>ما الذي تعلمناه؟</h3>
+  <p><span class="tag t-a">قول المؤلف</span> الطمأنينة ليست غياب المشكلات، بل أن يبقى القلب متصلًا بالله مهما تغيرت الظروف، وأن تثق بتدبيره حتى حين لا تفهم ما يحدث، وأن تعلم أن كل ضيق له نهاية، وأن كل ليل يعقبه فجر.</p>
+
+  <h3>ابدأ ثم استمر</h3>
+  <p><span class="tag t-a">قول المؤلف</span> لا تنتظر أن تصبح مثاليًا، فالكمال ليس من صفات البشر. كن صادقًا في سعيك، وحاول كل يوم أن تكون أقرب إلى الله من اليوم الذي قبله. ومن هنا تبدأ مرحلة التطبيق، فاجعل لكل يوم نصيبًا من القرآن، ولكل هم دعاءً، ولكل نعمة شكرًا، ولكل خطأ استغفارًا، ولكل لحظة ضعف رجوعًا إلى الله.</p>
+
+  <div class="box box-key">
+    <h4>💡 الفكرة الكبرى للكتاب</h4>
+    <p><span class="tag t-i">استنتاج من الملخّص</span> أعظم نعمة يملكها الإنسان قلب مطمئن يعرف ربه ويأنس بقربه، والطريق إليه يبدأ بخطوة صادقة وينتهي عنده.</p>
+  </div>
+
+  <div class="box box-sum">
+    <h4>✅ محاور الكتاب الكبرى</h4>
+    <ul>
+      <li><b>القلب والطمأنينة:</b> بداية الرحلة، والفرق بين الراحة والطمأنينة.</li>
+      <li><b>القرب من الله:</b> العودة، والله أقرب، وحسن الظن به، والتوبة.</li>
+      <li><b>العبادات:</b> الصلاة والخشوع، والقرآن والتدبر، والذكر والدعاء.</li>
+      <li><b>النفس والمشاعر:</b> التصالح مع النفس، والقلق والخوف، والرضا والصبر.</li>
+      <li><b>الناس والحياة:</b> العلاقات والتسامح، والعادات والراحة، والثبات، وعالم مضطرب.</li>
+    </ul>
+  </div>
+
+  <div class="box box-lesson">
+    <h4>🎓 ما يُضاف إلى الحياة اليومية</h4>
+    <ul>
+      <li>ابدأ يومك بالتوجه إلى الله بالذكر والدعاء.</li>
+      <li>زن أمورك بميزان الآخرة قبل أن تتأثر بموازين الناس.</li>
+      <li>اعمل وتوكل، ودع النتائج لله.</li>
+    </ul>
+  </div>
+
+  <div class="box box-sum">
+    <h4>🤲 دعاء الختام</h4>
+    <p><span class="tag t-a">قول المؤلف</span> «اللهم اجعل القرآن العظيم ربيع قلوبنا، ونور صدورنا، وذهاب همومنا، واجعل الصلاة قرة أعيننا، والدعاء أنس قلوبنا، والقرب منك أعظم ما نسعى إليه في هذه الحياة. اللهم ارزقنا قلوبًا مطمئنة، ونفوسًا راضية، وأرواحًا متعلقة بك. ربنا آتنا في الدنيا حسنة، وفي الآخرة حسنة، وقنا عذاب النار».</p>
+  </div>
+</section>
+
+<!-- ======================= واجبك ======================= -->
+<section class="chapter" id="duty">
+  <div class="ch-head">
+    <div class="ch-icon">✔️</div>
+    <span class="ch-no">بعد انتهاء الكتاب</span>
+    <h2>واجبك</h2>
+    <p class="ch-desc">خطوات عملية مقترحة لتطبيق ما في الكتاب.</p>
+  </div>
+
+  <div class="box box-duty">
+    <h4>واجبك بعد قراءة الكتاب</h4>
+    <ul class="checks">
+      <li>✔ اختر فصلًا واحدًا وطبّق توجيهه لمدة أسبوع كامل.</li>
+      <li>✔ خصص وقتًا يوميًا ولو عشر دقائق للقراءة والتأمل.</li>
+      <li>✔ احتفظ بدفتر للخواطر والدروس، واكتب فيه ثلاث نعم كل مساء.</li>
+      <li>✔ اجعل لك وردًا يوميًا من القرآن والذكر والاستغفار.</li>
+      <li>✔ قبل أي رد غاضب أو قرار مرهق، توقف واستعذ بالله، ثم تكلم.</li>
+      <li>✔ عُد إلى هذا الملخص كلما ضاقت بك الدنيا.</li>
+    </ul>
+  </div>
+</section>
+<p class="status-line">— انتهى الملخّص —</p>
+
+</main>
+
+<button class="totop" id="totop" aria-label="العودة إلى الأعلى">↑</button>
+
+<script>
+(function(){
+  var tabs = document.querySelectorAll('.tab');
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.chapter'));
+  var progress = document.getElementById('progress');
+  var totop = document.getElementById('totop');
+
+  function setActive(id){
+    tabs.forEach(function(t){
+      var on = t.getAttribute('data-target') === id;
+      t.classList.toggle('active', on);
+      if(on && t.scrollIntoView){
+        try { t.scrollIntoView({block:'nearest', inline:'center'}); } catch(e){}
+      }
+    });
+  }
+
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){
+      var el = document.getElementById(t.getAttribute('data-target'));
+      if(el){
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        el.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'start'});
+        setActive(el.id);
+      }
+    });
+  });
+
+  function onScroll(){
+    var y = window.scrollY || document.documentElement.scrollTop;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = max > 0 ? Math.min(100, (y / max) * 100) : 0;
+    progress.style.width = pct + '%';
+    totop.classList.toggle('show', y > 600);
+
+    var current = sections[0].id;
+    sections.forEach(function(s){
+      if(s.getBoundingClientRect().top <= 120) current = s.id;
+    });
+    setActive(current);
+  }
+
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      window.requestAnimationFrame(function(){ onScroll(); ticking = false; });
+      ticking = true;
+    }
+  }, {passive:true});
+  window.addEventListener('resize', onScroll);
+
+  totop.addEventListener('click', function(){
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0, behavior: reduce ? 'auto' : 'smooth'});
+  });
+
+  onScroll();
+})();
+</script>
+<!-- ====== ميزة العلامة المرجعية (Bookmark) ====== -->
+<script>
+(function(){
+  var BOOKMARK_KEY = 'heart_calm_bookmark_v1';
+  var bookmarked = null;
+  try { bookmarked = localStorage.getItem(BOOKMARK_KEY); } catch(e){}
+
+  var tabEls = document.querySelectorAll('#tabs .tab');
+
+  function refreshBookmarkUI(){
+    tabEls.forEach(function(t){
+      var target = t.getAttribute('data-target');
+      var on = bookmarked && target === bookmarked;
+      t.classList.toggle('bookmarked', !!on);
+      if(on){
+        t.setAttribute('title','هذه علامة توقفك. اضغط مرة أخرى لإزالة العلامة 🏷');
+      } else {
+        t.removeAttribute('title');
+      }
+    });
+  }
+
+  function saveBookmark(id){
+    bookmarked = id;
+    try {
+      if(id){ localStorage.setItem(BOOKMARK_KEY, id); }
+      else { localStorage.removeItem(BOOKMARK_KEY); }
+    } catch(e){}
+    refreshBookmarkUI();
+  }
+
+  refreshBookmarkUI();
+
+  tabEls.forEach(function(t){
+    t.addEventListener('click', function(){
+      var target = t.getAttribute('data-target');
+      if(!target) return;
+      if(bookmarked === target){
+        saveBookmark(null);   // إزالة العلامة
+      } else {
+        saveBookmark(target); // وضع العلامة هنا
+      }
+    });
+  });
+
+  if(bookmarked){
+    var bTab = document.querySelector('#tabs .tab[data-target="' + bookmarked + '"]');
+    if(bTab){
+      try { bTab.scrollIntoView({inline:'center', block:'nearest'}); } catch(e){}
+    }
+  }
+})();
+</script>
+
+</body>
+</html>

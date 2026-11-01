@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>صفحة التبويبات المدمجة</title>
+    <style>
+        /* ====== الأساس: ارتفاع كامل بلا scroll على الصفحة الأم ====== */
+        html, body {
+            margin: 0 !important; padding: 0 !important;
+            width: 100% !important; height: 100% !important;
+            overflow: hidden !important;
+            box-sizing: border-box !important;
+            font-family: system-ui, -apple-system, "Segoe UI", Tahoma, sans-serif;
+            background: #0f172a;
+        }
+        *, *:before, *:after { box-sizing: inherit; }
+
+        .app-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            margin: 0; padding: 0;
+            overflow: hidden;
+        }
+
+        .tab-bar-nav {
+            flex: 0 0 auto;
+            width: 100%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            display: flex; align-items: flex-end; justify-content: flex-start;
+            overflow-x: auto; overflow-y: hidden;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            margin: 0; padding: 18px 20px 0 20px; gap: 8px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+            border-bottom: 3px solid #3b82f6;
+            z-index: 9999;
+        }
+        .tab-bar-nav::-webkit-scrollbar { display: none; }
+
+        .tab-item-btn {
+            padding: 12px 24px; font-size: 15px; font-weight: 700;
+            color: #94a3b8; background: transparent; border: none;
+            border-radius: 12px 12px 0 0; cursor: pointer;
+            transition: color .25s ease, background .25s ease;
+            white-space: nowrap; outline: none; margin: 0;
+            position: relative; display: flex; align-items: center; gap: 8px;
+            font-family: inherit;
+        }
+        .tab-item-btn::before {
+            content: ''; display: inline-block;
+            width: 8px; height: 8px; border-radius: 50%;
+            background-color: #475569; transition: all .25s ease;
+        }
+        .tab-item-btn:hover { color: #e2e8f0; background: rgba(255,255,255,0.05); }
+        .tab-item-btn:hover::before { background-color: #60a5fa; }
+        .tab-item-btn.active {
+            color: #0f172a;
+            background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%);
+            box-shadow: 0 -5px 20px rgba(59, 130, 246, 0.4);
+        }
+        .tab-item-btn.active::before {
+            background-color: #ffffff;
+            box-shadow: 0 0 10px #ffffff, 0 0 20px #93c5fd;
+        }
+
+        /* ====== حاوية اللوحات: تملأ المساحة المتبقية فقط ====== */
+        #tabPanelsHost {
+            flex: 1 1 auto;
+            min-height: 0;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .tab-content-panel {
+            display: none;
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+        }
+        .tab-content-panel.active { display: block; }
+
+        .tab-frame {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            display: block;
+            background: #ffffff;
+        }
+
+        @media (max-width: 640px) {
+            .tab-bar-nav { padding: 14px 10px 0 10px; gap: 4px; }
+            .tab-item-btn { padding: 10px 16px; font-size: 13px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: .001ms !important;
+                transition-duration: .001ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="tab-bar-nav" id="mainTabBar" role="tablist"></nav>
+        <div id="tabPanelsHost"></div>
+    </div>
+
+    <script>
+    (function(){
+        "use strict";
+
+        var TABS_DATA = [{"id":"tab_1793517347326_d1zvff","title":"أشياء غريبة لم تعرفها من قبل","src":"pages/01.html"},{"id":"tab_1793517347369_l04c75","title":"مختصر إكسير الطمأنينة","src":"pages/02.html"},{"id":"tab_1793517347402_dgigjk","title":"ملخّص رحلة إلى قلب مطمئن","src":"pages/03.html"},{"id":"tab_1793517347454_281gy9","title":"27 خرافة شعبيةحول القراءة","src":"pages/04.html"},{"id":"tab_1793517347493_z7i0oa","title":"صباح استثنائي كل يوم ","src":"pages/05.html"},{"id":"tab_1793517347500_ch9y1z","title":"ملخص نظرية الفستق 2","src":"pages/06.html"},{"id":"tab_1793517347538_3yk9jc","title":"خذها قاعدة","src":"pages/07.html"},{"id":"tab_1793517347564_2eo4jz","title":"مميز بالأصفر","src":"pages/08.html"},{"id":"tab_1793517347568_alhvp6","title":"ملخص العادات الذرية","src":"pages/09.html"},{"id":"tab_1793517347591_eeycm8","title":"أغنى رجل في بابل","src":"pages/10.html"},{"id":"tab_1793517347617_ow9m0r","title":"ملخص إقرأ ","src":"pages/11.html"},{"id":"tab_1793517347649_tqt08a","title":"تنزيل كتب","src":"pages/12.html"},{"id":"tab_1793517347651_n2s7j9","title":"نظرية الفستق","src":"pages/13.html"}];
+        var LAZY_MODE = true;
+        var PRELOAD_COUNT = 3;
+        var loadedPanels = {};
+        var activeTabId = null;
+
+        var tabsBar = document.getElementById('mainTabBar');
+        var host = document.getElementById('tabPanelsHost');
+
+        function buildTabButtons() {
+            var html = '';
+            TABS_DATA.forEach(function(tab, idx) {
+                var activeClass = idx === 0 ? ' active' : '';
+                var ariaSelected = idx === 0 ? 'true' : 'false';
+                html += '<button class="tab-item-btn' + activeClass + '" '
+                     +  'role="tab" aria-selected="' + ariaSelected + '" '
+                     +  'data-tab-id="' + tab.id + '">'
+                     +  escapeHtml(tab.title)
+                     +  '</button>';
+            });
+            tabsBar.innerHTML = html;
+            tabsBar.querySelectorAll('.tab-item-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    switchTab(e, btn.getAttribute('data-tab-id'));
+                });
+            });
+        }
+
+        /* ★ إنشاء لوحة معزولة بـ iframe */
+        function createPanel(tab) {
+            var wrapper = document.createElement('div');
+            wrapper.className = 'tab-content-panel';
+            wrapper.id = 'wrap_' + tab.id;
+            wrapper.setAttribute('role', 'tabpanel');
+
+            var frame = document.createElement('iframe');
+            frame.className = 'tab-frame';
+            frame.title = tab.title || ('تبويب ' + tab.id);
+            frame.setAttribute('referrerpolicy', 'no-referrer');
+
+            wrapper.appendChild(frame);
+            host.appendChild(wrapper);
+
+            /* صفحة من حزمة ZIP: تُحمَّل من مسارها النسبي مع ملحقاتها */
+            if (tab.src) {
+                frame.src = tab.src;
+                return wrapper;
+            }
+
+            var code = typeof tab.code === 'string' ? tab.code : '';
+            if (!code) {
+                frame.srcdoc = '<div style="font-family:sans-serif;padding:40px;text-align:center;color:#64748b;">هذا التبويب فارغ</div>';
+                return wrapper;
+            }
+
+            var attached = false;
+            try {
+                if (window.Blob && window.URL && window.URL.createObjectURL) {
+                    var blob = new Blob([code], { type: 'text/html;charset=utf-8' });
+                    var url = URL.createObjectURL(blob);
+                    frame.addEventListener('load', function() {
+                        try { URL.revokeObjectURL(url); } catch(e){}
+                    }, { once: true });
+                    frame.src = url;
+                    attached = true;
+                }
+            } catch (e) {
+                attached = false;
+            }
+
+            if (!attached) {
+                try { frame.srcdoc = code; } catch (err) {
+                    frame.srcdoc = '<div style="padding:20px;color:#b91c1c;">تعذر تحميل التبويب</div>';
+                }
+            }
+
+            return wrapper;
+        }
+
+        function loadPanel(tabId) {
+            if (loadedPanels[tabId]) return loadedPanels[tabId];
+            var tab = null;
+            for (var i = 0; i < TABS_DATA.length; i++) {
+                if (TABS_DATA[i].id === tabId) { tab = TABS_DATA[i]; break; }
+            }
+            if (!tab) return null;
+            var wrapper = createPanel(tab);
+            loadedPanels[tabId] = wrapper;
+            return wrapper;
+        }
+
+        function switchTab(evt, tabId) {
+            document.querySelectorAll('.tab-content-panel').forEach(function(p) {
+                p.classList.remove('active');
+            });
+            document.querySelectorAll('.tab-item-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-selected', 'false');
+            });
+
+            var panel = loadPanel(tabId);
+            if (panel) panel.classList.add('active');
+
+            var btn = tabsBar.querySelector('[data-tab-id="' + tabId + '"]');
+            if (btn) {
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                try { btn.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'center' }); } catch(e){}
+            }
+
+            activeTabId = tabId;
+
+            var iframe = panel ? panel.querySelector('iframe') : null;
+            if (iframe) {
+                try { iframe.contentWindow && iframe.contentWindow.focus(); } catch(e){}
+            }
+            /* ★ لا يوجد window.scrollTo هنا — الصفحة الأم overflow: hidden */
+        }
+
+        function initialLoad() {
+            buildTabButtons();
+            if (TABS_DATA.length === 0) return;
+
+            var firstPanel = loadPanel(TABS_DATA[0].id);
+            if (firstPanel) firstPanel.classList.add('active');
+            activeTabId = TABS_DATA[0].id;
+
+            if (LAZY_MODE && TABS_DATA.length > 1) {
+                var preloadItems = TABS_DATA.slice(1, Math.min(1 + PRELOAD_COUNT, TABS_DATA.length));
+                preloadItems.forEach(function(tab, i) {
+                    setTimeout(function() { loadPanel(tab.id); }, 250 * (i + 1));
+                });
+            } else if (!LAZY_MODE) {
+                TABS_DATA.forEach(function(tab) {
+                    if (tab.id !== activeTabId) loadPanel(tab.id);
+                });
+            }
+        }
+
+        function escapeHtml(text) {
+            var div = document.createElement('div');
+            div.textContent = text == null ? '' : String(text);
+            return div.innerHTML;
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initialLoad);
+        } else {
+            initialLoad();
+        }
+    })();
+    </script>
+</body>
+</html>
