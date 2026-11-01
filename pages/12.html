@@ -2,519 +2,915 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="theme-color" content="#1e3c72">
-<title>تحميل كتب تراث</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+<title>الموسوعة الكاملة | نظرية الفستق (الجزءان الأول والثاني)</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa+Ink&family=Scheherazade+New:wght@400;500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-  html, body { height: 100%; overflow-x: hidden; }
-  body {
-    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh; padding: 12px; color: #333;
-    -webkit-text-size-adjust: 100%;
-  }
-  .container {
-    max-width: 500px; margin: 0 auto; background: white;
-    border-radius: 18px; box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+:root{
+    --paper:#f4efe6;
+    --paper-light:#faf7f0;
+    --paper-dark:#e2d7c3;
+    --ink:#2b2621;
+    --ink-soft:#595045;
+    --brown:#3d2e1e;
+    --brown-dark:#241a10;
+    --pistachio:#4a6b52;
+    --pistachio-light:#88a78e;
+    --pistachio-dark:#2d4433;
+    --gold:#b8860b;
+    --gold-light:#e2b855;
+    --gold-dark:#7a5800;
+    --border:#c5b8a0;
+    --shadow:rgba(43,38,33,.18);
+    --ease:cubic-bezier(.2,.8,.3,1);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    color:var(--ink);
+    background:
+        radial-gradient(circle at 20% 15%, rgba(74,107,82,.06) 0 2px, transparent 3px),
+        radial-gradient(circle at 75% 65%, rgba(184,134,11,.05) 0 1px, transparent 2px),
+        linear-gradient(90deg, rgba(61,46,30,.03), transparent 20%, transparent 80%, rgba(61,46,30,.03)),
+        var(--paper);
+    background-size:35px 35px,47px 47px,100% 100%,auto;
+    font-family:"Cairo","Segoe UI",sans-serif;
+    line-height:2.05;
+    animation:pageIn 1.1s var(--ease) both;
+}
+@keyframes pageIn{from{opacity:0}to{opacity:1}}
+
+/* شريط التقدم */
+.progress{position:fixed;top:0;right:0;left:0;height:3px;background:rgba(61,46,30,.12);z-index:120;pointer-events:none;}
+.progress span{display:block;height:100%;width:0%;
+    background:linear-gradient(90deg,var(--pistachio-dark),var(--pistachio-light),var(--gold-light));
+    background-size:200% 100%;box-shadow:0 0 12px rgba(136,167,142,.6);
+    transition:width .12s linear;animation:shine 3s linear infinite;}
+@keyframes shine{from{background-position:0% 0}to{background-position:200% 0}}
+
+/* الكتاب */
+.book{
+    width:min(940px,100%);margin:auto;min-height:100vh;
+    background:linear-gradient(rgba(255,255,255,.2),rgba(255,255,255,.2)),var(--paper-light);
+    box-shadow:0 0 45px rgba(36,26,16,.15);
+    animation:bookIn 1.3s var(--ease) both;
+}
+@keyframes bookIn{from{opacity:0;transform:translateY(30px) scale(.985)}to{opacity:1;transform:none}}
+
+/* غلاف الصورة */
+.image-cover {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--brown-dark);
+    padding: 0;
     overflow: hidden;
-  }
-  .header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    color: white; padding: 20px 16px; text-align: center;
-  }
-  .header h1 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
-  .header p { opacity: 0.9; font-size: 12px; }
-  .content { padding: 16px; }
-  .step {
-    background: #f8f9fa; border-radius: 14px; padding: 14px;
-    margin-bottom: 14px; border-right: 4px solid #667eea;
-  }
-  .step-title {
-    font-size: 14px; font-weight: 700; color: #1e3c72;
-    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-  }
-  .step-num {
-    background: #667eea; color: white; width: 24px; height: 24px;
-    min-width: 24px; border-radius: 50%; display: flex;
-    align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 700;
-  }
-  input[type="file"] { display: none; }
-  .file-btn, .btn-main {
-    width: 100%; border: none; border-radius: 12px;
-    cursor: pointer; font-family: inherit; font-weight: 700;
-    transition: transform 0.15s;
-    display: flex; align-items: center; justify-content: center;
-    gap: 8px; user-select: none;
-  }
-  .file-btn { background: #667eea; color: white; padding: 14px; font-size: 15px; }
-  .file-btn:active { transform: scale(0.97); background: #5568d3; }
-  .btn-main {
-    background: linear-gradient(135deg, #28a745, #20c997);
-    color: white; padding: 16px; font-size: 16px; margin-top: 4px;
-    box-shadow: 0 6px 20px rgba(40,167,69,0.3);
-  }
-  .btn-main:active:not(:disabled) { transform: scale(0.97); }
-  .btn-main:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
-  .info {
-    margin-top: 10px; font-size: 13px; color: #555;
-    background: white; padding: 10px 12px; border-radius: 10px;
-    display: none; line-height: 1.5; word-break: break-word;
-  }
-  .info.show { display: block; }
-  .info.success { color: #1e7e34; background: #d4edda; }
-  .info.error { color: #721c24; background: #f8d7da; }
-  .info.warn { color: #856404; background: #fff3cd; }
-  .progress-wrap { margin-top: 12px; display: none; }
-  .progress-wrap.show { display: block; }
-  .progress-bar {
-    background: #e9ecef; border-radius: 12px; height: 26px;
-    overflow: hidden; position: relative;
-  }
-  .progress-fill {
-    background: linear-gradient(90deg, #667eea, #764ba2);
-    height: 100%; width: 0%; transition: width 0.3s;
-    display: flex; align-items: center; justify-content: center;
-    color: white; font-size: 12px; font-weight: 700;
-  }
-  .status {
-    margin-top: 10px; font-size: 13px; text-align: center;
-    color: #555; line-height: 1.5; min-height: 20px;
-  }
-  .stats {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 8px; margin-top: 12px;
-  }
-  .stat {
-    background: white; padding: 10px 6px; border-radius: 10px;
-    text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  .stat-num { font-size: 20px; font-weight: 700; display: block; }
-  .stat-label { font-size: 11px; color: #666; margin-top: 2px; }
-  .stat.ok .stat-num { color: #28a745; }
-  .stat.fail .stat-num { color: #dc3545; }
-  .stat.skip .stat-num { color: #ffc107; }
-  .log {
-    max-height: 180px; overflow-y: auto; background: #1a1a1a;
-    color: #0f0; padding: 10px; border-radius: 10px;
-    font-family: 'Courier New', monospace; font-size: 11px;
-    margin-top: 12px; direction: ltr; text-align: left;
-    display: none; -webkit-overflow-scrolling: touch;
-  }
-  .log.show { display: block; }
-  .log-entry { padding: 2px 0; line-height: 1.4; }
-  .log-entry.err { color: #ff6b6b; }
-  .log-entry.ok { color: #51cf66; }
-  .log-entry.info { color: #74c0fc; }
-  .note {
-    background: #e7f3ff; border-right: 4px solid #2196f3;
-    padding: 10px 12px; border-radius: 10px; font-size: 12px;
-    color: #0c5460; margin-top: 10px; line-height: 1.6;
-  }
-  .restart-btn {
-    position: fixed; bottom: 16px; left: 16px;
-    background: #dc3545; color: white; border: none;
-    border-radius: 50%; width: 50px; height: 50px;
-    font-size: 22px; cursor: pointer;
-    box-shadow: 0 4px 15px rgba(220,53,69,0.5);
-    display: none; z-index: 100;
-    align-items: center; justify-content: center;
-  }
-  .restart-btn.show { display: flex; }
-  .restart-btn:active { transform: scale(0.9); }
-  .toast {
-    position: fixed; bottom: 20px; left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: #333; color: white; padding: 12px 20px;
-    border-radius: 25px; font-size: 13px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    transition: transform 0.3s; z-index: 200;
-    max-width: 90%; text-align: center;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-  @media (max-width: 360px) {
-    .header h1 { font-size: 17px; }
-    .stat-num { font-size: 17px; }
-    .file-btn, .btn-main { font-size: 14px; padding: 13px; }
-  }
+}
+
+.cover-img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* شريط التبويبات */
+.tabs{
+    position:sticky;top:0;z-index:90;
+    display:flex;justify-content:center;flex-wrap:wrap;gap:6px;
+    padding:11px clamp(9px,2.6vw,22px);
+    background:linear-gradient(180deg,rgba(250,247,240,.98),rgba(244,239,230,.96));
+    border-bottom:1px solid var(--border);
+    box-shadow:0 6px 20px rgba(43,38,33,.08);
+    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.tab-btn{
+    flex:1 1 130px;max-width:180px;
+    display:flex;align-items:center;gap:7px;padding:8px 10px;
+    background:rgba(255,253,248,.8);
+    border:1px solid var(--border);border-radius:10px;
+    color:var(--brown);font-family:"Cairo",sans-serif;font-weight:600;
+    cursor:pointer;text-align:right;min-height:44px;
+    transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease),background .45s var(--ease),color .45s var(--ease);
+}
+.tab-btn:hover{transform:translateY(-3px);border-color:var(--pistachio);box-shadow:0 10px 22px rgba(45,68,51,.12);}
+.tab-btn:active{transform:translateY(-1px) scale(.98);}
+.tab-btn.active{
+    background:linear-gradient(145deg,#1f3325,#2d4433);
+    color:#f4efe6;border-color:var(--gold-light);
+    box-shadow:0 10px 26px rgba(27,43,32,.28),0 0 0 3px rgba(136,167,142,.2);
+}
+.tab-icon{font-size:16px;line-height:1;flex-shrink:0;}
+.tab-text{display:flex;flex-direction:column;line-height:1.35;min-width:0;}
+.tab-text strong{font-size:11.5px;font-weight:700;}
+.tab-text small{font-size:8.5px;font-weight:400;opacity:.7;}
+.tab-btn.active .tab-text small{color:var(--gold-light);opacity:.9;}
+
+/* اللوحات والمحتوى - تم إضافة هامش تمرير علوي لتفادي التغطية */
+.panel{
+    display:block;
+    scroll-margin-top: 110px;
+}
+.content{padding:55px clamp(20px,7vw,70px) 70px;}
+
+/* رؤوس الفصول */
+.chapter-head{text-align:center;margin-bottom:45px;}
+.chapter-head .symbol{font-size:35px;margin-bottom:10px;display:inline-block;animation:floatY 4s ease-in-out infinite;}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.chapter-head small{color:var(--pistachio-dark);font-weight:bold;letter-spacing:2px;}
+.chapter-head h2{font-family:"Scheherazade New","Amiri",serif;color:var(--brown-dark);font-size:clamp(30px,5.6vw,43px);line-height:1.4;}
+.chapter-head p{font-family:"Amiri",serif;color:var(--ink-soft);font-size:19px;}
+
+/* مقدمة وإثراءات */
+.intro{
+    position:relative;background:rgba(255,253,248,.85);
+    border:1px solid var(--border);border-right:5px solid var(--pistachio);
+    padding:28px;margin-bottom:45px;border-radius:8px;
+    box-shadow:0 5px 18px rgba(43,38,33,.05);
+}
+.intro p{font-family:"Amiri",serif;font-size:20px;line-height:2.3;text-align:justify;margin-bottom:12px;}
+.intro p:last-child{margin-bottom:0;}
+
+.story-card{
+    position:relative;margin:40px 0;padding:34px 30px 38px;
+    background:linear-gradient(135deg,rgba(255,255,255,.6),rgba(226,215,195,.3));
+    border:1px solid rgba(74,107,82,.3);border-radius:8px;
+    box-shadow:0 10px 30px rgba(43,38,33,.06);
+}
+.story-card::before{content:"";position:absolute;inset:11px;border:1px solid rgba(136,167,142,.25);border-radius:5px;pointer-events:none;}
+.story-head{position:relative;z-index:2;display:flex;align-items:center;gap:15px;margin-bottom:24px;}
+.story-icon{
+    width:62px;height:62px;min-width:62px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;background:var(--pistachio-dark);font-size:31px;color:var(--gold-light);
+    box-shadow:0 5px 14px rgba(27,43,32,.25);
+}
+.story-label{color:var(--pistachio-dark);font-size:13px;font-weight:700;}
+.story-head h2{font-family:"Scheherazade New","Amiri",serif;font-size:clamp(25px,4.4vw,35px);line-height:1.3;color:var(--brown-dark);}
+.story-card p{position:relative;z-index:2;font-family:"Amiri",serif;font-size:20px;line-height:2.25;text-align:justify;margin-bottom:18px;}
+.story-card p:last-child{margin-bottom:0;}
+
+.quote{
+    position:relative;padding:30px 35px;margin:32px 0;text-align:center;
+    color:#f4efe6;background:linear-gradient(145deg,#1f3325,#2d4433);
+    border-radius:8px;border:1px solid rgba(136,167,142,.4);overflow:hidden;
+}
+.quote::before{content:"“";position:absolute;right:10px;top:-30px;font-size:110px;color:rgba(226,184,85,.15);}
+.quote p{position:relative;z-index:1;font-family:"Amiri",serif;font-size:23px;line-height:2;}
+.quote small{display:block;margin-top:10px;color:var(--gold-light);font-size:16px;}
+
+.insight-box{margin:28px 0;padding:24px 26px;border-radius:8px;background:rgba(255,253,248,.9);border:1px dashed var(--border);position:relative;}
+.insight-title{font-weight:700;font-size:17px;color:var(--brown-dark);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.insight-body{font-family:"Amiri",serif;font-size:19px;line-height:2.2;color:var(--ink);}
+.insight-deep{border-right:5px solid var(--brown);background:#f2ebd9;}
+.insight-wisdom{border-right:5px solid var(--gold-dark);background:#fdfaf3;}
+.insight-action{border-right:5px solid var(--pistachio);background:#f0f5f1;}
+.insight-warning{border-right:5px solid #a83232;background:#fdf2f2;}
+.insight-reflect{border-right:5px solid #2b547e;background:#f0f5fa;}
+
+.example{
+    margin-top:28px;padding:25px;border-radius:9px;color:#f4efe6;
+    background:linear-gradient(145deg,#243628,#354e3a);
+    border:1px solid rgba(136,167,142,.35);
+}
+.example-title{color:var(--gold-light);font-weight:bold;margin-bottom:10px;font-size:19px;}
+.example p{font-family:"Amiri",serif;font-size:19px;line-height:2.2;}
+
+.table-wrap{
+    margin:30px 0;padding:20px;border-radius:9px;overflow-x:auto;
+    background:rgba(255,253,248,.8);border:1px solid var(--border);
+    box-shadow:0 4px 15px rgba(43,38,33,.04);-webkit-overflow-scrolling:touch;
+}
+.table-wrap h4{color:var(--brown-dark);margin-bottom:14px;font-size:18px;display:flex;align-items:center;gap:8px;}
+table{width:100%;border-collapse:collapse;font-family:"Amiri",serif;font-size:18px;min-width:550px;}
+table th,table td{padding:12px 14px;border-bottom:1px solid rgba(197,184,160,.4);text-align:right;}
+table th{background:linear-gradient(145deg,#2d4433,#1f3325);color:#f4efe6;font-weight:600;}
+table tr:nth-child(even) td{background:rgba(244,239,230,.5);}
+
+.principles{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:28px;}
+.principle{
+    background:rgba(255,253,248,.75);border:1px solid var(--border);
+    padding:22px;border-radius:8px;box-shadow:0 5px 13px rgba(43,38,33,.05);
+}
+.principle-icon{font-size:28px;float:right;margin-left:12px;}
+.principle h3{color:var(--pistachio-dark);font-size:20px;margin-bottom:8px;}
+.principle p{font-family:"Amiri",serif;font-size:18px;line-height:2.1;color:var(--ink-soft);}
+
+.timeline{border-right:3px solid var(--pistachio);margin:30px 15px;padding-right:25px;}
+.timeline-item{position:relative;margin-bottom:30px;}
+.timeline-item:before{content:"";position:absolute;right:-34px;top:8px;width:13px;height:13px;border-radius:50%;
+    background:var(--pistachio);border:3px solid var(--paper-light);box-shadow:0 0 0 1px var(--pistachio);}
+.timeline-item h3{color:var(--brown-dark);font-size:22px;margin-bottom:6px;}
+.timeline-item p{font-family:"Amiri",serif;font-size:19px;line-height:2.2;}
+
+.final-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:30px;}
+.final-card{padding:22px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(136,167,142,.3);border-radius:8px;}
+.final-card .emoji{display:block;font-size:32px;margin-bottom:8px;}
+.final-card strong{display:block;font-family:"Amiri",serif;color:var(--gold-light);font-size:20px;}
+.final-card span:last-child{display:block;color:#e8f0e9;font-size:15px;line-height:1.9;margin-top:6px;}
+
+.ending{text-align:center;padding:60px 10px 30px;}
+.credit{margin:40px auto 10px;padding:22px 20px;max-width:400px;text-align:center;border-top:1px solid var(--pistachio);border-bottom:1px solid var(--pistachio);}
+.credit span{display:block;font-family:"Cairo",sans-serif;color:var(--pistachio-dark);font-size:12px;letter-spacing:2px;}
+.credit strong{display:block;margin-top:5px;font-family:"Scheherazade New","Amiri",serif;color:var(--brown-dark);font-size:31px;}
+.footer{text-align:center;padding:30px 20px 45px;color:var(--ink-soft);border-top:1px solid var(--border);font-size:13px;}
+
+.top{
+    position:fixed;bottom:18px;left:18px;width:48px;height:48px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;background:var(--pistachio-dark);color:var(--gold-light);
+    text-decoration:none;font-size:20px;box-shadow:0 5px 18px rgba(0,0,0,.2);z-index:50;
+    opacity:0;visibility:hidden;transition:all .45s var(--ease);
+}
+.top.show{opacity:1;visibility:visible;}
+
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .95s var(--ease),transform .95s var(--ease);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:600px){
+    .principles,.final-grid{grid-template-columns:1fr;}
+    .content{padding:35px 16px 50px;}
+    .story-card{padding:22px 16px;}
+    .story-head{flex-direction:column;align-items:flex-start;gap:8px;}
+}
+</style>
+
+<style>
+/* ====== ميزة العلامة المرجعية (Bookmark) ====== */
+.tab-btn{position:relative;}
+.tab-btn.bookmarked{
+    background:linear-gradient(135deg, #fffde8 0%, #faf7f0 100%);
+    border-color:var(--gold);
+    box-shadow:0 0 0 2px var(--gold), 0 4px 14px rgba(184,134,11,.30);
+    padding-left:34px;
+    color: var(--brown-dark) !important; /* لون داكن واضح جداً للخط في حالة عدم التحديد */
+}
+.tab-btn.bookmarked.active{
+    background:linear-gradient(145deg,#1f3325,#2d4433);
+    box-shadow:0 0 0 2px var(--gold-light), 0 4px 16px rgba(226,184,85,.40);
+    color: #f4efe6 !important; /* لون أبيض واضح في حالة التحديد */
+}
+.tab-btn.bookmarked::after{
+    content:"🏷";
+    position:absolute;
+    top:50%;
+    left:8px;
+    transform:translateY(-50%);
+    font-size:14px;
+    line-height:1;
+    pointer-events:none;
+    animation:bookmarkPop .42s cubic-bezier(.34,1.56,.64,1);
+    filter:drop-shadow(0 1px 1px rgba(0,0,0,.15));
+}
+@keyframes bookmarkPop{
+    0%{transform:translateY(-50%) scale(0) rotate(-30deg);opacity:0}
+    60%{transform:translateY(-50%) scale(1.4) rotate(10deg);opacity:1}
+    100%{transform:translateY(-50%) scale(1) rotate(0);opacity:1}
+}
+@media print{.tab-btn.bookmarked::after{display:none}}
 </style>
 </head>
+
 <body>
 
-<div class="container">
-  <div class="header">
-    <h1>📚 تحميل كتب تراث</h1>
-    <p>حمّل جميع كتبك بصيغة EPUB دفعة واحدة</p>
-  </div>
-  
-  <div class="content">
-    <div class="step">
-      <div class="step-title">
-        <span class="step-num">1</span>
-        اختر ملف الحالة (JSON)
-      </div>
-      <input type="file" id="jsonFile" accept=".json,.txt,application/json,text/plain">
-      <button class="file-btn" id="chooseFileBtn">📁 اختيار ملف JSON</button>
-      <div class="info" id="fileInfo"></div>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+<div class="book">
+
+<!-- ======== الغلاف ======== -->
+<section class="image-cover" id="top">
+    <img src="../files/12/a11.jpg" alt="غلاف كتاب نظرية الفستق" class="cover-img">
+</section>
+
+<!-- ======== التبويبات ======== -->
+<nav class="tabs" id="tabs" role="tablist" aria-label="أقسام الكتاب">
+    <button class="tab-btn active" role="tab" aria-selected="true" aria-controls="panel1" data-panel="panel1" type="button">
+        <span class="tab-icon">✈️</span>
+        <span class="tab-text"><strong>خريطة الحياة</strong><small>ج1: مسار الهدف</small></span>
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel2" data-panel="panel2" type="button">
+        <span class="tab-icon">🥜</span>
+        <span class="tab-text"><strong>نظرية الفستق</strong><small>ج1: تراكم الأخطاء</small></span>
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel3" data-panel="panel3" type="button">
+        <span class="tab-icon">🕶️</span>
+        <span class="tab-text"><strong>النظارة السوداء</strong><small>ج1: الانحياز الذهني</small></span>
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel4" data-panel="panel4" type="button">
+        <span class="tab-icon">⏱️️</span>
+        <span class="tab-text"><strong>قانون الـ 15 دقيقة</strong><small>ج1: الإنجاز التراكمي</small></span>
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel5" data-panel="panel5" type="button">
+        <span class="tab-icon">🧠</span>
+        <span class="tab-text"><strong>إدارة ردود الفعل</strong><small>ج1: بافلوف والحدود</small></span>
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel6" data-panel="panel6" type="button">
+        <span class="tab-icon">❌</span>
+        <span class="tab-text"><strong>لماذا يفشل الناس؟</strong><small>ج2: أسباب الفشل</small></span>
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel7" data-panel="panel7" type="button">
+        <span class="tab-icon">💡</span>
+        <span class="tab-text"><strong>النية لا تكفي</strong><small>ج2: التنفيذ والانضباط</small></span>
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel8" data-panel="panel8" type="button">
+        <span class="tab-icon">🎭</span>
+        <span class="tab-text"><strong>خدع العقل البشري</strong><small>ج2: حيل الدماغ</small></span>
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel9" data-panel="panel9" type="button">
+        <span class="tab-icon">👑</span>
+        <span class="tab-text"><strong>قوانين الهيبة والنجاح</strong><small>ج2: الشخصية المتميزة</small></span>
+    </button>
+    <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel10" data-panel="panel10" type="button">
+        <span class="tab-icon">🏰</span>
+        <span class="tab-text"><strong>منطقة الراحة الاستثنائية</strong><small>ج1+ج2: الخلاصة الكبرى</small></span>
+    </button>
+</nav>
+
+<main class="content">
+
+<!-- ============ لوحة 1 (ج1) ============ -->
+<div class="panel active" id="panel1" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">✈️</div>
+        <small>الجزء الأول — المحور الأول</small>
+        <h2>ما هي خطتك في الحياة؟</h2>
+        <p>الفرق بين الطائرة التي تملك إحداثيات، والأخرى التي تحوم في الفراغ</p>
+    </section>
+
+    <div class="quote" data-reveal>
+        <p>«الرياح لا تطرد الطائرة التي تعرف وجهتها، بل تلعب بالطائرة التي لا وجهة لها.»</p>
+        <small>قواعد الملاحة الحياتية</small>
     </div>
-    
-    <div class="step">
-      <div class="step-title">
-        <span class="step-num">2</span>
-        ابدأ التحميل
-      </div>
-      <button class="btn-main" id="downloadBtn" disabled>⬇️ تحميل جميع الكتب</button>
-      <div class="note" id="platformNote">⏳ جاري اكتشاف المتصفح...</div>
-      
-      <div class="progress-wrap" id="progressWrap">
-        <div class="progress-bar">
-          <div class="progress-fill" id="progressFill">0%</div>
-        </div>
-        <div class="status" id="status"></div>
-        <div class="stats">
-          <div class="stat ok">
-            <span class="stat-num" id="statOk">0</span>
-            <div class="stat-label">✅ نجح</div>
-          </div>
-          <div class="stat skip">
-            <span class="stat-num" id="statSkip">0</span>
-            <div class="stat-label">⏭️ موجود</div>
-          </div>
-          <div class="stat fail">
-            <span class="stat-num" id="statFail">0</span>
-            <div class="stat-label">❌ فشل</div>
-          </div>
-        </div>
-        <div class="log" id="logBox"></div>
-      </div>
+
+    <section class="intro" data-reveal>
+        <p>تخيل طائرة عملاقة تقف على مدرج المطار، محملة بأفضل أنواع الوقود، وقادها أكفأ القادة في العالم، لكن لا توجد لها خطة طيران ولا وجهة محددة على أجهزة الملاحة. ماذا سيحدث لها؟</p>
+        <p>إما أن تبقى جاثمة على الأرض تستهلك طاقاتها حتى الصدأ، أو تقلع وتظل تائهة في الجو حتى ينفد وقودها وتسقط في المحيط. هذا تمامًا ما يحدث للإنسان الذكي الموهوب الذي لا يملك <strong>خطة حياة مكتوبة</strong>. إن الفرق الجوهري بين الأشخاص النجباء الذين حققوا نجاحات استثنائية وأولئك الذين اكتفوا بالعيش في الهامش، ليس في نسبة الذكاء ولا الظروف الخارجية، بل في وجود تخطيط مسبق وواضح.</p>
+    </section>
+
+    <div class="principles" data-reveal>
+        <div class="principle"><span class="principle-icon">🎯</span><h3>الوضوح المكتوب</h3><p>تحديد الهدف بلغة الأرقام والتواريخ الصريحة لا بالأمنيات الفضفاضة.</p></div>
+        <div class="principle"><span class="principle-icon">📜</span><h3>قانون التدوين</h3><p>الهدف غير المكتوب مجرد حلم مستمر يتبخر فور الاستيقاظ والانشغال باليوميات.</p></div>
+        <div class="principle"><span class="principle-icon">🧩</span><h3>التقسيم المرحلي</h3><p>تفكيك الهدف الأكبر لسنوات إلى أهداف أسبوعية ويومية قابلة للتنفيذ.</p></div>
+        <div class="principle"><span class="principle-icon">🔄</span><h3>المرونة التكتيكية</h3><p>تعديل طريقة المسار عند هبوب الأزمات دون تغيير المطار النهائي المطلق.</p></div>
     </div>
-  </div>
+
+    <div class="table-wrap" data-reveal>
+        <h4>📊 مقارنة بين العقل المخطط والعقل العشوائي</h4>
+        <table>
+            <thead>
+                <tr><th>المعيار</th><th>الإنسان صاحب الخطة</th><th>الإنسان العشوائي</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>التعامل مع الوقت</td><td>يستثمره وفق أولويات ومواعيد محددة</td><td>يقتله وتتسرب منه الأيام دون أثر</td></tr>
+                <tr><td>التعامل مع الفرص</td><td>يختار منها ما يخدم بوصلته الاستراتيجية</td><td>يتشتت مع كل عرض براق عابر</td></tr>
+                <tr><td>الأزمات والضغوط</td><td>يعيد توجيه خطته بتماسك ووعي</td><td>ينهار ويعزو السبب للحظ والظروف</td></tr>
+                <tr><td>النتيجة بعد 5 سنوات</td><td>وصول ملموس وإنجازات متراكمة</td><td>مكانك سر مع حسرة وتبريرات مستمرة</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="insight-box insight-deep" data-reveal>
+        <div class="insight-title">🧠 فكرة أعمق</div>
+        <div class="insight-body">إن لم تضع لنفسك خطة عمل واضحة وتعمل على تحقيقها، فستكون تلقائيًا جزءًا من خطط الآخرين، وسوف تستغل مهاراتك ووقتك لخدمة أهدافهم هم لا أهدافك أنت.</div>
+    </div>
+
+    <div class="example" data-reveal>
+        <div class="example-title">📊 مثال رقمي لمسار الهدف</div>
+        <p>تأليف كتاب من <strong>30,000 كلمة</strong> خلال سنة:<br>
+        🔴 <strong>النهج العشوائي:</strong> "سأكتب كتاباً هذا العام" ← ينتهي العام بصفحتين فقط.<br>
+        🟢 <strong>النهج المخطط:</strong> 30,000 كلمة ÷ 300 يوم = <strong>100 كلمة يومياً</strong> (فقرة واحدة فقط). بعد 10 أشهر يكتمل الكتاب تماماً وبلا إرهاق!</p>
+    </div>
+
+    <div class="insight-box insight-action" data-reveal>
+        <div class="insight-title">🚀 تطبيق عملي</div>
+        <div class="insight-body">أحضر ورقة وقلمًا الآن، واكتب 5 أهداف رئيسية تريد تحقيقها خلال الأشهر الـ 12 القادمة، واكتب أمام كل هدف: "ما الخطوة الصغيرة التي سأفعلها غدًا للبدء؟"</div>
+    </div>
 </div>
 
-<button class="restart-btn" id="restartBtn">⏹</button>
-<div class="toast" id="toast"></div>
+<!-- ============ لوحة 2 (ج1) ============ -->
+<div class="panel" id="panel2" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">🥜</div>
+        <small>الجزء الأول — المحور الثاني</small>
+        <h2>نظرية الفستق (تراكم الأخطاء الصغرى)</h2>
+        <p>كيف يتسبب تصرف هامشي غير محسوب في تدمير نتائج سنوات من الجهد؟</p>
+    </section>
+
+    <div class="intro" data-reveal>
+        <p>تدور الفكرة المحورية لـ "نظرية الفستق" حول ذلك الحدث البسيط الذي نستهين به، لكنه يطلق سلسلة غير متوقعة من التفاعلات المتتابعة التي تنتهي بكارثة ضخمة.</p>
+        <p>تخيل رجلًا يسود حياته الاستقرار والنجاح، وفي لحظة طيش بالسيارة يرغي ويقذف قشرة فستق أو ينشغل برد هاتف، فيتسبب في حادث يغير مجرى حياته وحياة أسرته إلى الأبد.</p>
+    </div>
+
+    <div class="story-card" data-reveal>
+        <div class="story-head">
+            <div class="story-icon">🚗</div>
+            <div>
+                <div class="story-label">الفكرة الجوهرية</div>
+                <h2>تسلسل الفراشة وتراكم الأخطاء</h2>
+            </div>
+        </div>
+        <p>المشكلة في الكوارث العظمى في حياتنا (سواء المال، الصحة، العلاقات، أو المهنة) أنها نادراً ما تقع بفعل قرار كبير مفاجئ، بل هي حاصل جمع <strong>أخطاء صغيرة جداً استهنا بها يومياً</strong> حتى كَبُرت وتفاقمت.</p>
+        <p>سيجارة واحدة يومياً لا تقتلك اليوم، لكنها تراكم سرطانياً يظهر بعد عقدين. عدم ادخار مبلغ بسيط اليوم لا يفقرك فوراً، لكنه تراكم يضمن إفلاسك عند التقاعد.</p>
+    </div>
+
+    <div class="insight-box insight-warning" data-reveal>
+        <div class="insight-title">⚠️ تنبيه من "تأثير الفستق"</div>
+        <div class="insight-body">احذر الانفعالات اللحظية والتصرفات الصغيرة التي تحسبها بلا قيمة. كلمة غضب، تسويف قرار، أكلة غير صحية، تفويت خطة... كلها قشور فستق تراكمية متى ما زادت دمرت بناء حياتك.</div>
+    </div>
+
+    <div class="story-card" data-reveal>
+        <div class="story-head">
+            <div class="story-icon">🛡️</div>
+            <div>
+                <div class="story-label">الهندسة الوقائية</div>
+                <h2>كيف تحمي حياتك من قشور الفستق؟</h2>
+            </div>
+        </div>
+        <p>الحل يكمن في ممارسة <strong>"الوعي العكسي"</strong>؛ أي أن تتوقف قبل كل تصرف صغير وتسأل نفسك: "لو تحول هذا التصرف البسيط إلى عادة يومية، أين سأكون بعد 5 سنوات؟"</p>
+        <p>1. كبح الانفعال اللحظي وتأجيل القرارات المصيرية أثناء حالة الغضب.<br>
+        2. المراجعة الدورية للصغائر والقيام بفحص الأخطاء اليومية البسيطة لمعالجتها أولاً بأول.</p>
+    </div>
+</div>
+
+<!-- ============ لوحة 3 (ج1) ============ -->
+<div class="panel" id="panel3" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">🕶️</div>
+        <small>الجزء الأول — المحور الثالث</small>
+        <h2>النظارة السوداء والانحياز الذهني</h2>
+        <p>نحن لا نرى الواقع كما هو، بل نراه كما جُهزت عقولنا لرؤيته</p>
+    </section>
+
+    <div class="intro" data-reveal>
+        <p>إذا ارتديت نظارة ذات زجاج أحمر، ستعتقد جازمًا أن العالم كله يتوهج بالحمرة. وإذا ارتديت نظارة سوداء، ستلغي بهجة الألوان وتظن أن الظلام يخيم على الكوكب.</p>
+        <p>العقل البشري يرتدي "نظارات فكرية" شُكلت بواسطة التربية، الثقافة، الصدمات، والمعتقدات المسبقة التي تلون تقييمنا للأحداث والأشخاص.</p>
+    </div>
+
+    <div class="story-card" data-reveal>
+        <div class="story-head">
+            <div class="story-icon">🧠</div>
+            <div>
+                <div class="story-label">الانحياز التأكيدي</div>
+                <h2>فخ البحث عما تؤيد قناعاتك فقط</h2>
+            </div>
+        </div>
+        <p>حين يتخذ عقلك موقفًا من شخص أو فكرة أو مجتمع، فإنه يتحول إلى مدعٍ عام يجمع الأدلة التي تؤيد موقفه فقط، ويمسح تلقائيًا كل الحجج والأدلة التي تخالفه. هذا ما يسمى علميًا <strong>الانحياز التأكيدي (Confirmation Bias)</strong>.</p>
+        <p>كذلك نقع في فخ "تأثير البقعة الهامشية" لنظن أن الجميع يراقبون أخطاءنا، بينما الواقع أن كل شخص مشغول ببحثه الخاص ومشاكله الذاتية.</p>
+    </div>
+
+    <div class="insight-box insight-reflect" data-reveal>
+        <div class="insight-title">🪞 تأمل منطقي</div>
+        <div class="insight-body">فكر في فكرة قطعية تدافع عنها بشدة اليوم، واسأل نفسك: "ما هي الأدلة التي لو ظهرت ستثبت لي أنني كنت مخطئًا؟" إن لم تجد جوابًا، فأنت ترتدي نظارة سوداء سميكة جداً.</div>
+    </div>
+</div>
+
+<!-- ============ لوحة 4 (ج1) ============ -->
+<div class="panel" id="panel4" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">⏱</div>
+        <small>الجزء الأول — المحور الرابع</small>
+        <h2>قانون الـ 15 دقيقة والتغيير المستمر</h2>
+        <p>كيف تحول ربع ساعة يومياً حياتك إلى قصة نجاح باهرة؟</p>
+    </section>
+
+    <div class="intro" data-reveal>
+        <p>الخطأ الأكبر الذي يقع فيه معظم الناس عند الرغبة في تطوير ذواتهم هو "الحماس المفرط اللحظي"؛ حيث يقرر الشخص قراءة كتاب كامل في يوم، أو التمرين لساعتين متواصلتين، فيصاب بالإنهاك والاستنزاف ويتوقف بعد أيام.</p>
+    </div>
+
+    <div class="story-card" data-reveal>
+        <div class="story-head">
+            <div class="story-icon">🌱</div>
+            <div>
+                <div class="story-label">السحر البسيط</div>
+                <h2>قوة الاستمرارية الصارمة</h2>
+            </div>
+        </div>
+        <p>خصص 15 دقيقة يومياً بلا انقطاع لمهارة واحدة: تعلم لغة، قراءة كتاب متخصص، ممارسة الرياضة، أو تطوير مشروع. هذا القدر الضئيل لا يستثير مقاومة الدماغ ولن يشعرك بالإرهاق، لكن تراكمه العظيم هو السر الحقيقي للنجاح.</p>
+    </div>
+
+    <div class="example" data-reveal>
+        <div class="example-title">📈 الرياضيات التراكمية لقانون الـ 15 دقيقة</div>
+        <p>• 15 دقيقة يومياً قراءة = <strong>91 ساعة في السنة</strong> (تعادل قراءة 12 إلى 15 كتاباً فكرياً متعمقاً).<br>
+        • 15 دقيقة يومياً حفظ كلمات = <strong>1800 كلمة جديدة</strong> في لغة أجنبية سنوياً (كافية للتحدث بطلاقة).<br>
+        • 15 دقيقة مشي سريع يومياً = <strong>90 ساعة رياضة</strong> ترفع كفاءة القلب وتحميك من الكهولة المبكرة.</p>
+    </div>
+
+    <div class="insight-box insight-wisdom" data-reveal>
+        <div class="insight-title">⚖️ حكمة مستخلصة</div>
+        <div class="insight-body">«قليل دائم خير من كثير منقطع. النجاح لا يحتاج معجزات، بل عادات صغيرة تمارسها بانضباط حديدي.»</div>
+    </div>
+</div>
+
+<!-- ============ لوحة 5 (ج1) ============ -->
+<div class="panel" id="panel5" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">🧠</div>
+        <small>الجزء الأول — المحور الخامس</small>
+        <h2>تجربة بافلوف وقاعدة الـ 80/20</h2>
+        <p>التحكم بردود الفعل والتركيز على الـ 20% الأكثر أهمية</p>
+    </section>
+
+    <div class="intro" data-reveal>
+        <p>في عالم النفس، ربط بافلوف بين جرس الطعام وإفراز اللعاب، ليثبت أن الكائن يتعامل بآلية تلقائية مع المثيرات الخارجية. وللأسف، ينقاد أغلب الناس لغضبهم واستفزاز الآخرين كأجراس بافلوف!</p>
+    </div>
+
+    <div class="story-card" data-reveal>
+        <div class="story-head">
+            <div class="story-icon">🧘‍♂️</div>
+            <div>
+                <div class="story-label">إدارة الذات</div>
+                <h2>المسافة الذهنية وفن الحدود</h2>
+            </div>
+        </div>
+        <p>الناضج يملك مسافة فاصلة بين المثير والاستجابة. وفي ذات الوقت، يطبق <strong>قاعدة 20/80 (مبدأ باريتو)</strong> ليركز على الـ 20% من الأشخاص والأفكار والمهام التي تحقق له 80% من النماء والهدوء النفسي والنتائج الملموسة.</p>
+    </div>
+
+    <div class="table-wrap" data-reveal>
+        <h4>🔎 تطبيق قاعدة 20/80 في الحياة اليومية</h4>
+        <table>
+            <thead><tr><th>المجال</th><th>الـ 20% الأكثر أهمية (ركز عليها)</th><th>الـ 80% الهامشية (ألغها)</th></tr></thead>
+            <tbody>
+                <tr><td>العلاقات</td><td>الأصدقاء الداعمون والعائلة المقربة</td><td>المعارف السطحيون ومستهلكو الطاقة</td></tr>
+                <tr><td>العمل والإنتاج</td><td>المهام الجوهرية التي تحقق نتائجك</td><td>الاجتماعات الفارغة والمراسلات الروتينية</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="insight-box insight-action" data-reveal>
+        <div class="insight-title">🚀 تطبيق عملي</div>
+        <div class="insight-body">توقف 5 ثوانٍ قبل أي رد فعل غاضب، وتعلّم كلمة "لا" اللبقة لكل طلب استهلاكي يمارسه الآخرون على حساب وقتك المخطط.</div>
+    </div>
+</div>
+
+<!-- ============ لوحة 6 (ج2) ============ -->
+<div class="panel" id="panel6" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">❌</div>
+        <small>الجزء الثاني — المحور الأول</small>
+        <h2>لماذا يفشل الناجحون؟ (قوانين التعثر)</h2>
+        <p>دراسة الأخطاء الكبرى التي تطيح بالاستثنائيين في منتصف الطريق</p>
+    </section>
+
+    <div class="intro" data-reveal>
+        <p>في الجزء الثاني من نظرية الفستق، يتوسع المؤلف ليطرح سؤالاً أعمق: لماذا ينكسر الأشخاص الأذكياء بعد وصولهم القمة؟</p>
+        <p>الفشل نادراً ما يكون ناتجاً عن غباء مفرط، بل عن <strong>تضخم الأنا، والغرور بالمكاسب السابقة، والركون إلى الماضي</strong> دون مواكبة التغيرات.</p>
+    </div>
+
+    <div class="principles" data-reveal>
+        <div class="principle"><span class="principle-icon">🦚</span><h3>الغرور بالنجاح</h3><p>التوقف عن التعلم والاستهانة بالمنافسين الجدد والمتغيرات.</p></div>
+        <div class="principle"><span class="principle-icon">🔄</span><h3>التكرار النمطي</h3><p>الإصرار على نفس الأساليب رغم تغير الظروف البيئية.</p></div>
+        <div class="principle"><span class="principle-icon">🙈</span><h3>إغلاق الآذان</h3><p>إبعاد الناصحين وتقريب المداحين والمنافقين.</p></div>
+        <div class="principle"><span class="principle-icon">⏳</span><h3>التأجيل والمماطلة</h3><p>الاعتماد على الرصيد القديم والتكاسل عن تحديث المهارات.</p></div>
+    </div>
+
+    <div class="insight-box insight-warning" data-reveal>
+        <div class="insight-title">⚠️ تنبيه من فخ "نوكيا"</div>
+        <div class="insight-body">الشركات والأشخاص الكبار لا ينهارون بفعل أزمات مفاجئة، بل بفعل رفضهم التكيف وتحديث نظاراتهم الفكرية في الوقت المناسب.</div>
+    </div>
+</div>
+
+<!-- ============ لوحة 7 (ج2) ============ -->
+<div class="panel" id="panel7" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">💡</div>
+        <small>الجزء الثاني — المحور الثاني</small>
+        <h2>النية لا تكفي (فلسفة التنفيذ)</h2>
+        <p>لماذا يمتلك الجميع أحلاماً عظيمة ولا ينفذها إلا 1%؟</p>
+    </section>
+
+    <div class="intro" data-reveal>
+        <p>النوايا الحسنة والطموحات الشغوفة متوفرة لدى الجميع مجاناً. الشارع مليء بأشخاص يملكون أفكاراً لمشاريع بمليارات، ولكن القيمة الحقيقية تكمن في الفلسفة البسيطة: <strong>التنفيذ الصارم</strong>.</p>
+    </div>
+
+    <div class="story-card" data-reveal>
+        <div class="story-head">
+            <div class="story-icon">⚙️</div>
+            <div>
+                <div class="story-label">معادلة الفعل</div>
+                <h2>الانتقال من مرحلة التمني إلى مرحلة الشروع</h2>
+            </div>
+        </div>
+        <p>الفرق بين الحالم والمُنجز هو أن الحالم ينتظر "اللحظة المثالية" التي لن تأتي أبداً، بينما المنجز يبدأ بما يملك، من المكان الذي يقف فيه، وبالموارد المتاحة، ثم يطور مساره أثناء الحركة.</p>
+    </div>
+
+    <div class="table-wrap" data-reveal>
+        <h4>🛠️ مقارنة بين عقلية الحالم وعقلية المنفذ</h4>
+        <table>
+            <thead><tr><th>المعيار</th><th>عقلية الحالم</th><th>عقلية المنفذ</th></tr></thead>
+            <tbody>
+                <tr><td>البداية</td><td>ينتظر اكتمال الظروف والمال</td><td>يبدأ بنسخة أولية بسيطة (MVP)</td></tr>
+                <tr><td>الأخطاء</td><td>يخاف الفشل فيتوقف قبل البدء</td><td>يعتبر الفشل بيانات لتحسين التجربة</td></tr>
+                <tr><td>الدافع</td><td>يعتمد على الشغف والحماس</td><td>يعتمد على الانضباط والعادة اليومية</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="insight-box insight-action" data-reveal>
+        <div class="insight-title">🚀 تطبيق عملي (قاعدة الخمس ثوانٍ)</div>
+        <div class="insight-body">حين تخطر لك خطوة إيجابية (قيام لصلاة، كتابة فكرة، تمرين)، عد عكسياً: 5.. 4.. 3.. 2.. 1 وتحرك جسدياً فوراً قبل أن يتدخل عقلك ويقدم الأعذار!</div>
+    </div>
+</div>
+
+<!-- ============ لوحة 8 (ج2) ============ -->
+<div class="panel" id="panel8" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">🎭</div>
+        <small>الجزء الثاني — المحور الثالث</small>
+        <h2>خدع العقل البشري (الهندسة العكسية للدماغ)</h2>
+        <p>كيف تستغل الحيل النفسية للتغلب على الكسل والتسويف؟</p>
+    </section>
+
+    <div class="intro" data-reveal>
+        <p>الدماغ البشري كائن بيولوجي مصمم للبحث عن الراحة وتوفير الطاقة والهروب من الألم. إن لم تكن واعياً بحيله النفسية، فسيخدعك ليجعلك تجلس على الهاتف لساعات بحجة "الاستراحة"!</p>
+    </div>
+
+    <div class="principles" data-reveal>
+        <div class="principle"><span class="principle-icon">🧩</span><h3>خدعة الـ 5 دقائق</h3><p>إقناع الدماغ بـ "سأعمل على الملف 5 دقائق فقط ثم أتوقف". فور أن تبدأ يزول الخمول وتستمر.</p></div>
+        <div class="principle"><span class="principle-icon">🎁</span><h3>المكافأة المشروطة</h3><p>ربط الأنشطة الممتعة (مسلسل، قهوة) بإنجاز المهمة الأثقل أولاً.</p></div>
+        <div class="principle"><span class="principle-icon">🧹</span><h3>تطهير البيئة</h3><p>إبعاد المشتتات جغرافياً؛ إخفاء الهاتف في غرفة أخرى لرفع مشقة الوصول إليه.</p></div>
+        <div class="principle"><span class="principle-icon">⛓️</span><h3>تسلسل العادات</h3><p>ربط العادة الجديدة الصعبة بعادة قديمة راسخة في جدولك اليومي.</p></div>
+    </div>
+
+    <div class="insight-box insight-deep" data-reveal>
+        <div class="insight-title">🧠 فكرة أعمق</div>
+        <div class="insight-body">الانضباط الذاتي لا يعني امتلاك قوة إرادة خرافية، بل يعني تصميم بيئة ذكية تقلب خيارات الراحة إلى خيارات صعبة وخيارات الإنجاز إلى خيارات سهلة.</div>
+    </div>
+</div>
+
+<!-- ============ لوحة 9 (ج2) ============ -->
+<div class="panel" id="panel9" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">👑</div>
+        <small>الجزء الثاني — المحور الرابع</small>
+        <h2>قوانين الهيبة والنجاح الاجتماعي</h2>
+        <p>كيف تبني حضوراً استثنائياً وتأثيراً وثقة ذاتية حديدية؟</p>
+    </section>
+
+    <div class="intro" data-reveal>
+        <p>في الجزء الثاني يخصص المؤلف محاور بارزة لكيفية بناء "الهيبة الشخصية" والكاريزما الحقيقية، والتي لا تعتمد على التصنع، بل على الاستقلال الذاتي والوفاء بالوعود.</p>
+    </div>
+
+    <div class="principles" data-reveal>
+        <div class="principle"><span class="principle-icon">🤐</span><h3>قلة الكلام والتأمل</h3><p>الثرثرة تفقدك هيبتك؛ استمع ضعف ما تتكلم ورتب أفكارك بعناية.</p></div>
+        <div class="principle"><span class="principle-icon">🤝</span><h3>الوفاء بالوعد</h3><p>إذا وعدت بكلمة أصبحت ديناً على كرامتك؛ لا تعطِ وعوداً سهلة.</p></div>
+        <div class="principle"><span class="principle-icon">🧘‍♂️</span><h3>الاستغناء النفسي</h3><p>كلما قل احتياجك وتوددك لنيل رضا الآخرين، زاد انجذابهم واحترامهم لك.</p></div>
+        <div class="principle"><span class="principle-icon">🚶‍♂️</span><h3>لغة الجسد المتزنة</h3><p>الهدوء في الحركة، النظر الثابت، والنبرة الهادئة تعكس القوة الداخلية.</p></div>
+    </div>
+
+    <div class="insight-box insight-wisdom" data-reveal>
+        <div class="insight-title">⚖️ حكمة مستخلصة</div>
+        <div class="insight-body">«الهيبة لا تُطلب بل تُصنع؛ يصنعها رجل يحترم وقته، ويقدر كلمته، ولا ينقاد وراء كل صيحة.»</div>
+    </div>
+</div>
+
+<!-- ============ لوحة 10 (ج1+ج2) ============ -->
+<div class="panel" id="panel10" role="tabpanel">
+    <section class="chapter-head" data-reveal>
+        <div class="symbol">🏰</div>
+        <small>الخلاصة الكبرى — الجزء الأول والثاني</small>
+        <h2>خارج منطقة الراحة: صناعة الحياة الاستثنائية</h2>
+        <p>الدمج بين حكمة الجزء الأول وقواعد الجزء الثاني</p>
+    </section>
+
+    <div class="intro" data-reveal>
+        <p>منطقة الراحة (Comfort Zone) هي السجن الناعم الذي نخترعه برغبتنا؛ حيث المألوف، الأمان المزيف، والروتين اليومي المكرر. ولكن الحقيقة القاسية تقول: <strong>كل الأشياء العظيمة تقبع خارج هذه المنطقة</strong>.</p>
+    </div>
+
+    <div class="story-card" data-reveal>
+        <div class="story-head">
+            <div class="story-icon">🌟</div>
+            <div>
+                <div class="story-label">الوصفة المتكاملة</div>
+                <h2>كيف تصبح شخصاً استثنائياً؟</h2>
+            </div>
+        </div>
+        <p>إذا جمعنا خلاصات كتاب نظرية الفستق بجزئيه الأول والثاني، سنجد أنها تتركز في منظومة واحدة: <strong>خطة صريحة + حذر من أخطاء الفستق الصغرى + انضباط بـ 15 دقيقة + تنفيذ دون انتظار الشغف + هندسة للبيئة والحدود</strong>.</p>
+    </div>
+
+    <section class="conclusion" data-reveal style="padding:35px 25px;margin-top:30px;color:#f4efe6;background:linear-gradient(145deg,#1f3325,#2d4433);border-radius:12px;text-align:center;">
+        <h2 style="font-family:'Scheherazade New',serif;color:var(--gold-light);font-size:32px;margin-bottom:20px;">🏺 المبادئ الذهبية الشاملة لنظرية الفستق</h2>
+        <div class="final-grid">
+            <div class="final-card"><span class="emoji">✈️</span><strong>خطط بوضوح</strong><span>ضع خريطة صريحة لطائرتك.</span></div>
+            <div class="final-card"><span class="emoji">⏱️</span><strong>انضبط بـ 15 دقيقة</strong><span>استمرارية القليل تهزم الطفرات.</span></div>
+            <div class="final-card"><span class="emoji">🥜</span><strong>احذر الفستق</strong><span>انتبه لتراكم الأخطاء الصغرى.</span></div>
+            <div class="final-card"><span class="emoji">⚙️</span><strong>نفذ فوراً</strong><span>النية بلا عمل حلم معطل.</span></div>
+            <div class="final-card"><span class="emoji">🧠</span><strong>احكم عقلك</strong><span>اصنع مسافة بين المثير والاستجابة.</span></div>
+            <div class="final-card"><span class="emoji">👑</span><strong>اصنع هيبتك</strong><span>بالاستغناء والوفاء بالكلمة.</span></div>
+        </div>
+    </section>
+
+    <section class="ending">
+        <div class="symbol" data-reveal style="font-size:45px;margin-bottom:10px;">🌿</div>
+        <h2 data-reveal style="font-family:'Scheherazade New',serif;color:var(--brown-dark);font-size:38px;">انتهت الصفحات... وبدأ دورك الآن!</h2>
+        <p data-reveal style="max-width:650px;margin:15px auto;font-family:'Amiri',serif;color:var(--ink-soft);font-size:20px;">القراءة والتنظير تشكل 10% من التغيير، أما الـ 90% المتبقية فهي تطبيقك المباشر واختيارك ألا تكون شخصاً عادياً بعد اليوم. ابدأ فوراً! 🚀</p>
+    </section>
+</div>
+
+<!-- اسم المعد والفوتر -->
+<div class="credit" data-reveal>
+    <span>إعداد وترتيب</span>
+    <strong>حسين العرياني</strong>
+</div>
+
+<footer class="footer" data-reveal>
+    <p>🥜 موسوعة نظرية الفستق الشاملة (الجزء الأول والثاني)</p>
+    <p>خريطة الحياة · نظرية الفستق · النظارة السوداء · الـ 15 دقيقة · ردود الفعل · قوانين الفشل · النية لا تكفي · خدع العقل · قوانين الهيبة · منطقة الراحة</p>
+    <p>ملخص تعليمي موسّع ومصاغ بأسلوب تحليلي شامل يجمع الجزءَيْن الأول والثاني من كتاب «نظرية الفستق» للكاتب فهد عامر الأحمدي.</p>
+</footer>
+
+</main>
+</div>
+
+<a href="#top" class="top" id="toTop" aria-label="العودة إلى الأعلى">↑</a>
 
 <script>
-// ============ حالة عامة ============
-let bookIds = [];
-let isDownloading = false;
-let shouldStop = false;
-let dirHandle = null;
+(function(){
+    "use strict";
 
-// ============ اكتشاف المنصة ============
-const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-// File System Access API متاح فقط على سطح المكتب
-const supportsFS = ('showDirectoryPicker' in window) && !isMobile;
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var revealItems = document.querySelectorAll("[data-reveal]");
+    var observer = null;
+    var isManualScrolling = false; // حارس للتنقل اليدوي عبر النقر
 
-// ============ عناصر DOM ============
-const $ = id => document.getElementById(id);
-const jsonFileInput = $('jsonFile');
-const chooseFileBtn = $('chooseFileBtn');
-const downloadBtn = $('downloadBtn');
-const fileInfo = $('fileInfo');
-const progressWrap = $('progressWrap');
-const progressFill = $('progressFill');
-const statusEl = $('status');
-const statOk = $('statOk');
-const statSkip = $('statSkip');
-const statFail = $('statFail');
-const logBox = $('logBox');
-const restartBtn = $('restartBtn');
-const toastEl = $('toast');
-const platformNote = $('platformNote');
-
-// ============ تحديث الملاحظة حسب المنصة ============
-if (supportsFS) {
-  platformNote.innerHTML = '💡 سيُطلب منك اختيار <strong>مجلد الحفظ</strong> مرة واحدة، ثم تُحفظ الكتب بداخله.';
-} else {
-  platformNote.innerHTML = '💡 <strong>على الجوال:</strong> سيُجمَّع كل 15 كتاباً في ملف <strong>ZIP</strong> منفصل. اضغط <strong>السماح</strong> عند طلب التنزيل.';
-}
-
-// ============ اختيار الملف ============
-chooseFileBtn.addEventListener('click', () => jsonFileInput.click());
-
-jsonFileInput.addEventListener('change', async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  chooseFileBtn.textContent = '⏳ جاري القراءة...';
-  
-  try {
-    const text = await file.text();
-    const data = JSON.parse(text);
-    bookIds = extractBookIds(data);
-    
-    if (bookIds.length === 0) {
-      showInfo('❌ لم يتم العثور على أرقام كتب', 'error');
-      downloadBtn.disabled = true;
-      chooseFileBtn.textContent = '📁 اختيار ملف JSON';
-      return;
+    function prepareReveal(el){
+        if(el.classList.contains("reveal")) return;
+        el.classList.add("reveal");
     }
-    
-    showInfo(`✅ تم العثور على ${bookIds.length} كتاباً`, 'success');
-    downloadBtn.disabled = false;
-    chooseFileBtn.textContent = '📁 تغيير الملف';
-    showToast(`تم تحميل ${bookIds.length} كتاب`);
-  } catch (err) {
-    showInfo('❌ خطأ: ' + err.message, 'error');
-    downloadBtn.disabled = true;
-    chooseFileBtn.textContent = '📁 اختيار ملف JSON';
-  }
-});
 
-// ============ استخراج الأرقام ============
-function extractBookIds(data) {
-  const ids = new Set();
-  function walk(obj, depth = 0) {
-    if (!obj || typeof obj !== 'object' || depth > 10) return;
-    if (obj.books_local && typeof obj.books_local === 'object') {
-      Object.keys(obj.books_local).forEach(k => {
-        const n = parseInt(k);
-        if (!isNaN(n) && n > 0) ids.add(n);
-      });
-    }
-    if (Array.isArray(obj)) {
-      obj.forEach(item => {
-        if (typeof item === 'number' && item > 0) ids.add(item);
-        else if (typeof item === 'string' && /^\d+$/.test(item)) ids.add(parseInt(item));
-        else walk(item, depth + 1);
-      });
+    if(reduceMotion || !("IntersectionObserver" in window)){
+        revealItems.forEach(function(el){ el.classList.add("reveal","visible"); });
     } else {
-      for (const key of Object.keys(obj)) {
-        if (key === 'books_local' && typeof obj[key] === 'object') {
-          Object.keys(obj[key]).forEach(k => {
-            const n = parseInt(k);
-            if (!isNaN(n) && n > 0) ids.add(n);
-          });
-        } else if (typeof obj[key] === 'object' && obj[key] !== null && depth < 5) {
-          walk(obj[key], depth + 1);
+        revealItems.forEach(prepareReveal);
+        observer = new IntersectionObserver(function(entries){
+            entries.forEach(function(entry){
+                if(entry.isIntersecting){
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold:0.05, rootMargin:"0px 0px -40px 0px" });
+        revealItems.forEach(function(el){ observer.observe(el); });
+    }
+
+    var tabBtns = document.querySelectorAll(".tab-btn");
+    var panels  = document.querySelectorAll(".panel");
+    var tabsBar = document.getElementById("tabs");
+
+    function setActiveTab(activeBtn){
+        tabBtns.forEach(function(b){
+            var isActive = (b === activeBtn);
+            b.classList.toggle("active", isActive);
+            b.setAttribute("aria-selected", isActive ? "true" : "false");
+        });
+        if(activeBtn && activeBtn.scrollIntoView){
+            try{ activeBtn.scrollIntoView({behavior:"smooth", block:"nearest", inline:"center"}); }catch(e){}
         }
-      }
     }
-  }
-  walk(data);
-  return [...ids].sort((a, b) => a - b);
-}
 
-// ============ مساعدات ============
-function showInfo(msg, type) {
-  fileInfo.textContent = msg;
-  fileInfo.className = 'info show ' + type;
-}
-function showToast(msg) {
-  toastEl.textContent = msg;
-  toastEl.classList.add('show');
-  setTimeout(() => toastEl.classList.remove('show'), 2500);
-}
-function log(msg, type) {
-  const div = document.createElement('div');
-  div.className = 'log-entry ' + (type || '');
-  const time = new Date().toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  div.textContent = `[${time}] ${msg}`;
-  logBox.appendChild(div);
-  logBox.scrollTop = logBox.scrollHeight;
-}
-function updateProgress(current, total) {
-  const pct = Math.round((current / total) * 100);
-  progressFill.style.width = pct + '%';
-  progressFill.textContent = pct + '%';
-}
-function updateStats(ok, skip, fail) {
-  statOk.textContent = ok;
-  statSkip.textContent = skip;
-  statFail.textContent = fail;
-}
+    /* إصلاح حدث النقر للانتقال المباشر مع الحفاظ على التصفح المستمر */
+    tabBtns.forEach(function(btn){
+        btn.addEventListener("click", function(e){
+            e.preventDefault();
+            var targetId = btn.getAttribute("data-panel");
+            var targetPanel = document.getElementById(targetId);
+            if(!targetPanel) return;
 
-// ============ تحميل كتاب ============
-async function fetchBook(id) {
-  const url = `https://files.turath.io/epub/${id}.epub`;
-  const res = await fetch(url, {
-    headers: {
-      'User-Agent': 'Mozilla/5.0',
-      'Referer': 'https://app.turath.io/',
+            isManualScrolling = true;
+            setActiveTab(btn);
+
+            // الانتقال السلس مع الاعتماد على scroll-margin-top المتوافق مع CSS
+            targetPanel.scrollIntoView({
+                behavior: reduceMotion ? "auto" : "smooth",
+                block: "start"
+            });
+
+            // تحرير الحارس بعد انتهاء حركة التمرير
+            setTimeout(function(){
+                isManualScrolling = false;
+            }, 800);
+        });
+    });
+
+    function updateActiveTabOnScroll(){
+        if(isManualScrolling || !tabsBar) return;
+        var tabsHeight = tabsBar.offsetHeight;
+        var scrollPos = (window.pageYOffset || document.documentElement.scrollTop) + tabsHeight + 120;
+        var currentBtn = tabBtns[0];
+
+        panels.forEach(function(p){
+            if(p.offsetTop <= scrollPos){
+                var btn = document.querySelector('.tab-btn[data-panel="' + p.id + '"]');
+                if(btn) currentBtn = btn;
+            }
+        });
+
+        setActiveTab(currentBtn);
     }
-  });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
-  const blob = await res.blob();
-  const bytes = new Uint8Array(await blob.slice(0, 4).arrayBuffer());
-  if (bytes[0] !== 0x50 || bytes[1] !== 0x4B) throw new Error('ليس EPUB صالح');
-  return blob;
-}
 
-// ============ إيقاف ============
-restartBtn.addEventListener('click', () => {
-  shouldStop = true;
-  log('⏹️ تم طلب الإيقاف...', 'err');
-});
+    var bar = document.getElementById("progressBar");
+    var topBtn = document.getElementById("toTop");
+    var ticking = false;
 
-// ============ البدء ============
-downloadBtn.addEventListener('click', startDownload);
-
-async function startDownload() {
-  if (bookIds.length === 0 || isDownloading) return;
-  
-  isDownloading = true;
-  shouldStop = false;
-  downloadBtn.disabled = true;
-  downloadBtn.textContent = '⏳ جاري التحميل...';
-  progressWrap.classList.add('show');
-  logBox.classList.add('show');
-  restartBtn.classList.add('show');
-  
-  try {
-    if (supportsFS) {
-      await downloadWithFolderPicker();
-    } else {
-      await downloadAsZips();
-    }
-  } catch (err) {
-    log('❌ خطأ عام: ' + err.message, 'err');
-  }
-  
-  restartBtn.classList.remove('show');
-  downloadBtn.disabled = false;
-  downloadBtn.textContent = '⬇️ إعادة التحميل';
-  isDownloading = false;
-}
-
-// ============ الطريقة 1: اختيار المجلد (سطح المكتب) ============
-async function downloadWithFolderPicker() {
-  try {
-    dirHandle = await window.showDirectoryPicker({ mode: 'readwrite' });
-  } catch (err) {
-    if (err.name === 'AbortError') {
-      statusEl.textContent = 'تم الإلغاء';
-      return;
-    }
-    throw err;
-  }
-  
-  let ok = 0, skip = 0, fail = 0;
-  
-  for (let i = 0; i < bookIds.length; i++) {
-    if (shouldStop) {
-      statusEl.textContent = `⏹️ توقف عند ${i}/${bookIds.length}`;
-      return;
-    }
-    
-    const id = bookIds[i];
-    updateProgress(i, bookIds.length);
-    statusEl.textContent = `📥 تحميل ${id} (${i + 1}/${bookIds.length})`;
-    
-    // تخطي الموجود
-    try {
-      await dirHandle.getFileHandle(`${id}.epub`);
-      log(`${id}: موجود مسبقاً`, 'info');
-      skip++;
-      updateStats(ok, skip, fail);
-      continue;
-    } catch {}
-    
-    try {
-      const blob = await fetchBook(id);
-      const fileHandle = await dirHandle.getFileHandle(`${id}.epub`, { create: true });
-      const writable = await fileHandle.createWritable();
-      await writable.write(blob);
-      await writable.close();
-      
-      const sizeMB = (blob.size / 1024 / 1024).toFixed(2);
-      log(`${id}: ✅ ${sizeMB} MB`, 'ok');
-      ok++;
-    } catch (err) {
-      log(`${id}: ❌ ${err.message}`, 'err');
-      fail++;
-    }
-    updateStats(ok, skip, fail);
-    await new Promise(r => setTimeout(r, 100));
-  }
-  
-  updateProgress(bookIds.length, bookIds.length);
-  statusEl.innerHTML = `🎉 <strong>اكتمل!</strong> نجح: ${ok} | موجود: ${skip} | فشل: ${fail}`;
-  showToast(`انتهى: ${ok} نجح، ${fail} فشل`);
-}
-
-// ============ الطريقة 2: ملفات ZIP (الجوال) ============
-async function downloadAsZips() {
-  const BATCH_SIZE = 15; // عدد الكتب في كل ZIP
-  const totalBatches = Math.ceil(bookIds.length / BATCH_SIZE);
-  let ok = 0, fail = 0, totalSkip = 0;
-  
-  for (let batch = 0; batch < totalBatches; batch++) {
-    if (shouldStop) break;
-    
-    const start = batch * BATCH_SIZE;
-    const end = Math.min(start + BATCH_SIZE, bookIds.length);
-    const batchIds = bookIds.slice(start, end);
-    
-    statusEl.textContent = `📦 إعداد الدفعة ${batch + 1}/${totalBatches} (${batchIds.length} كتاب)`;
-    log(`--- الدفعة ${batch + 1}: كتب ${start + 1}-${end} ---`, 'info');
-    
-    const zip = new JSZip();
-    let batchOk = 0;
-    
-    for (let i = 0; i < batchIds.length; i++) {
-      if (shouldStop) break;
-      
-      const id = batchIds[i];
-      const globalIndex = start + i;
-      updateProgress(globalIndex, bookIds.length);
-      statusEl.textContent = `📥 [دفعة ${batch + 1}/${totalBatches}] كتاب ${id} (${i + 1}/${batchIds.length})`;
-      
-      try {
-        const blob = await fetchBook(id);
-        zip.file(`${id}.epub`, blob);
-        const sizeMB = (blob.size / 1024 / 1024).toFixed(2);
-        log(`  ${id}: ✅ ${sizeMB} MB`, 'ok');
-        ok++;
-        batchOk++;
-      } catch (err) {
-        log(`  ${id}: ❌ ${err.message}`, 'err');
-        fail++;
-      }
-      updateStats(ok, totalSkip, fail);
-      await new Promise(r => setTimeout(r, 300));
-    }
-    
-    // إنشاء وتنزيل ZIP الدفعة
-    if (batchOk > 0) {
-      statusEl.textContent = `🗜️ ضغط الدفعة ${batch + 1}...`;
-      log(`🗜️ ضغط ${batchOk} كتاباً...`, 'info');
-      
-      try {
-        const zipBlob = await zip.generateAsync(
-          { type: 'blob', compression: 'DEFLATE', compressionOptions: { level: 1 } },
-          (meta) => {
-            progressFill.style.width = Math.round(meta.percent) + '%';
-            progressFill.textContent = `ضغط ${Math.round(meta.percent)}%`;
-          }
-        );
+    function onScroll(){
+        var doc = document.documentElement;
+        var scrolled = window.pageYOffset || doc.scrollTop;
+        var height = doc.scrollHeight - doc.clientHeight;
+        var percent = height > 0 ? (scrolled / height) * 100 : 0;
         
-        const zipUrl = URL.createObjectURL(zipBlob);
-        const a = document.createElement('a');
-        a.href = zipUrl;
-        a.download = `turath-books-part-${batch + 1}-of-${totalBatches}.zip`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        setTimeout(() => URL.revokeObjectURL(zipUrl), 15000);
-        
-        const sizeMB = (zipBlob.size / 1024 / 1024).toFixed(2);
-        log(`✅ ZIP ${batch + 1}: ${sizeMB} MB`, 'ok');
-        showToast(`الدفعة ${batch + 1} جاهزة (${sizeMB} MB)`);
-      } catch (err) {
-        log(`❌ فشل إنشاء ZIP: ${err.message}`, 'err');
-      }
-      
-      // انتظار بين الدفعات ليفتح المتصفح التنزيل
-      await new Promise(r => setTimeout(r, 2000));
+        if(bar) bar.style.width = percent + "%";
+        if(topBtn){
+            if(scrolled > 320) topBtn.classList.add("show");
+            else topBtn.classList.remove("show");
+        }
+        updateActiveTabOnScroll();
+        ticking = false;
     }
-  }
-  
-  updateProgress(bookIds.length, bookIds.length);
-  statusEl.innerHTML = `🎉 <strong>اكتمل!</strong> ${ok} كتاب في ${totalBatches} ملف ZIP. فشل: ${fail}`;
-  showToast(`انتهى! ${ok} كتاب في ${totalBatches} ZIP`);
-}
+
+    window.addEventListener("scroll", function(){
+        if(!ticking){
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+        }
+    }, { passive:true });
+
+    window.addEventListener("resize", onScroll);
+    window.addEventListener("load", onScroll);
+
+    if(topBtn){
+        topBtn.addEventListener("click", function(e){
+            e.preventDefault();
+            window.scrollTo({ top:0, behavior: reduceMotion ? "auto" : "smooth" });
+        });
+    }
+
+})();
+</script>
+
+<!-- ====== ميزة العلامة المرجعية (Bookmark) ====== -->
+<script>
+(function(){
+    var BOOKMARK_KEY = 'pistachio_theory_bookmark_v1';
+    var bookmarked = null;
+    try { bookmarked = localStorage.getItem(BOOKMARK_KEY); } catch(e){}
+
+    var tabEls = document.querySelectorAll('.tab-btn');
+
+    function refreshBookmarkUI(){
+        tabEls.forEach(function(t){
+            var target = t.getAttribute('data-panel');
+            var on = bookmarked && target === bookmarked;
+            t.classList.toggle('bookmarked', !!on);
+            if(on){
+                t.setAttribute('title','هذه علامة توقفك. اضغط مرة أخرى لإزالة العلامة 🏷');
+            } else {
+                t.removeAttribute('title');
+            }
+        });
+    }
+
+    function saveBookmark(id){
+        bookmarked = id;
+        try {
+            if(id){ localStorage.setItem(BOOKMARK_KEY, id); }
+            else { localStorage.removeItem(BOOKMARK_KEY); }
+        } catch(e){}
+        refreshBookmarkUI();
+    }
+
+    refreshBookmarkUI();
+
+    tabEls.forEach(function(t){
+        t.addEventListener('click', function(){
+            var target = t.getAttribute('data-panel');
+            if(!target) return;
+            if(bookmarked === target){
+                saveBookmark(null);   // إزالة العلامة
+            } else {
+                saveBookmark(target); // وضع العلامة هنا
+            }
+        });
+    });
+
+    if(bookmarked){
+        var bTab = document.querySelector('.tab-btn[data-panel="'+bookmarked+'"]');
+        if(bTab){
+            try { bTab.scrollIntoView({inline:'center', block:'nearest'}); } catch(e){}
+        }
+    }
+})();
 </script>
 
 </body>
